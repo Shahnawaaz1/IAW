@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="iawRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="100%" stop-color="#B91C1C"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Slanted Automotive Brand Badge -->
+  <polygon points="4,6 60,6 52,58 4,58" fill="url(#iawRed)" rx="4" filter="url(#shadow)"/>
+  
+  <!-- Sleek Top Bevel Highlight -->
+  <polygon points="4,6 60,6 57,14 4,14" fill="#FFFFFF" opacity="0.2"/>
+  
+  <!-- IAW Wordmark in Crisp Geometry -->
+  <text x="26" y="42" font-family="'Archivo', 'Arial Black', sans-serif" font-size="24" font-weight="900" font-style="italic" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1">IAW</text>
+  
+  <!-- Bottom Accent Dot -->
+  <circle cx="48" cy="40" r="3" fill="#FFFFFF"/>
+</svg>

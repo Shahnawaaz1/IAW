@@ -1,0 +1,34 @@
+# Robots.txt for IAW Force - Authorized Force Motors Dealership
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_build/
+
+# Search Engine Crawlers (Google, Bing, Yahoo, Yandex, DuckDuckGo)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI Crawlers & Answer Engines (OpenAI ChatGPT, Perplexity, Anthropic Claude, Google Gemini, Applebot)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap Location
+Sitemap: https://iawforce.com/sitemap.xml
