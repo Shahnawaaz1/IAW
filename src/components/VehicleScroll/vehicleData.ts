@@ -20,6 +20,7 @@ export type Vehicle = {
   image: string;
   model?: string;
   pace: VehiclePace;
+  url: string;
 };
 
 export const vehicles: Vehicle[] = [
@@ -44,6 +45,7 @@ export const vehicles: Vehicle[] = [
     image: traveller,
     model: "/models/traveller.glb",
     pace: "standard",
+    url: "https://www.forcemotors.com/vehicles-category/traveller/",
   },
   {
     id: "urbania",
@@ -66,6 +68,7 @@ export const vehicles: Vehicle[] = [
     image: urbania,
     model: "/models/urbania.glb",
     pace: "premium",
+    url: "https://forceurbania.co.in/",
   },
   {
     id: "trax",
@@ -88,6 +91,7 @@ export const vehicles: Vehicle[] = [
     image: trax,
     model: "/models/trax.glb",
     pace: "energetic",
+    url: "https://www.forcemotors.com/vehicles-category/trax/",
   },
   {
     id: "monobus",
@@ -110,5 +114,6 @@ export const vehicles: Vehicle[] = [
     image: monobus,
     model: "/models/monobus.glb",
     pace: "wide",
+    url: "https://www.forcemotors.com/vehicles-category/monobus/",
   },
 ];

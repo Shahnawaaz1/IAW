@@ -11,12 +11,9 @@ export const VehicleCard = forwardRef<HTMLDivElement, VehicleCardProps>(
     return (
       <div
         ref={ref}
-        style={{
-          filter: isFocused ? "blur(8px)" : "blur(0px)",
-          opacity: isFocused ? 0.25 : 1,
-          transform: isFocused ? "scale(0.96)" : "scale(1)",
-        }}
-        className="w-full max-w-xl rounded-xl border border-slate-200/90 bg-white/95 p-6 sm:p-8 shadow-2xl shadow-slate-300/50 backdrop-blur-xl transition-all duration-500 will-change-transform"
+        style={{}}
+        onClick={() => window.open(vehicle.url, "_blank")}
+        className="w-full max-w-xl rounded-xl border border-slate-200/90 bg-white/95 p-6 sm:p-8 shadow-2xl shadow-slate-300/50 backdrop-blur-xl transition-all duration-500 will-change-transform cursor-pointer hover:border-[#0B57D0]"
       >
         {/* Top Header Strip: Category tag & Model Index */}
         <div className="flex items-center justify-between border-b border-slate-100 pb-4">
@@ -87,6 +84,7 @@ export const VehicleCard = forwardRef<HTMLDivElement, VehicleCardProps>(
         <div className="mt-7 flex flex-wrap items-center gap-3.5">
           <a
             href="#contact"
+            onClick={(e) => e.stopPropagation()}
             className="flex items-center gap-2 rounded-md bg-[#0B57D0] px-7 py-3.5 text-xs font-bold tracking-[0.16em] text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:bg-blue-700 hover:shadow-blue-500/40 hover:-translate-y-0.5"
           >
             <span>{vehicle.cta}</span>
@@ -96,6 +94,7 @@ export const VehicleCard = forwardRef<HTMLDivElement, VehicleCardProps>(
           </a>
           <a
             href="#contact"
+            onClick={(e) => e.stopPropagation()}
             className="rounded-md border border-slate-300 bg-white px-6 py-3.5 text-xs font-bold tracking-[0.16em] text-slate-800 shadow-sm transition-all hover:border-[#0B57D0] hover:bg-blue-50/50 hover:text-[#0B57D0]"
           >
             GET BROCHURE

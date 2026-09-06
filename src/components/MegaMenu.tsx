@@ -31,25 +31,25 @@ const megaMenuData: Record<string, Category[]> = {
         {
           title: "Passenger Vehicles",
           vehicles: [
-            { name: "Traveller N 3050WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-monocoque" },
-            { name: "Traveller N 3350WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-monocoque" },
-            { name: "Traveller N 3700WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-monocoque" },
-            { name: "Traveller N 4020WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-monocoque" },
-            { name: "Traveller N Wider Body 3350WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-monocoque" },
-            { name: "Traveller N Wider Body 4020WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-monocoque" },
-            { name: "Traveller N 4020WB", badge: "CNG", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-monocoque" },
-            { name: "Traveller N Wider Body 4020WB", badge: "CNG", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-monocoque" },
+            { name: "Traveller N 3050WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N 3350WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N 3700WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N 4020WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N Wider Body 3350WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N Wider Body 4020WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N 4020WB", badge: "CNG", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N Wider Body 4020WB", badge: "CNG", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
           ],
         },
         {
           title: "School Buses",
           vehicles: [
-            { name: "Traveller N School Bus 3050WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-school-bus" },
-            { name: "Traveller N School Bus 3350WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-school-bus" },
-            { name: "Traveller N School Bus 3700WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-school-bus" },
-            { name: "Traveller N School Bus 4020WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-school-bus" },
-            { name: "Traveller N Wider Body School Bus 4020WB", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-school-bus" },
-            { name: "Traveller N School Bus 3700WB", badge: "CNG", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-school-bus" },
+            { name: "Traveller N School Bus 3050WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N School Bus 3350WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N School Bus 3700WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N School Bus 4020WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N Wider Body School Bus 4020WB", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
+            { name: "Traveller N School Bus 3700WB", badge: "CNG", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/traveller/" },
           ],
         },
       ],
@@ -61,9 +61,9 @@ const megaMenuData: Record<string, Category[]> = {
         {
           title: "Executive Vans",
           vehicles: [
-            { name: "Urbania DX 3200WB", image: urbaniaImg, url: "https://www.forcemotors.com/vehicle/urbania" },
-            { name: "Urbania DX 3615WB", image: urbaniaImg, url: "https://www.forcemotors.com/vehicle/urbania" },
-            { name: "Urbania DX 4400WB", image: urbaniaImg, url: "https://www.forcemotors.com/vehicle/urbania" },
+            { name: "Urbania DX 3200WB", image: urbaniaImg, url: "https://forceurbania.co.in/" },
+            { name: "Urbania DX 3615WB", image: urbaniaImg, url: "https://forceurbania.co.in/" },
+            { name: "Urbania DX 4400WB", image: urbaniaImg, url: "https://forceurbania.co.in/" },
           ],
         },
       ],
@@ -75,8 +75,8 @@ const megaMenuData: Record<string, Category[]> = {
         {
           title: "Staff & School Transit",
           vehicles: [
-            { name: "Monobus 33 Seater", image: monobusImg, url: "https://www.forcemotors.com/vehicle/monobus" },
-            { name: "Monobus 28 Seater", image: monobusImg, url: "https://www.forcemotors.com/vehicle/monobus" },
+            { name: "Monobus 33 Seater", image: monobusImg, url: "https://www.forcemotors.com/vehicles-category/monobus/" },
+            { name: "Monobus 28 Seater", image: monobusImg, url: "https://www.forcemotors.com/vehicles-category/monobus/" },
           ],
         },
       ],
@@ -88,8 +88,8 @@ const megaMenuData: Record<string, Category[]> = {
         {
           title: "Multi Utility",
           vehicles: [
-            { name: "Trax Cruiser", image: traxImg, url: "https://www.forcemotors.com/vehicle/trax-cruiser" },
-            { name: "Trax Toofan", image: traxImg, url: "https://www.forcemotors.com/vehicle/trax-toofan" },
+            { name: "Trax Cruiser", image: traxImg, url: "https://www.forcemotors.com/vehicles-category/trax/" },
+            { name: "Trax Toofan", image: traxImg, url: "https://www.forcemotors.com/vehicles-category/trax/" },
           ],
         },
       ],
@@ -101,8 +101,8 @@ const megaMenuData: Record<string, Category[]> = {
         {
           title: "Ambulance & Delivery",
           vehicles: [
-            { name: "Traveller Ambulance Type B", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-ambulance" },
-            { name: "Traveller Delivery Van", image: travellerImg, url: "https://www.forcemotors.com/vehicle/traveller-delivery-van" },
+            { name: "Traveller Ambulance Type B", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/special-applications/" },
+            { name: "Traveller Delivery Van", image: travellerImg, url: "https://www.forcemotors.com/vehicles-category/special-applications/" },
           ],
         },
       ],
@@ -116,8 +116,8 @@ const megaMenuData: Record<string, Category[]> = {
         {
           title: "4x4 Off-Roaders",
           vehicles: [
-            { name: "Gurkha 3-Door", image: traxImg, url: "https://www.forcemotors.com/vehicle/gurkha" },
-            { name: "Gurkha 5-Door", image: traxImg, url: "https://www.forcemotors.com/vehicle/gurkha" },
+            { name: "Gurkha 3-Door", image: traxImg, url: "https://www.forcemotors.com/vehicles-category/gurkha/" },
+            { name: "Gurkha 5-Door", image: traxImg, url: "https://www.forcemotors.com/vehicles-category/gurkha/" },
           ],
         },
       ],
@@ -131,7 +131,7 @@ const megaMenuData: Record<string, Category[]> = {
         {
           title: "Commercial EV",
           vehicles: [
-            { name: "Upcoming Traveller EV", image: travellerImg, url: "https://www.forcemotors.com/" },
+            { name: "Upcoming Traveller EV", image: travellerImg, url: "https://www.forcemotors.com/vehicles/e-traveller-smart-citibus-ev/" },
           ],
         },
       ],

@@ -27,6 +27,7 @@ export interface VehicleCatalogItem {
   application: string;
   image: string;
   features: string[];
+  url: string;
 }
 
 const allCatalogVehicles: VehicleCatalogItem[] = [
@@ -48,6 +49,7 @@ const allCatalogVehicles: VehicleCatalogItem[] = [
       "High roof with standing headroom",
       "Dual AC options with individual louvres",
     ],
+    url: "https://www.forcemotors.com/vehicles-category/traveller/",
   },
   {
     id: "urbania-dx",
@@ -67,6 +69,7 @@ const allCatalogVehicles: VehicleCatalogItem[] = [
       "Individual reclining seats with USB ports & reading lamps",
       "Aerodynamic European monocoque styling",
     ],
+    url: "https://forceurbania.co.in/",
   },
   {
     id: "monobus-33",
@@ -86,6 +89,7 @@ const allCatalogVehicles: VehicleCatalogItem[] = [
       "Large panoramic windows with emergency exits",
       "Government compliant School Bus safety equipment",
     ],
+    url: "https://www.forcemotors.com/vehicles-category/monobus/",
   },
   {
     id: "trax-cruiser",
@@ -105,6 +109,7 @@ const allCatalogVehicles: VehicleCatalogItem[] = [
       "Spacious interior with foldable jump seats",
       "High seating capacity for maximum per-trip earnings",
     ],
+    url: "https://www.forcemotors.com/vehicles-category/trax/",
   },
   {
     id: "traveller-ambulance",
@@ -124,6 +129,7 @@ const allCatalogVehicles: VehicleCatalogItem[] = [
       "Seamless anti-bacterial washable interiors",
       "Emergency warning lights, sirens & PA system",
     ],
+    url: "https://www.forcemotors.com/vehicles-category/special-applications/",
   },
   {
     id: "force-gurkha",
@@ -143,6 +149,7 @@ const allCatalogVehicles: VehicleCatalogItem[] = [
       "Heavy-duty ladder frame chassis with 4x4 low range",
       "Touchscreen infotainment with Android Auto & Apple CarPlay",
     ],
+    url: "https://www.forcemotors.com/vehicles-category/gurkha/",
   },
   {
     id: "force-ev",
@@ -162,6 +169,7 @@ const allCatalogVehicles: VehicleCatalogItem[] = [
       "Regenerative braking with smart battery telemetry",
       "Eco-friendly zero tailpipe emissions",
     ],
+    url: "https://www.forcemotors.com/vehicles/e-traveller-smart-citibus-ev/",
   },
 ];
 
@@ -343,7 +351,8 @@ export function VehicleRange() {
             <div
               key={v.id}
               data-range-card
-              className="h-full will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.97] hover:!blur-none hover:!opacity-100 hover:!scale-[1.05] hover:!z-30 hover:shadow-2xl"
+              onClick={() => window.open(v.url, "_blank")}
+              className="h-full will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.05] hover:z-30 hover:shadow-2xl cursor-pointer"
             >
               <Card3D intensity={12} className="h-full">
                 <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg shadow-slate-200/50 transition-all duration-300 hover:border-[#0B57D0] hover:shadow-2xl">
@@ -544,7 +553,7 @@ export function TravellerCatalogue() {
             <div
               key={app.num}
               data-app-card
-              className="h-full will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.97] hover:!blur-none hover:!opacity-100 hover:!scale-[1.05] hover:!z-30 hover:shadow-2xl"
+              className="h-full will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.05] hover:z-30 hover:shadow-2xl"
             >
               <Card3D intensity={12} className="h-full">
                 <div className="group flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-200/40 transition-all duration-300 hover:border-[#0B57D0] hover:shadow-xl">
@@ -696,7 +705,7 @@ export function Solutions() {
             <div
               key={sol.num}
               data-sol-card
-              className="h-full will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.97] hover:!blur-none hover:!opacity-100 hover:!scale-[1.05] hover:!z-30 hover:shadow-2xl"
+              className="h-full will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.05] hover:z-30 hover:shadow-2xl"
             >
               <Card3D intensity={10} className="h-full">
                 <article className="group flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-8 shadow-sm transition-all duration-300 hover:border-[#0B57D0] hover:bg-white hover:shadow-lg">
@@ -856,7 +865,7 @@ export function WhyIaw() {
               <div
                 key={r.title}
                 data-why-card
-                className="h-full will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.97] hover:!blur-none hover:!opacity-100 hover:!scale-[1.05] hover:!z-30 hover:shadow-2xl"
+                className="h-full will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.05] hover:z-30 hover:shadow-2xl"
               >
                 <Card3D intensity={10} className="h-full">
                   <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-[#0B57D0] hover:shadow-md">

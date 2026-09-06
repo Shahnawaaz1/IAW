@@ -100,7 +100,7 @@ export function Finance() {
         <div className="group/grid mt-14 grid gap-10 lg:grid-cols-[1.3fr_1fr]">
           <div
             data-finance-item
-            className="rounded-xl border border-slate-200 bg-white p-8 shadow-md will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.98] hover:!blur-none hover:!opacity-100 hover:!scale-[1.03] hover:!z-20 hover:shadow-2xl"
+            className="rounded-xl border border-slate-200 bg-white p-8 shadow-md will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.03] hover:z-20 hover:shadow-2xl"
           >
             <h3 className="font-display text-lg font-bold text-slate-900">
               Loan Calculation Parameters
@@ -156,7 +156,7 @@ export function Finance() {
 
           <div
             data-finance-item
-            className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/50 will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.98] hover:!blur-none hover:!opacity-100 hover:!scale-[1.03] hover:!z-20 hover:shadow-2xl"
+            className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/50 will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.03] hover:z-20 hover:shadow-2xl"
           >
             <div>
               <span className="text-xs font-bold tracking-[0.3em] text-[#0B57D0] uppercase">
@@ -307,7 +307,7 @@ export function ServiceParts() {
             <div
               key={s.num}
               data-service-card
-              className="h-full will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.97] hover:!blur-none hover:!opacity-100 hover:!scale-[1.05] hover:!z-30 hover:shadow-2xl"
+              className="h-full will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.05] hover:z-30 hover:shadow-2xl"
             >
               <Card3D intensity={10} className="h-full">
                 <div className="h-full rounded-xl border border-slate-200 bg-slate-50/60 p-8 shadow-sm transition-all duration-300 hover:border-[#0B57D0] hover:bg-white hover:shadow-md">
@@ -443,7 +443,7 @@ export function BuyingGuide() {
             <div
               key={g.num}
               data-guide-card
-              className="h-full will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.97] hover:!blur-none hover:!opacity-100 hover:!scale-[1.05] hover:!z-30 hover:shadow-2xl"
+              className="h-full will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.05] hover:z-30 hover:shadow-2xl"
             >
               <Card3D intensity={10} className="h-full">
                 <div className="h-full rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:border-[#0B57D0] hover:shadow-md">
@@ -573,7 +573,7 @@ export function FaqSection() {
             <details
               key={faq.q}
               data-faq-item
-              className="h-full will-change-transform opacity-100 rounded-xl border border-slate-200 bg-slate-50/70 p-6 shadow-sm transition-all duration-400 group-hover/grid:blur-[2px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.98] hover:!blur-none hover:!opacity-100 hover:!scale-[1.03] hover:!z-20 hover:shadow-lg open:border-[#0B57D0] open:bg-white"
+              className="h-full will-change-transform opacity-100 rounded-xl border border-slate-200 bg-slate-50/70 p-6 shadow-sm transition-all duration-400 hover:scale-[1.03] hover:z-20 hover:shadow-lg open:border-[#0B57D0] open:bg-white"
             >
               <summary className="flex cursor-pointer items-center justify-between font-display text-base font-bold text-slate-900 transition-colors hover:text-[#0B57D0]">
                 <span>{faq.q}</span>
@@ -667,7 +667,7 @@ export function Location() {
           {/* Dealership Details Card */}
           <div
             data-loc-item
-            className="rounded-xl border border-slate-200 bg-white p-8 shadow-md will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.98] hover:!blur-none hover:!opacity-100 hover:!scale-[1.03] hover:!z-20 hover:shadow-2xl"
+            className="rounded-xl border border-slate-200 bg-white p-8 shadow-md will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.03] hover:z-20 hover:shadow-2xl"
           >
             <h3 className="font-display text-2xl font-bold text-slate-900">
               {site.name} Showroom & Service Facility
@@ -732,7 +732,7 @@ export function Location() {
           {/* Dealership Photo */}
           <div
             data-loc-item
-            className="relative overflow-hidden rounded-xl border border-slate-200 shadow-md will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.98] hover:!blur-none hover:!opacity-100 hover:!scale-[1.03] hover:!z-20 hover:shadow-2xl"
+            className="relative overflow-hidden rounded-xl border border-slate-200 shadow-md will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.03] hover:z-20 hover:shadow-2xl"
           >
             <img
               src={dealership}
