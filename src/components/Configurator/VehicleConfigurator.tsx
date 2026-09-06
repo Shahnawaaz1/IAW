@@ -17,8 +17,8 @@ const colors: ConfigColor[] = [
   {
     id: "red",
     name: "Force Crimson Red",
-    hex: "#DC2626",
-    glow: "rgba(220,38,38,0.3)",
+    hex: "#0B57D0",
+    glow: "rgba(11, 87, 208,0.3)",
     filter: "hue-rotate(0deg) saturate(1.1)",
   },
   {
@@ -107,7 +107,7 @@ const configuratorModels = [
 
 export function VehicleConfigurator() {
   const [selectedModelIdx, setSelectedModelIdx] = useState(0);
-  const [selectedColor, setSelectedColor] = useState(colors[0] || { id: "red", name: "Force Crimson Red", hex: "#DC2626", glow: "rgba(220,38,38,0.3)", filter: "hue-rotate(0deg)" });
+  const [selectedColor, setSelectedColor] = useState(colors[0] || { id: "red", name: "Force Crimson Red", hex: "#0B57D0", glow: "rgba(11, 87, 208,0.3)", filter: "hue-rotate(0deg)" });
   const [selectedSeatIdx, setSelectedSeatIdx] = useState(0);
   const [downPaymentPercent, setDownPaymentPercent] = useState(20);
   const [loanTenureYears, setLoanTenureYears] = useState(5);
@@ -162,7 +162,7 @@ export function VehicleConfigurator() {
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto">
-          <span className="text-xs font-bold tracking-[0.25em] text-[#EF4444] uppercase">
+          <span className="text-xs font-bold tracking-[0.25em] text-[#3B82F6] uppercase">
             FLAGSHIP 3D STUDIO
           </span>
           <h2 className="mt-2 font-display text-3xl font-black sm:text-5xl text-white">
@@ -185,7 +185,7 @@ export function VehicleConfigurator() {
               }}
               className={`rounded-full px-5 py-2.5 text-xs font-bold transition-all duration-300 ${
                 selectedModelIdx === idx
-                  ? "bg-[#DC2626] text-white shadow-lg shadow-red-600/40 scale-105"
+                  ? "bg-[#0B57D0] text-white shadow-lg shadow-blue-600/40 scale-105"
                   : "border border-slate-800 bg-slate-900/80 text-slate-300 hover:border-slate-700 hover:bg-slate-800"
               }`}
             >
@@ -200,7 +200,7 @@ export function VehicleConfigurator() {
           <div className="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[340px] sm:min-h-[420px] rounded-3xl border border-slate-800/80 bg-gradient-to-b from-slate-900/40 to-[#0B1120] p-6">
             {/* Model Badge */}
             <div className="absolute top-5 left-5 flex items-center gap-2">
-              <span className="rounded-full bg-red-500/20 border border-red-500/40 px-3 py-1 text-[10px] font-bold text-red-400">
+              <span className="rounded-full bg-blue-500/20 border border-blue-500/40 px-3 py-1 text-[10px] font-bold text-blue-500">
                 {model.badge}
               </span>
               <span className="text-[11px] font-mono text-slate-400">
@@ -238,7 +238,7 @@ export function VehicleConfigurator() {
                   title={c.name}
                   className={`h-7 w-7 rounded-full border-2 transition-all duration-300 ${
                     selectedColor.id === c.id
-                      ? "border-white scale-125 shadow-md shadow-red-500/50"
+                      ? "border-white scale-125 shadow-md shadow-blue-500/50"
                       : "border-slate-700 hover:scale-110 opacity-75"
                   }`}
                   style={{ backgroundColor: c.hex }}
@@ -262,12 +262,12 @@ export function VehicleConfigurator() {
                     onClick={() => setSelectedSeatIdx(idx)}
                     className={`flex w-full items-center justify-between rounded-xl border p-3 text-left transition-all ${
                       selectedSeatIdx === idx
-                        ? "border-[#EF4444] bg-red-950/30 text-white"
+                        ? "border-[#3B82F6] bg-blue-950/30 text-white"
                         : "border-slate-800 bg-slate-950/50 text-slate-300 hover:border-slate-700"
                     }`}
                   >
                     <span className="text-xs font-bold">{opt.label}</span>
-                    <span className="text-xs font-mono text-[#EF4444]">
+                    <span className="text-xs font-mono text-[#3B82F6]">
                       {opt.priceDelta > 0 ? `+₹${opt.priceDelta.toLocaleString("en-IN")}` : "STANDARD"}
                     </span>
                   </button>
@@ -276,7 +276,7 @@ export function VehicleConfigurator() {
             </div>
 
             {/* Finance & Price Summary Card */}
-            <div className="rounded-2xl border border-red-500/30 bg-gradient-to-br from-slate-900 to-[#070B14] p-6 shadow-xl">
+            <div className="rounded-2xl border border-blue-500/30 bg-gradient-to-br from-slate-900 to-[#070B14] p-6 shadow-xl">
               <div className="flex items-baseline justify-between border-b border-slate-800 pb-4">
                 <div>
                   <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">
@@ -284,7 +284,7 @@ export function VehicleConfigurator() {
                   </span>
                   <div className="mt-1 font-display text-3xl font-black text-white">
                     ₹{(totalPrice / 100000).toFixed(2)}{" "}
-                    <span className="text-sm font-bold text-[#EF4444]">Lakh*</span>
+                    <span className="text-sm font-bold text-[#3B82F6]">Lakh*</span>
                   </div>
                 </div>
                 <div className="text-right">
@@ -310,7 +310,7 @@ export function VehicleConfigurator() {
                   step="5"
                   value={downPaymentPercent}
                   onChange={(e) => setDownPaymentPercent(Number(e.target.value))}
-                  className="mt-1.5 w-full accent-[#EF4444] cursor-pointer"
+                  className="mt-1.5 w-full accent-[#3B82F6] cursor-pointer"
                 />
               </div>
 
@@ -325,7 +325,7 @@ export function VehicleConfigurator() {
                       onClick={() => setLoanTenureYears(yr)}
                       className={`rounded px-2.5 py-1 text-[11px] font-bold transition-all ${
                         loanTenureYears === yr
-                          ? "bg-[#DC2626] text-white"
+                          ? "bg-[#0B57D0] text-white"
                           : "bg-slate-800 text-slate-400 hover:bg-slate-700"
                       }`}
                     >
@@ -340,7 +340,7 @@ export function VehicleConfigurator() {
                 <button
                   type="button"
                   onClick={handleSendCustomConfig}
-                  className="flex h-12 items-center justify-center gap-2 rounded-full bg-[#DC2626] text-xs font-bold tracking-wider text-white shadow-lg shadow-red-600/40 transition-all hover:bg-red-600 hover:shadow-red-600/60 hover:-translate-y-0.5 cursor-pointer"
+                  className="flex h-12 items-center justify-center gap-2 rounded-full bg-[#0B57D0] text-xs font-bold tracking-wider text-white shadow-lg shadow-blue-600/40 transition-all hover:bg-[#0B57D0] hover:shadow-blue-600/60 hover:-translate-y-0.5 cursor-pointer"
                 >
                   <span>💬 SEND CUSTOM CONFIG ON WHATSAPP</span>
                 </button>

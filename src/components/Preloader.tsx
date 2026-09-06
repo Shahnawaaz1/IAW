@@ -83,12 +83,12 @@ export function Preloader({ onComplete }: PreloaderProps) {
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#070B14] text-white selection:bg-transparent overflow-hidden"
     >
       {/* Ambient Red Showroom Floor Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-red-600/15 blur-[120px] pointer-events-none animate-pulse" />
-      <div className="absolute top-1/3 right-1/4 h-64 w-64 rounded-full bg-red-900/10 blur-[90px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-[#0B57D0]/15 blur-[120px] pointer-events-none animate-pulse" />
+      <div className="absolute top-1/3 right-1/4 h-64 w-64 rounded-full bg-blue-900/10 blur-[90px] pointer-events-none" />
 
       <div ref={logoRef} className="relative z-10 flex flex-col items-center px-6">
         {/* Brand Emblem with Slanted Polygon & Neon Edge */}
-        <div className="relative mb-6 flex h-16 w-18 items-center justify-center bg-[#DC2626] [clip-path:polygon(0_0,100%_0,88%_100%,0_100%)] shadow-[0_0_40px_rgba(220,38,38,0.6)] animate-pulse">
+        <div className="relative mb-6 flex h-16 w-18 items-center justify-center bg-[#0B57D0] [clip-path:polygon(0_0,100%_0,88%_100%,0_100%)] shadow-[0_0_40px_rgba(11, 87, 208,0.6)] animate-pulse">
           <span className="font-display text-2xl font-black italic tracking-tighter text-white pr-1">
             IAW
           </span>
@@ -99,7 +99,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
         <h1 className="font-display text-3xl sm:text-4xl font-black tracking-tight text-white drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)]">
           IAW FORCE
         </h1>
-        <p className="mt-1 text-[10px] sm:text-xs font-bold tracking-[0.35em] text-red-500 uppercase">
+        <p className="mt-1 text-[10px] sm:text-xs font-bold tracking-[0.35em] text-blue-600 uppercase">
           FORCE MOTORS · GORAKHPUR
         </p>
 
@@ -109,7 +109,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
             <div
               ref={progressBarRef}
               style={{ width: `${progress}%` }}
-              className="h-full rounded-full bg-gradient-to-r from-red-600 via-red-500 to-white shadow-[0_0_15px_rgba(239,68,68,0.9)] transition-all duration-75"
+              className="h-full rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-white shadow-[0_0_15px_rgba(11, 87, 208,0.9)] transition-all duration-75"
             />
           </div>
 
@@ -124,7 +124,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
               {progress >= 75 && progress < 100 && "PREPARING PERFORMANCE..."}
               {progress === 100 && "SHOWROOM READY"}
             </p>
-            <span className="font-mono text-xs sm:text-sm font-black text-red-400">
+            <span className="font-mono text-xs sm:text-sm font-black text-blue-500">
               {progress.toString().padStart(2, "0")}%
             </span>
           </div>

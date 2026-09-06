@@ -298,7 +298,7 @@ export function VehicleRange() {
         {/* Story Section Header */}
         <div data-range-header className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 will-change-transform opacity-100">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#DC2626]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#0B57D0]">
               OUR VEHICLES
             </div>
             <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
@@ -311,7 +311,7 @@ export function VehicleRange() {
           <div className="shrink-0">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-[#DC2626] bg-red-50 px-6 py-3.5 text-xs font-bold tracking-[0.18em] text-[#DC2626] transition-all duration-300 hover:bg-[#DC2626] hover:text-white shadow-sm"
+              className="inline-flex items-center gap-2 rounded-full border border-[#0B57D0] bg-blue-50 px-6 py-3.5 text-xs font-bold tracking-[0.18em] text-[#0B57D0] transition-all duration-300 hover:bg-[#0B57D0] hover:text-white shadow-sm"
             >
               <span>REQUEST PRICE LIST</span>
               <span>→</span>
@@ -328,7 +328,7 @@ export function VehicleRange() {
               onClick={() => setActiveTab(tab.id)}
               className={`rounded-full px-4 py-2.5 text-xs font-bold tracking-[0.14em] transition-all duration-300 ${
                 activeTab === tab.id
-                  ? "bg-[#DC2626] text-white shadow-md shadow-red-500/25 scale-105"
+                  ? "bg-[#0B57D0] text-white shadow-md shadow-blue-500/25 scale-105"
                   : "border border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white"
               }`}
             >
@@ -346,19 +346,19 @@ export function VehicleRange() {
               className="h-full will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.97] hover:!blur-none hover:!opacity-100 hover:!scale-[1.05] hover:!z-30 hover:shadow-2xl"
             >
               <Card3D intensity={12} className="h-full">
-                <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg shadow-slate-200/50 transition-all duration-300 hover:border-[#DC2626] hover:shadow-2xl">
+                <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg shadow-slate-200/50 transition-all duration-300 hover:border-[#0B57D0] hover:shadow-2xl">
                   {/* Top info badge */}
                   <div className="p-6 pb-0 [transform:translateZ(25px)]">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="rounded-full bg-red-50 border border-red-200/60 px-3 py-1 text-[10px] font-bold tracking-wider text-[#DC2626] uppercase shadow-sm">
+                      <span className="rounded-full bg-blue-50 border border-blue-200/60 px-3 py-1 text-[10px] font-bold tracking-wider text-[#0B57D0] uppercase shadow-sm">
                         {v.categoryBadge}
                       </span>
-                      <span className="flex items-center gap-1 text-[10px] font-bold text-[#DC2626] tracking-wider">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#DC2626] animate-ping" />
+                      <span className="flex items-center gap-1 text-[10px] font-bold text-[#0B57D0] tracking-wider">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#0B57D0] animate-ping" />
                         3D TOUCH
                       </span>
                     </div>
-                    <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-[#0F172A] transition-colors group-hover:text-[#DC2626]">
+                    <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-[#0F172A] transition-colors group-hover:text-[#0B57D0]">
                       {v.title}
                     </h3>
                     <p className="mt-1 text-xs text-slate-500">
@@ -402,7 +402,7 @@ export function VehicleRange() {
                         href={`https://wa.me/918429540902?text=${encodeURIComponent(`*VEHICLE ENQUIRY - IAW FORCE*\n\nI would like to enquire about *Force ${v.title}* (${v.seating}). Please share on-road price in Gorakhpur and brochure.`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-xs font-bold tracking-[0.16em] text-[#DC2626] transition-colors hover:text-red-700"
+                        className="flex items-center gap-2 text-xs font-bold tracking-[0.16em] text-[#0B57D0] transition-colors hover:text-blue-700"
                       >
                         <span>ENQUIRE NOW</span>
                         <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-none stroke-current" strokeWidth="2.5">
@@ -413,7 +413,7 @@ export function VehicleRange() {
                         href={`https://wa.me/918429540902?text=${encodeURIComponent(`*REQUEST QUOTE - IAW FORCE*\n\nPlease share quotation and finance options for *Force ${v.title}*.`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-full border border-slate-300 bg-white px-3.5 py-1.5 text-[11px] font-bold text-slate-700 shadow-sm transition-all hover:border-[#DC2626] hover:bg-red-50 hover:text-[#DC2626]"
+                        className="rounded-full border border-slate-300 bg-white px-3.5 py-1.5 text-[11px] font-bold text-slate-700 shadow-sm transition-all hover:border-[#0B57D0] hover:bg-blue-50 hover:text-[#0B57D0]"
                       >
                         Get Quote
                       </a>
@@ -519,7 +519,7 @@ export function TravellerCatalogue() {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div data-app-header className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-8 will-change-transform opacity-100">
           <div>
-            <span className="text-xs font-bold tracking-[0.3em] text-[#DC2626] uppercase">
+            <span className="text-xs font-bold tracking-[0.3em] text-[#0B57D0] uppercase">
               TRAVELLER N RANGE
             </span>
             <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-[#0F172A] sm:text-4xl">
@@ -531,7 +531,7 @@ export function TravellerCatalogue() {
           </div>
           <a
             href="#contact"
-            className="flex h-11 items-center gap-2 rounded-full bg-[#DC2626] px-6 text-xs font-bold tracking-[0.16em] text-white shadow-md shadow-red-500/20 transition-all hover:bg-red-700"
+            className="flex h-11 items-center gap-2 rounded-full bg-[#0B57D0] px-6 text-xs font-bold tracking-[0.16em] text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700"
           >
             <span>ENQUIRE FOR TRAVELLER N</span>
             <span>→</span>
@@ -547,12 +547,12 @@ export function TravellerCatalogue() {
               className="h-full will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.97] hover:!blur-none hover:!opacity-100 hover:!scale-[1.05] hover:!z-30 hover:shadow-2xl"
             >
               <Card3D intensity={12} className="h-full">
-                <div className="group flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-200/40 transition-all duration-300 hover:border-[#DC2626] hover:shadow-xl">
+                <div className="group flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-200/40 transition-all duration-300 hover:border-[#0B57D0] hover:shadow-xl">
                   <div>
-                    <span className="font-display text-2xl font-black text-[#DC2626] [transform:translateZ(20px)]">
+                    <span className="font-display text-2xl font-black text-[#0B57D0] [transform:translateZ(20px)]">
                       {app.num}
                     </span>
-                    <h3 className="mt-4 font-display text-lg font-bold text-[#0F172A] transition-colors group-hover:text-[#DC2626] [transform:translateZ(25px)]">
+                    <h3 className="mt-4 font-display text-lg font-bold text-[#0F172A] transition-colors group-hover:text-[#0B57D0] [transform:translateZ(25px)]">
                       {app.title}
                     </h3>
                     <p className="mt-2 text-xs leading-relaxed text-slate-600 [transform:translateZ(15px)]">
@@ -560,7 +560,7 @@ export function TravellerCatalogue() {
                     </p>
                   </div>
                   <div className="mt-5 border-t border-slate-100 pt-3 [transform:translateZ(10px)]">
-                    <span className="text-[10px] font-semibold text-[#DC2626] uppercase tracking-wider">
+                    <span className="text-[10px] font-semibold text-[#0B57D0] uppercase tracking-wider">
                       {app.variants}
                     </span>
                   </div>
@@ -678,7 +678,7 @@ export function Solutions() {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div data-sol-header className="flex flex-col md:flex-row md:items-end justify-between gap-6 will-change-transform opacity-100">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#DC2626]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#0B57D0]">
               SOLUTIONS BY APPLICATION
             </div>
             <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-[#0F172A] sm:text-5xl">
@@ -699,12 +699,12 @@ export function Solutions() {
               className="h-full will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.97] hover:!blur-none hover:!opacity-100 hover:!scale-[1.05] hover:!z-30 hover:shadow-2xl"
             >
               <Card3D intensity={10} className="h-full">
-                <article className="group flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-8 shadow-sm transition-all duration-300 hover:border-[#DC2626] hover:bg-white hover:shadow-lg">
+                <article className="group flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-8 shadow-sm transition-all duration-300 hover:border-[#0B57D0] hover:bg-white hover:shadow-lg">
                   <div>
-                    <span className="font-display text-xs font-bold tracking-[0.3em] text-[#DC2626] [transform:translateZ(15px)]">
+                    <span className="font-display text-xs font-bold tracking-[0.3em] text-[#0B57D0] [transform:translateZ(15px)]">
                       {sol.num}
                     </span>
-                    <h3 className="mt-4 font-display text-xl font-bold tracking-tight text-[#0F172A] transition-colors group-hover:text-[#DC2626] [transform:translateZ(25px)]">
+                    <h3 className="mt-4 font-display text-xl font-bold tracking-tight text-[#0F172A] transition-colors group-hover:text-[#0B57D0] [transform:translateZ(25px)]">
                       {sol.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-slate-600 [transform:translateZ(15px)]">
@@ -713,7 +713,7 @@ export function Solutions() {
                   </div>
                   <a
                     href="#contact"
-                    className="mt-6 inline-flex items-center gap-2 text-xs font-bold tracking-[0.16em] text-[#DC2626] transition-colors hover:text-red-700 [transform:translateZ(20px)]"
+                    className="mt-6 inline-flex items-center gap-2 text-xs font-bold tracking-[0.16em] text-[#0B57D0] transition-colors hover:text-blue-700 [transform:translateZ(20px)]"
                   >
                     <span>DISCUSS REQUIREMENT</span>
                     <span>→</span>
@@ -811,13 +811,13 @@ export function WhyIaw() {
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           {/* Left Column Narrative */}
           <div data-why-left className="will-change-transform opacity-100">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#DC2626]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#0B57D0]">
               WHY IAW FORCE
             </div>
             <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-[#0F172A] sm:text-5xl">
               CONFIDENCE AT
               <br />
-              <span className="text-[#DC2626]">EVERY MILE.</span>
+              <span className="text-[#0B57D0]">EVERY MILE.</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-600">
               We make vehicle buying clearer with practical recommendations, transparent communication, and dependable ownership support across Gorakhpur and Eastern Uttar Pradesh.
@@ -826,23 +826,23 @@ export function WhyIaw() {
             {/* Checklist */}
             <div className="mt-8 grid grid-cols-2 gap-3 text-xs font-bold text-slate-900">
               <div className="flex items-center gap-2">
-                <span className="text-[#DC2626] font-black">✓</span> Sales Consultation
+                <span className="text-[#0B57D0] font-black">✓</span> Sales Consultation
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[#DC2626] font-black">✓</span> Finance Assistance
+                <span className="text-[#0B57D0] font-black">✓</span> Finance Assistance
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[#DC2626] font-black">✓</span> Test Drive Support
+                <span className="text-[#0B57D0] font-black">✓</span> Test Drive Support
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[#DC2626] font-black">✓</span> Service Coordination
+                <span className="text-[#0B57D0] font-black">✓</span> Service Coordination
               </div>
             </div>
 
             <div className="mt-9">
               <a
                 href="#contact"
-                className="inline-flex items-center gap-3 rounded-full bg-[#DC2626] px-8 py-4 text-xs font-bold tracking-[0.2em] text-white shadow-md shadow-red-500/20 transition-all duration-300 hover:bg-red-700"
+                className="inline-flex items-center gap-3 rounded-full bg-[#0B57D0] px-8 py-4 text-xs font-bold tracking-[0.2em] text-white shadow-md shadow-blue-500/20 transition-all duration-300 hover:bg-blue-700"
               >
                 <span>TALK TO OUR TEAM</span>
                 <span>→</span>
@@ -859,8 +859,8 @@ export function WhyIaw() {
                 className="h-full will-change-transform opacity-100 transition-all duration-400 group-hover/grid:blur-[2.5px] group-hover/grid:opacity-30 group-hover/grid:scale-[0.97] hover:!blur-none hover:!opacity-100 hover:!scale-[1.05] hover:!z-30 hover:shadow-2xl"
               >
                 <Card3D intensity={10} className="h-full">
-                  <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-[#DC2626] hover:shadow-md">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 border border-red-200/60 text-xs font-bold text-[#DC2626] [transform:translateZ(15px)]">
+                  <div className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-[#0B57D0] hover:shadow-md">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 border border-blue-200/60 text-xs font-bold text-[#0B57D0] [transform:translateZ(15px)]">
                       0{i + 1}
                     </span>
                     <h3 className="mt-4 font-display text-lg font-bold text-[#0F172A] [transform:translateZ(25px)]">
@@ -945,7 +945,7 @@ export function VehicleFinder() {
   const chip = (active: boolean) =>
     `rounded-lg border px-4 py-3 text-xs font-bold tracking-wider transition-all duration-300 ${
       active
-        ? "border-[#DC2626] bg-[#DC2626] text-white shadow-md shadow-red-500/25 scale-[1.02]"
+        ? "border-[#0B57D0] bg-[#0B57D0] text-white shadow-md shadow-blue-500/25 scale-[1.02]"
         : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
     }`;
 
@@ -953,7 +953,7 @@ export function VehicleFinder() {
     <section id="finder" ref={sectionRef} className="border-t border-slate-200 bg-[#F8FAFC] py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div data-finder-header className="will-change-transform opacity-100">
-          <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#DC2626]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#0B57D0]">
             INTELLIGENT VEHICLE FINDER
           </div>
           <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-[#0F172A] sm:text-5xl">
@@ -1017,7 +1017,7 @@ export function VehicleFinder() {
                 <div>
                   {/* Top Match Bar */}
                   <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                    <span className="rounded-full bg-red-50 border border-red-200/80 px-3 py-1 text-[10px] font-black tracking-widest text-[#DC2626] uppercase [transform:translateZ(15px)]">
+                    <span className="rounded-full bg-blue-50 border border-blue-200/80 px-3 py-1 text-[10px] font-black tracking-widest text-[#0B57D0] uppercase [transform:translateZ(15px)]">
                       {rec.badge}
                     </span>
                     <span className="flex items-center gap-1.5 text-xs font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/60 [transform:translateZ(15px)]">
@@ -1030,11 +1030,11 @@ export function VehicleFinder() {
                     <h3 className="font-display text-2xl sm:text-3xl font-black tracking-tight text-[#0F172A]">
                       {rec.vehicle}
                     </h3>
-                    <p className="mt-1 text-xs font-bold text-[#DC2626]">
+                    <p className="mt-1 text-xs font-bold text-[#0B57D0]">
                       {rec.tagline}
                     </p>
                     <p className="mt-2 font-display text-lg font-black text-slate-800">
-                      Est. Price: <span className="text-[#DC2626]">{rec.priceEstimate}</span>
+                      Est. Price: <span className="text-[#0B57D0]">{rec.priceEstimate}</span>
                       <span className="text-[10px] font-normal text-slate-400"> (Ex-Showroom)</span>
                     </p>
                   </div>
@@ -1084,7 +1084,7 @@ export function VehicleFinder() {
                     href={`https://wa.me/918429540902?text=${encodeURIComponent(`*VEHICLE FINDER ENQUIRY - IAW FORCE*\n\n*Recommended Model:* ${rec.vehicle} (${rec.tagline})\n*Est. Price:* ${rec.priceEstimate}\n*Seating:* ${rec.seating}\n*Engine:* ${rec.engine}\n*Requirements:* ${usage} | ${capacity} | ${terrain}\n\nPlease share the on-road quotation in Gorakhpur and available delivery dates.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 rounded-full bg-[#DC2626] px-5 py-3.5 text-center text-xs font-bold tracking-[0.14em] text-white shadow-md shadow-red-500/25 transition-all hover:bg-red-700 flex items-center justify-center gap-2 whitespace-nowrap"
+                    className="flex-1 rounded-full bg-[#0B57D0] px-5 py-3.5 text-center text-xs font-bold tracking-[0.14em] text-white shadow-md shadow-blue-500/25 transition-all hover:bg-blue-700 flex items-center justify-center gap-2 whitespace-nowrap"
                   >
                     <span>GET ON-ROAD PRICE</span>
                     <span>→</span>
@@ -1093,7 +1093,7 @@ export function VehicleFinder() {
                     href={`https://wa.me/918429540902?text=${encodeURIComponent(`*TEST DRIVE REQUEST - IAW FORCE*\n\nI want to book a test drive for *${rec.vehicle}*. Please contact me.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full border border-slate-300 bg-white px-5 py-3.5 text-center text-xs font-bold tracking-[0.14em] text-slate-800 transition-colors hover:border-[#DC2626] hover:text-[#DC2626] whitespace-nowrap"
+                    className="rounded-full border border-slate-300 bg-white px-5 py-3.5 text-center text-xs font-bold tracking-[0.14em] text-slate-800 transition-colors hover:border-[#0B57D0] hover:text-[#0B57D0] whitespace-nowrap"
                   >
                     BOOK TEST DRIVE
                   </a>

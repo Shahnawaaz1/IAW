@@ -73,8 +73,8 @@ export const VehicleVisual = forwardRef<HTMLDivElement, VehicleVisualProps>(
         <div
           className={`pointer-events-none absolute -bottom-10 rounded-full blur-3xl transition-all duration-500 ${
             isFocused
-              ? "h-36 w-full bg-red-500/25 scale-125"
-              : "h-24 w-4/5 bg-red-500/10 group-hover:scale-115 group-hover:bg-red-500/20"
+              ? "h-36 w-full bg-blue-500/25 scale-125"
+              : "h-24 w-4/5 bg-blue-500/10 group-hover:scale-115 group-hover:bg-blue-500/20"
           }`}
           aria-hidden="true"
         />
@@ -107,7 +107,7 @@ export const VehicleVisual = forwardRef<HTMLDivElement, VehicleVisualProps>(
           }}
           className={`relative z-10 h-auto max-h-[460px] w-full select-none object-contain transition-all duration-500 lg:max-h-[540px] ${
             isFocused
-              ? "drop-shadow-[0_45px_70px_rgba(220,38,38,0.28)]"
+              ? "drop-shadow-[0_45px_70px_rgba(11, 87, 208,0.28)]"
               : "drop-shadow-[0_25px_40px_rgba(15,23,42,0.22)]"
           }`}
         />
@@ -116,8 +116,8 @@ export const VehicleVisual = forwardRef<HTMLDivElement, VehicleVisualProps>(
         <div
           className={`pointer-events-none absolute -bottom-4 z-30 flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] font-bold tracking-wider shadow-lg backdrop-blur-md transition-all duration-300 ${
             isFocused
-              ? "bg-[#DC2626] text-white border border-red-400 opacity-100 scale-105"
-              : "border border-red-200 bg-white/95 text-[#DC2626] opacity-0 group-hover:opacity-100"
+              ? "bg-[#0B57D0] text-white border border-blue-400 opacity-100 scale-105"
+              : "border border-blue-200 bg-white/95 text-[#0B57D0] opacity-0 group-hover:opacity-100"
           }`}
         >
           <span>{isFocused ? "✕ EXIT FOCUS" : "🔍 CLICK TO ZOOM FOCUS"}</span>

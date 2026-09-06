@@ -21,8 +21,8 @@ export const VehicleCard = forwardRef<HTMLDivElement, VehicleCardProps>(
         {/* Top Header Strip: Category tag & Model Index */}
         <div className="flex items-center justify-between border-b border-slate-100 pb-4">
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#DC2626] animate-pulse" />
-            <span className="rounded-full bg-red-50 border border-red-200/80 px-3 py-1 text-[10px] font-black tracking-[0.2em] text-[#DC2626] uppercase">
+            <span className="h-2 w-2 rounded-full bg-[#0B57D0] animate-pulse" />
+            <span className="rounded-full bg-blue-50 border border-blue-200/80 px-3 py-1 text-[10px] font-black tracking-[0.2em] text-[#0B57D0] uppercase">
               {vehicle.categoryTag}
             </span>
           </div>
@@ -40,7 +40,7 @@ export const VehicleCard = forwardRef<HTMLDivElement, VehicleCardProps>(
         </h2>
 
         {/* Subtitle */}
-        <h3 className="mt-2 text-xs sm:text-sm font-bold tracking-wider text-[#DC2626] uppercase">
+        <h3 className="mt-2 text-xs sm:text-sm font-bold tracking-wider text-[#0B57D0] uppercase">
           {vehicle.subtitle}
         </h3>
 
@@ -75,7 +75,7 @@ export const VehicleCard = forwardRef<HTMLDivElement, VehicleCardProps>(
         <ul className="mt-6 space-y-2.5 border-t border-slate-100 pt-5">
           {vehicle.points.map((p) => (
             <li key={p} className="flex items-center gap-3 text-xs font-medium text-slate-700">
-              <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-red-100 text-[10px] font-black text-[#DC2626]">
+              <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-100 text-[10px] font-black text-[#0B57D0]">
                 ✓
               </span>
               <span>{p}</span>
@@ -87,7 +87,7 @@ export const VehicleCard = forwardRef<HTMLDivElement, VehicleCardProps>(
         <div className="mt-7 flex flex-wrap items-center gap-3.5">
           <a
             href="#contact"
-            className="flex items-center gap-2 rounded-md bg-[#DC2626] px-7 py-3.5 text-xs font-bold tracking-[0.16em] text-white shadow-lg shadow-red-500/25 transition-all duration-300 hover:bg-red-700 hover:shadow-red-500/40 hover:-translate-y-0.5"
+            className="flex items-center gap-2 rounded-md bg-[#0B57D0] px-7 py-3.5 text-xs font-bold tracking-[0.16em] text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:bg-blue-700 hover:shadow-blue-500/40 hover:-translate-y-0.5"
           >
             <span>{vehicle.cta}</span>
             <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-none stroke-current" strokeWidth="2.5">
@@ -96,7 +96,7 @@ export const VehicleCard = forwardRef<HTMLDivElement, VehicleCardProps>(
           </a>
           <a
             href="#contact"
-            className="rounded-md border border-slate-300 bg-white px-6 py-3.5 text-xs font-bold tracking-[0.16em] text-slate-800 shadow-sm transition-all hover:border-[#DC2626] hover:bg-red-50/50 hover:text-[#DC2626]"
+            className="rounded-md border border-slate-300 bg-white px-6 py-3.5 text-xs font-bold tracking-[0.16em] text-slate-800 shadow-sm transition-all hover:border-[#0B57D0] hover:bg-blue-50/50 hover:text-[#0B57D0]"
           >
             GET BROCHURE
           </a>

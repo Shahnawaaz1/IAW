@@ -77,7 +77,7 @@ export function EnquireModal({
           type="button"
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute top-5 right-5 flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 bg-slate-800 text-slate-400 hover:border-red-500 hover:text-white transition-colors"
+          className="absolute top-5 right-5 flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 bg-slate-800 text-slate-400 hover:border-blue-500 hover:text-white transition-colors"
         >
           ✕
         </button>
@@ -99,7 +99,7 @@ export function EnquireModal({
                 setSubmitted(false);
                 onClose();
               }}
-              className="mt-6 rounded-full bg-[#DC2626] px-8 py-3 text-xs font-bold tracking-wider text-white hover:bg-red-600 shadow-lg shadow-red-600/30"
+              className="mt-6 rounded-full bg-[#0B57D0] px-8 py-3 text-xs font-bold tracking-wider text-white hover:bg-[#0B57D0] shadow-lg shadow-blue-600/30"
             >
               CLOSE
             </button>
@@ -107,7 +107,7 @@ export function EnquireModal({
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <span className="text-[10px] font-bold tracking-[0.25em] text-[#EF4444] uppercase">
+              <span className="text-[10px] font-bold tracking-[0.25em] text-[#3B82F6] uppercase">
                 IAW FORCE GORAKHPUR
               </span>
               <h3 className="mt-1 font-display text-2xl font-black text-white">
@@ -128,7 +128,7 @@ export function EnquireModal({
                 placeholder="Enter your name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-900/90 px-4 py-3 text-xs text-white placeholder-slate-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500"
+                className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-900/90 px-4 py-3 text-xs text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
 
@@ -142,7 +142,7 @@ export function EnquireModal({
                 placeholder="Enter 10-digit mobile number"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-900/90 px-4 py-3 text-xs text-white placeholder-slate-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500"
+                className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-900/90 px-4 py-3 text-xs text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
 
@@ -153,7 +153,7 @@ export function EnquireModal({
               <select
                 value={formData.model}
                 onChange={(e) => setFormData({ ...formData, model: e.target.value })}
-                className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-900/90 px-4 py-3 text-xs text-white focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500"
+                className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-900/90 px-4 py-3 text-xs text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
               >
                 <option value="Force Traveller N (Passenger/School/Ambulance)">Force Traveller N</option>
                 <option value="Force Urbania DX (Luxury 10/13/17 Seater)">Force Urbania DX</option>
@@ -173,14 +173,14 @@ export function EnquireModal({
                 placeholder="E.g. Seating requirement, loan tenure, delivery timeline"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-900/90 px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 resize-none"
+                className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-900/90 px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 resize-none"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#DC2626] text-xs font-bold tracking-wider text-white shadow-lg shadow-red-600/40 hover:bg-red-600 transition-all duration-300 disabled:opacity-50"
+              className="mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#0B57D0] text-xs font-bold tracking-wider text-white shadow-lg shadow-blue-600/40 hover:bg-[#0B57D0] transition-all duration-300 disabled:opacity-50"
             >
               {loading ? (
                 <span>SAVING TO GOOGLE SHEET...</span>

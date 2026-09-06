@@ -74,7 +74,7 @@ export function MagneticCursor() {
       {/* Precision Core Dot */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed z-[9999] h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#EF4444] shadow-[0_0_10px_rgba(239,68,68,0.8)] transition-transform duration-75"
+        className="pointer-events-none fixed z-[9999] h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#3B82F6] shadow-[0_0_10px_rgba(11, 87, 208,0.8)] transition-transform duration-75"
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
@@ -87,8 +87,8 @@ export function MagneticCursor() {
         aria-hidden="true"
         className={`pointer-events-none fixed z-[9998] -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-300 ${
           isHovered
-            ? "h-14 w-14 border-red-500 bg-red-600/15 shadow-[0_0_25px_rgba(220,38,38,0.5)] backdrop-blur-[1px]"
-            : "h-8 w-8 border-red-400/40 bg-transparent"
+            ? "h-14 w-14 border-blue-500 bg-[#0B57D0]/15 shadow-[0_0_25px_rgba(11, 87, 208,0.5)] backdrop-blur-[1px]"
+            : "h-8 w-8 border-blue-400/40 bg-transparent"
         }`}
         style={{
           left: `${trailingPos.x}px`,
