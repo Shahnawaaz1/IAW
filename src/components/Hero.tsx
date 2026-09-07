@@ -9,7 +9,6 @@ export function Hero() {
   const heroMediaRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
-  const quickStripRef = useRef<HTMLDivElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
@@ -53,20 +52,6 @@ export function Hero() {
             scrub: true,
           },
         });
-
-        // Quick Action strip progressive lift
-        if (quickStripRef.current) {
-          gsap.to(quickStripRef.current, {
-            y: isMobile ? -8 : -15,
-            ease: "none",
-            scrollTrigger: {
-              trigger: quickStripRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-        }
       }
     }, el);
 
@@ -193,47 +178,6 @@ export function Hero() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Quick Action Strip (Cinematic Dark Showroom Glass) */}
-      <div ref={quickStripRef} className="relative z-10 border-y border-slate-200 bg-white will-change-transform">
-        <div className="mx-auto max-w-7xl px-5 py-4 md:px-8">
-          <div className="grid gap-4 sm:grid-cols-3">
-            {quickActions.map((qa) => (
-              <a
-                key={qa.num}
-                data-quick-item
-                href={`https://wa.me/918429540902?text=${encodeURIComponent(`Hi IAW Force, I am interested in: ${qa.title} (${qa.subtitle}). Please guide me.`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 p-4 transition-all duration-300 hover:border-blue-500/60 hover:bg-white hover:shadow-lg hover:shadow-blue-900/10"
-              >
-                <div className="flex items-center gap-4">
-                  <span className="font-display text-xl font-black text-[#3B82F6] transition-transform duration-300 group-hover:scale-110">
-                    {qa.num}
-                  </span>
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-900 transition-colors group-hover:text-[#006CB5]">
-                      {qa.title}
-                    </h3>
-                    <p className="text-xs text-slate-600">
-                      {qa.subtitle}
-                    </p>
-                  </div>
-                </div>
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4 text-slate-400 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#3B82F6]"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            ))}
           </div>
         </div>
       </div>

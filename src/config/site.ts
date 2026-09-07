@@ -58,13 +58,6 @@ export const quickActions = [
   },
   {
     num: "02",
-    title: "Book a Test Drive",
-    subtitle: "Experience performance & comfort",
-    href: "#contact",
-    action: "testdrive",
-  },
-  {
-    num: "03",
     title: "Fleet Enquiry",
     subtitle: "Custom solutions for your business",
     href: "#contact",

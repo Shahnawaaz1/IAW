@@ -713,12 +713,12 @@ export function Location() {
 
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href={site.directionsUrl}
+                href={site.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-[#006CB5] px-6 py-3.5 text-xs font-bold tracking-[0.18em] text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700"
+                className="rounded-full bg-[#25D366] px-6 py-3.5 text-xs font-bold tracking-[0.18em] text-white shadow-md shadow-green-500/20 transition-all hover:bg-[#1EBE57]"
               >
-                GET GOOGLE MAP DIRECTIONS
+                WHATSAPP
               </a>
               <a
                 href={site.phoneHref}
@@ -829,7 +829,7 @@ export function FinalCta() {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="border-t border-slate-800 bg-[#0F172A] py-24 md:py-32 text-white">
+    <section id="contact" ref={sectionRef} className="border-t border-slate-800 bg-[#0F172A] pt-24 pb-16 md:pt-32 md:pb-16 text-white">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           {/* Left Column: Heading & Info */}
@@ -972,7 +972,7 @@ export function FinalCta() {
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-800 bg-[#0B1120] py-16 text-slate-400">
+    <footer className="border-t border-slate-800 bg-[#0B1120] pt-16 pb-6 text-slate-400">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="grid gap-10 md:grid-cols-4">
           {/* Dealership Info with exact custom Red Slanted Logo */}
@@ -1052,15 +1052,15 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-8 text-xs sm:flex-row">
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-between border-t border-slate-800 pt-6 text-xs text-slate-400">
           <p>© {new Date().getFullYear()} IAW Force. All rights reserved.</p>
-          <p className="text-slate-400 flex items-center gap-1.5">
-            <span>Designed by</span>
+          <p className="mt-2 sm:mt-0">
+            Designed by{" "}
             <a
               href="https://www.shineinfosolutions.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-white transition-colors hover:text-[#006CB5] underline decoration-blue-500/50 underline-offset-4"
+              className="font-bold text-white hover:text-[#006CB5] transition-colors"
             >
               Shine Infosolutions
             </a>
