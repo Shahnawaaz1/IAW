@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as VehicleIdRouteImport } from './routes/vehicle.$id'
+import { Route as VehiclesSlugRouteImport } from './routes/vehicles.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +23,40 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VehicleIdRoute = VehicleIdRouteImport.update({
-  id: '/vehicle/$id',
-  path: '/vehicle/$id',
+const VehiclesSlugRoute = VehiclesSlugRouteImport.update({
+  id: '/vehicles/$slug',
+  path: '/vehicles/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/vehicle/$id': typeof VehicleIdRoute
+  '/vehicles/$slug': typeof VehiclesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/vehicle/$id': typeof VehicleIdRoute
+  '/vehicles/$slug': typeof VehiclesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/vehicle/$id': typeof VehicleIdRoute
+  '/vehicles/$slug': typeof VehiclesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml' | '/vehicle/$id'
+  fullPaths: '/' | '/sitemap.xml' | '/vehicles/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/vehicle/$id'
-  id: '__root__' | '/' | '/sitemap.xml' | '/vehicle/$id'
+  to: '/' | '/sitemap.xml' | '/vehicles/$slug'
+  id: '__root__' | '/' | '/sitemap.xml' | '/vehicles/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  VehicleIdRoute: typeof VehicleIdRoute
+  VehiclesSlugRoute: typeof VehiclesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +75,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/vehicle/$id': {
-      id: '/vehicle/$id'
-      path: '/vehicle/$id'
-      fullPath: '/vehicle/$id'
-      preLoaderRoute: typeof VehicleIdRouteImport
+    '/vehicles/$slug': {
+      id: '/vehicles/$slug'
+      path: '/vehicles/$slug'
+      fullPath: '/vehicles/$slug'
+      preLoaderRoute: typeof VehiclesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  VehicleIdRoute: VehicleIdRoute,
+  VehiclesSlugRoute: VehiclesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

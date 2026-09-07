@@ -209,21 +209,46 @@ export function MegaMenu({ isOpen, onMouseEnter, onMouseLeave }: { isOpen: boole
                 </h3>
                 <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
                   {group.vehicles.map((vehicle, idx) => {
-                    const getVehicleRouteId = (url: string) => {
-                      if (url.includes("urbania")) return "urbania";
-                      if (url.includes("monobus")) return "monobus";
-                      if (url.includes("trax")) return "trax";
-                      if (url.includes("gurkha")) return "gurkha";
-                      if (url.includes("special")) return "special";
-                      if (url.includes("e-traveller")) return "ev";
-                      return "traveller";
+                    const megaMenuSlugMap: Record<string, string> = {
+                      "Traveller N 3050WB": "traveller-n-3050wb",
+                      "Traveller N 3350WB": "traveller-n-3350wb",
+                      "Traveller N 3700WB": "traveller-n-3350wb",
+                      "Traveller N 4020WB": "traveller-n-4020wb",
+                      "Traveller N Wider Body 3350WB": "traveller-n-wider-body-3350wb",
+                      "Traveller N Wider Body 4020WB": "traveller-n-wider-body-4020wb",
+                      "Traveller N School Bus 3050WB": "traveller-n-school-bus-3050wb",
+                      "Traveller N School Bus 3350WB": "traveller-n-school-bus-3350wb",
+                      "Traveller N School Bus 3700WB": "traveller-n-school-bus-3700wb",
+                      "Traveller N School Bus 4020WB": "traveller-n-school-bus-4020wb",
+                      "Traveller N Wider Body School Bus 4020WB": "traveller-n-wider-body-school-bus-4020wb",
+                      "Urbania DX 3200WB": "urbania",
+                      "Urbania DX 3615WB": "urbania",
+                      "Urbania DX 4400WB": "urbania",
+                      "Monobus 33 Seater": "monobus",
+                      "Monobus 28 Seater": "monobus",
+                      "Trax Cruiser": "trax-cruiser",
+                      "Trax Toofan": "trax-toofan",
+                      "Traveller Ambulance Type B": "special-applications",
+                      "Traveller Delivery Van": "special-applications",
+                      "Gurkha 3-Door": "gurkha",
+                      "Gurkha 5-Door": "gurkha",
+                      "Upcoming Traveller EV": "e-traveller-smart-citibus-ev",
+                    };
+                    const getVehicleSlug = (name: string, badge?: string) => {
+                      // Handle CNG badge variants
+                      if (badge === "CNG") {
+                        if (name === "Traveller N 4020WB") return "traveller-n-4020wb-cng";
+                        if (name === "Traveller N Wider Body 4020WB") return "traveller-n-wider-body-4020wb-cng";
+                        if (name === "Traveller N School Bus 3700WB") return "traveller-n-school-bus-3700wb-cng";
+                      }
+                      return megaMenuSlugMap[name] || "traveller-n-3050wb";
                     };
                     
                     return (
                       <Link
                         key={idx}
-                        to="/vehicle/$id"
-                        params={{ id: getVehicleRouteId(vehicle.url) }}
+                        to="/vehicles/$slug"
+                        params={{ slug: getVehicleSlug(vehicle.name, vehicle.badge) }}
                         className="group flex flex-col items-center rounded-xl bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-900/5 border border-slate-100 hover:border-blue-200"
                       >
                         <div className="relative mb-4 flex h-24 w-full items-center justify-center overflow-hidden">

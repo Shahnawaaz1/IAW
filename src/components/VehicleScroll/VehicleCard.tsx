@@ -15,7 +15,12 @@ export const VehicleCard = forwardRef<HTMLDivElement, VehicleCardProps>(
       <div
         ref={ref}
         style={{}}
-        onClick={() => navigate({ to: "/vehicle/$id", params: { id: vehicle.id } })}
+        onClick={() => {
+          let slug = vehicle.id;
+          if (vehicle.id === "traveller") slug = "traveller-n-3050wb";
+          if (vehicle.id === "trax") slug = "trax-cruiser";
+          navigate({ to: "/vehicles/$slug", params: { slug } });
+        }}
         className="w-full max-w-xl rounded-xl border border-slate-200/90 bg-white/95 p-6 sm:p-8 shadow-2xl shadow-slate-300/50 backdrop-blur-xl transition-all duration-500 will-change-transform cursor-pointer hover:border-[#006CB5]"
       >
         {/* Top Header Strip: Category tag & Model Index */}

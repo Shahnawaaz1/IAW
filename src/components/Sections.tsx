@@ -353,7 +353,16 @@ export function VehicleRange() {
             <div
               key={v.id}
               data-range-card
-              onClick={() => navigate({ to: "/vehicle/$id", params: { id: v.id } })}
+              onClick={() => {
+                let slug = v.id;
+                if (v.id === "traveller-n") slug = "traveller-n-3050wb";
+                if (v.id === "urbania-dx") slug = "urbania";
+                if (v.id === "monobus-33") slug = "monobus";
+                if (v.id === "traveller-ambulance") slug = "special-applications";
+                if (v.id === "force-gurkha") slug = "gurkha";
+                if (v.id === "force-ev") slug = "e-traveller-smart-citibus-ev";
+                navigate({ to: "/vehicles/$slug", params: { slug } });
+              }}
               className="h-full will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.05] hover:z-30 hover:shadow-2xl cursor-pointer"
             >
               <Card3D intensity={12} className="h-full">
