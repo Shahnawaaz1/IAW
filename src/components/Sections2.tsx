@@ -78,14 +78,14 @@ export function Finance() {
   }, []);
 
   const field =
-    "mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-900 outline-none transition-colors focus:border-[#0B57D0]";
+    "mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-900 outline-none transition-colors focus:border-[#006CB5]";
 
   return (
     <section id="finance" ref={sectionRef} className="border-t border-slate-200 bg-[#F8FAFC] py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div data-finance-header className="flex flex-col md:flex-row md:items-end justify-between gap-6 will-change-transform opacity-100">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#0B57D0]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#006CB5]">
               FINANCE & EMI CALCULATOR
             </div>
             <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-[#0F172A] sm:text-5xl">
@@ -136,7 +136,7 @@ export function Finance() {
                   max={7}
                   value={years}
                   onChange={(e) => setYears(+e.target.value)}
-                  className="mt-4 w-full accent-[#0B57D0]"
+                  className="mt-4 w-full accent-[#006CB5]"
                 />
               </label>
               <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase">
@@ -148,7 +148,7 @@ export function Finance() {
                   step={0.25}
                   value={rate}
                   onChange={(e) => setRate(+e.target.value)}
-                  className="mt-4 w-full accent-[#0B57D0]"
+                  className="mt-4 w-full accent-[#006CB5]"
                 />
               </label>
             </div>
@@ -159,7 +159,7 @@ export function Finance() {
             className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/50 will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.03] hover:z-20 hover:shadow-2xl"
           >
             <div>
-              <span className="text-xs font-bold tracking-[0.3em] text-[#0B57D0] uppercase">
+              <span className="text-xs font-bold tracking-[0.3em] text-[#006CB5] uppercase">
                 ESTIMATED MONTHLY EMI
               </span>
               <p className="mt-4 font-display text-4xl sm:text-5xl font-black tracking-tight text-[#0F172A]">
@@ -174,7 +174,7 @@ export function Finance() {
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Total Interest:</span>
-                  <span className="font-bold text-[#0B57D0]">₹ {totalInterest.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</span>
+                  <span className="font-bold text-[#006CB5]">₹ {totalInterest.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</span>
                 </div>
                 <div className="flex justify-between border-t border-slate-100 pt-2 text-slate-600">
                   <span>Total Payable:</span>
@@ -188,7 +188,7 @@ export function Finance() {
                 href={`https://wa.me/918429540902?text=${encodeURIComponent(`*FINANCE & EMI ASSISTANCE - IAW FORCE*\n\n*Vehicle Price:* ₹${price.toLocaleString("en-IN")}\n*Down Payment:* ₹${down.toLocaleString("en-IN")}\n*Tenure:* ${years} Years (${years * 12} Months)\n*Est. Interest Rate:* ${rate}%\n*Est. Monthly EMI:* ₹${emi.toLocaleString("en-IN", { maximumFractionDigits: 0 })}/month\n\nPlease share bank approval requirements and finance schemes.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex w-full items-center justify-center gap-2 rounded-full bg-[#0B57D0] px-4 sm:px-6 py-3.5 sm:py-4 text-center text-xs font-bold tracking-[0.1em] sm:tracking-[0.14em] text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 hover:shadow-blue-500/40 whitespace-nowrap"
+                className="group flex w-full items-center justify-center gap-2 rounded-full bg-[#006CB5] px-4 sm:px-6 py-3.5 sm:py-4 text-center text-xs font-bold tracking-[0.1em] sm:tracking-[0.14em] text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 hover:shadow-blue-500/40 whitespace-nowrap"
               >
                 <span>APPLY FOR FINANCE ASSISTANCE</span>
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -288,13 +288,13 @@ export function ServiceParts() {
     <section id="service" ref={sectionRef} className="border-t border-slate-200 bg-white py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div data-service-header className="max-w-3xl will-change-transform opacity-100">
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#0B57D0]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#006CB5]">
             COMPLETE CUSTOMER SUPPORT
           </div>
           <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-[#0F172A] sm:text-5xl">
             FROM FIRST QUESTION
             <br />
-            <span className="text-[#0B57D0]">TO EVERY JOURNEY.</span>
+            <span className="text-[#006CB5]">TO EVERY JOURNEY.</span>
           </h2>
           <p className="mt-4 text-base text-slate-600">
             Our relationship does not end at vehicle delivery. IAW Force supports customers through selection, purchase planning and the ownership journey.
@@ -310,11 +310,11 @@ export function ServiceParts() {
               className="h-full will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.05] hover:z-30 hover:shadow-2xl"
             >
               <Card3D intensity={10} className="h-full">
-                <div className="h-full rounded-xl border border-slate-200 bg-slate-50/60 p-8 shadow-sm transition-all duration-300 hover:border-[#0B57D0] hover:bg-white hover:shadow-md">
-                  <span className="font-display text-2xl font-black text-[#0B57D0] [transform:translateZ(15px)]">
+                <div className="h-full rounded-xl border border-slate-200 bg-slate-50/60 p-8 shadow-sm transition-all duration-300 hover:border-[#006CB5] hover:bg-white hover:shadow-md">
+                  <span className="font-display text-2xl font-black text-[#006CB5] [transform:translateZ(15px)]">
                     {s.num}
                   </span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-slate-900 transition-colors group-hover:text-[#0B57D0] [transform:translateZ(25px)]">
+                  <h3 className="mt-4 font-display text-lg font-bold text-slate-900 transition-colors group-hover:text-[#006CB5] [transform:translateZ(25px)]">
                     {s.title}
                   </h3>
                   <p className="mt-2 text-xs leading-relaxed text-slate-600 [transform:translateZ(15px)]">
@@ -329,13 +329,13 @@ export function ServiceParts() {
         <div className="mt-12 flex flex-wrap items-center gap-4">
           <a
             href="#contact"
-            className="rounded-full bg-[#0B57D0] px-8 py-4 text-xs font-bold tracking-[0.2em] text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 hover:shadow-blue-500/40"
+            className="rounded-full bg-[#006CB5] px-8 py-4 text-xs font-bold tracking-[0.2em] text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 hover:shadow-blue-500/40"
           >
             BOOK A SERVICE SLOT
           </a>
           <a
             href={site.phoneHref}
-            className="rounded-full border border-slate-300 bg-white px-8 py-4 text-xs font-bold tracking-[0.2em] text-slate-800 transition-colors hover:border-[#0B57D0] hover:text-[#0B57D0]"
+            className="rounded-full border border-slate-300 bg-white px-8 py-4 text-xs font-bold tracking-[0.2em] text-slate-800 transition-colors hover:border-[#006CB5] hover:text-[#006CB5]"
           >
             CALL HELPLINE ({site.phone})
           </a>
@@ -429,7 +429,7 @@ export function BuyingGuide() {
     <section ref={sectionRef} className="border-t border-slate-200 bg-[#F8FAFC] py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div data-guide-header className="text-center max-w-3xl mx-auto will-change-transform opacity-100">
-          <span className="text-xs font-bold tracking-[0.3em] text-[#0B57D0] uppercase">
+          <span className="text-xs font-bold tracking-[0.3em] text-[#006CB5] uppercase">
             BEFORE YOU CHOOSE
           </span>
           <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-[#0F172A] sm:text-4xl">
@@ -446,8 +446,8 @@ export function BuyingGuide() {
               className="h-full will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.05] hover:z-30 hover:shadow-2xl"
             >
               <Card3D intensity={10} className="h-full">
-                <div className="h-full rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:border-[#0B57D0] hover:shadow-md">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 border border-blue-200/60 font-display text-base font-black text-[#0B57D0] [transform:translateZ(15px)]">
+                <div className="h-full rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:border-[#006CB5] hover:shadow-md">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 border border-blue-200/60 font-display text-base font-black text-[#006CB5] [transform:translateZ(15px)]">
                     {g.num}
                   </span>
                   <h3 className="mt-4 font-display text-lg font-bold text-[#0F172A] [transform:translateZ(25px)]">
@@ -555,7 +555,7 @@ export function FaqSection() {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div data-faq-header className="flex flex-col md:flex-row md:items-end justify-between gap-6 will-change-transform opacity-100">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#0B57D0]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#006CB5]">
               FREQUENTLY ASKED QUESTIONS
             </div>
             <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-[#0F172A] sm:text-5xl">
@@ -573,11 +573,11 @@ export function FaqSection() {
             <details
               key={faq.q}
               data-faq-item
-              className="h-full will-change-transform opacity-100 rounded-xl border border-slate-200 bg-slate-50/70 p-6 shadow-sm transition-all duration-400 hover:scale-[1.03] hover:z-20 hover:shadow-lg open:border-[#0B57D0] open:bg-white"
+              className="h-full will-change-transform opacity-100 rounded-xl border border-slate-200 bg-slate-50/70 p-6 shadow-sm transition-all duration-400 hover:scale-[1.03] hover:z-20 hover:shadow-lg open:border-[#006CB5] open:bg-white"
             >
-              <summary className="flex cursor-pointer items-center justify-between font-display text-base font-bold text-slate-900 transition-colors hover:text-[#0B57D0]">
+              <summary className="flex cursor-pointer items-center justify-between font-display text-base font-bold text-slate-900 transition-colors hover:text-[#006CB5]">
                 <span>{faq.q}</span>
-                <span className="ml-4 font-bold text-[#0B57D0] transition-transform duration-300">
+                <span className="ml-4 font-bold text-[#006CB5] transition-transform duration-300">
                   +
                 </span>
               </summary>
@@ -652,7 +652,7 @@ export function Location() {
     <section id="location" ref={sectionRef} className="border-t border-slate-200 bg-[#F8FAFC] py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div data-loc-header className="will-change-transform opacity-100">
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#0B57D0]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.25em] text-[#006CB5]">
             VISIT DEALERSHIP
           </div>
           <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-[#0F172A] sm:text-5xl">
@@ -678,31 +678,31 @@ export function Location() {
 
             <dl className="mt-8 grid gap-6 border-t border-slate-100 pt-6 sm:grid-cols-2">
               <div>
-                <dt className="text-[11px] font-bold tracking-wider text-[#0B57D0] uppercase">TOLL-FREE CALL</dt>
+                <dt className="text-[11px] font-bold tracking-wider text-[#006CB5] uppercase">TOLL-FREE CALL</dt>
                 <dd className="mt-1 text-sm font-bold text-slate-900">
-                  <a href={site.phoneHref} className="hover:text-[#0B57D0] transition-colors">
+                  <a href={site.phoneHref} className="hover:text-[#006CB5] transition-colors">
                     {site.phone}
                   </a>
                 </dd>
               </div>
               <div>
-                <dt className="text-[11px] font-bold tracking-wider text-[#0B57D0] uppercase">WHATSAPP DESK</dt>
+                <dt className="text-[11px] font-bold tracking-wider text-[#006CB5] uppercase">WHATSAPP DESK</dt>
                 <dd className="mt-1 text-sm font-bold text-slate-900">
-                  <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="hover:text-[#0B57D0] transition-colors">
+                  <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="hover:text-[#006CB5] transition-colors">
                     {site.whatsapp}
                   </a>
                 </dd>
               </div>
               <div>
-                <dt className="text-[11px] font-bold tracking-wider text-[#0B57D0] uppercase">OFFICIAL EMAIL</dt>
+                <dt className="text-[11px] font-bold tracking-wider text-[#006CB5] uppercase">OFFICIAL EMAIL</dt>
                 <dd className="mt-1 text-sm font-bold text-slate-900">
-                  <a href={site.emailHref} className="hover:text-[#0B57D0] transition-colors">
+                  <a href={site.emailHref} className="hover:text-[#006CB5] transition-colors">
                     {site.email}
                   </a>
                 </dd>
               </div>
               <div>
-                <dt className="text-[11px] font-bold tracking-wider text-[#0B57D0] uppercase">WORKING HOURS</dt>
+                <dt className="text-[11px] font-bold tracking-wider text-[#006CB5] uppercase">WORKING HOURS</dt>
                 <dd className="mt-1 text-xs text-slate-600">
                   {site.hours.map((h) => (
                     <span key={h.days} className="block">{h.days}: {h.time}</span>
@@ -716,13 +716,13 @@ export function Location() {
                 href={site.directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-[#0B57D0] px-6 py-3.5 text-xs font-bold tracking-[0.18em] text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700"
+                className="rounded-full bg-[#006CB5] px-6 py-3.5 text-xs font-bold tracking-[0.18em] text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700"
               >
                 GET GOOGLE MAP DIRECTIONS
               </a>
               <a
                 href={site.phoneHref}
-                className="rounded-full border border-slate-300 bg-slate-50 px-6 py-3.5 text-xs font-bold tracking-[0.18em] text-slate-800 transition-colors hover:border-[#0B57D0] hover:text-[#0B57D0]"
+                className="rounded-full border border-slate-300 bg-slate-50 px-6 py-3.5 text-xs font-bold tracking-[0.18em] text-slate-800 transition-colors hover:border-[#006CB5] hover:text-[#006CB5]"
               >
                 CALL DEALERSHIP
               </a>
@@ -744,7 +744,7 @@ export function Location() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
-              <span className="rounded-full bg-[#0B57D0] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+              <span className="rounded-full bg-[#006CB5] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
                 AUTHORIZED FORCE MOTORS DEALER
               </span>
               <p className="mt-2 font-display text-lg font-bold text-white">
@@ -884,7 +884,7 @@ export function FinalCta() {
                 <button
                   type="button"
                   onClick={() => setSubmitted(false)}
-                  className="mt-6 rounded-full bg-[#0B57D0] px-6 py-2.5 text-xs font-bold tracking-wider text-white hover:bg-blue-700"
+                  className="mt-6 rounded-full bg-[#006CB5] px-6 py-2.5 text-xs font-bold tracking-wider text-white hover:bg-blue-700"
                 >
                   SUBMIT ANOTHER ENQUIRY
                 </button>
@@ -957,7 +957,7 @@ export function FinalCta() {
 
                 <button
                   type="submit"
-                  className="w-full rounded-full bg-[#0B57D0] py-4 text-xs font-bold tracking-[0.2em] text-white shadow-lg shadow-blue-500/25 transition-all hover:bg-blue-700"
+                  className="w-full rounded-full bg-[#006CB5] py-4 text-xs font-bold tracking-[0.2em] text-white shadow-lg shadow-blue-500/25 transition-all hover:bg-blue-700"
                 >
                   SUBMIT ENQUIRY NOW →
                 </button>
@@ -978,7 +978,7 @@ export function Footer() {
           {/* Dealership Info with exact custom Red Slanted Logo */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-12 items-center justify-center bg-[#0B57D0] [clip-path:polygon(0_0,100%_0,88%_100%,0_100%)] shadow-sm">
+              <div className="flex h-10 w-12 items-center justify-center bg-[#006CB5] [clip-path:polygon(0_0,100%_0,88%_100%,0_100%)] shadow-sm">
                 <span className="font-display text-base font-black italic tracking-tight text-white pr-1">
                   IAW
                 </span>
@@ -1005,7 +1005,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-xs">
               {navLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="transition-colors hover:text-[#0B57D0]">
+                  <a href={l.href} className="transition-colors hover:text-[#006CB5]">
                     {l.label}
                   </a>
                 </li>
@@ -1019,12 +1019,12 @@ export function Footer() {
               VEHICLE RANGE
             </h4>
             <ul className="mt-4 space-y-2 text-xs">
-              <li><a href="#vehicles" className="hover:text-[#0B57D0]">Traveller N Range</a></li>
-              <li><a href="#vehicles" className="hover:text-[#0B57D0]">Urbania DX Premium</a></li>
-              <li><a href="#vehicles" className="hover:text-[#0B57D0]">Monobus 33/28 Seater</a></li>
-              <li><a href="#vehicles" className="hover:text-[#0B57D0]">Trax Cruiser & Toofan</a></li>
-              <li><a href="#vehicles" className="hover:text-[#0B57D0]">Force Gurkha 4x4</a></li>
-              <li><a href="#vehicles" className="hover:text-[#0B57D0]">Traveller Ambulance</a></li>
+              <li><a href="#vehicles" className="hover:text-[#006CB5]">Traveller N Range</a></li>
+              <li><a href="#vehicles" className="hover:text-[#006CB5]">Urbania DX Premium</a></li>
+              <li><a href="#vehicles" className="hover:text-[#006CB5]">Monobus 33/28 Seater</a></li>
+              <li><a href="#vehicles" className="hover:text-[#006CB5]">Trax Cruiser & Toofan</a></li>
+              <li><a href="#vehicles" className="hover:text-[#006CB5]">Force Gurkha 4x4</a></li>
+              <li><a href="#vehicles" className="hover:text-[#006CB5]">Traveller Ambulance</a></li>
             </ul>
           </div>
 
@@ -1035,12 +1035,12 @@ export function Footer() {
             </h4>
             <div className="mt-4 space-y-2 text-xs">
               <p>
-                <a href={site.phoneHref} className="font-bold text-white hover:text-[#0B57D0]">
+                <a href={site.phoneHref} className="font-bold text-white hover:text-[#006CB5]">
                   {site.phone}
                 </a>
               </p>
               <p>
-                <a href={site.emailHref} className="hover:text-[#0B57D0]">
+                <a href={site.emailHref} className="hover:text-[#006CB5]">
                   {site.email}
                 </a>
               </p>
@@ -1060,7 +1060,7 @@ export function Footer() {
               href="https://www.shineinfosolutions.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-white transition-colors hover:text-[#0B57D0] underline decoration-blue-500/50 underline-offset-4"
+              className="font-bold text-white transition-colors hover:text-[#006CB5] underline decoration-blue-500/50 underline-offset-4"
             >
               Shine Infosolutions
             </a>

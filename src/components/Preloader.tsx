@@ -83,12 +83,12 @@ export function Preloader({ onComplete }: PreloaderProps) {
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#070B14] text-white selection:bg-transparent overflow-hidden"
     >
       {/* Ambient Red Showroom Floor Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-[#0B57D0]/15 blur-[120px] pointer-events-none animate-pulse" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-[#006CB5]/15 blur-[120px] pointer-events-none animate-pulse" />
       <div className="absolute top-1/3 right-1/4 h-64 w-64 rounded-full bg-blue-900/10 blur-[90px] pointer-events-none" />
 
       <div ref={logoRef} className="relative z-10 flex flex-col items-center px-6">
         {/* Brand Emblem with Slanted Polygon & Neon Edge */}
-        <div className="relative mb-6 flex h-16 w-18 items-center justify-center bg-[#0B57D0] [clip-path:polygon(0_0,100%_0,88%_100%,0_100%)] shadow-[0_0_40px_rgba(11, 87, 208,0.6)] animate-pulse">
+        <div className="relative mb-6 flex h-16 w-18 items-center justify-center bg-[#006CB5] [clip-path:polygon(0_0,100%_0,88%_100%,0_100%)] shadow-[0_0_40px_rgba(0, 108, 181,0.6)] animate-pulse">
           <span className="font-display text-2xl font-black italic tracking-tighter text-white pr-1">
             IAW
           </span>
@@ -109,7 +109,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
             <div
               ref={progressBarRef}
               style={{ width: `${progress}%` }}
-              className="h-full rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-white shadow-[0_0_15px_rgba(11, 87, 208,0.9)] transition-all duration-75"
+              className="h-full rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-white shadow-[0_0_15px_rgba(0, 108, 181,0.9)] transition-all duration-75"
             />
           </div>
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import travellerImg from "@/assets/traveller.png";
 import urbaniaImg from "@/assets/urbania.png";
 import monobusImg from "@/assets/monobus.png";
@@ -176,14 +177,14 @@ export function MegaMenu({ isOpen, onMouseEnter, onMouseLeave }: { isOpen: boole
                       onMouseEnter={() => setActiveCategory(cat.id)}
                       className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm transition-colors ${
                         activeCategory === cat.id
-                          ? "bg-slate-50 font-bold text-[#0B57D0]"
-                          : "text-slate-600 hover:bg-slate-50 hover:text-[#0B57D0]"
+                          ? "bg-slate-50 font-bold text-[#006CB5]"
+                          : "text-slate-600 hover:bg-slate-50 hover:text-[#006CB5]"
                       }`}
                     >
                       {cat.name}
                       <svg
                         viewBox="0 0 24 24"
-                        className={`h-4 w-4 transition-transform ${activeCategory === cat.id ? "translate-x-1 text-[#0B57D0]" : "text-transparent"}`}
+                        className={`h-4 w-4 transition-transform ${activeCategory === cat.id ? "translate-x-1 text-[#006CB5]" : "text-transparent"}`}
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
@@ -203,35 +204,46 @@ export function MegaMenu({ isOpen, onMouseEnter, onMouseLeave }: { isOpen: boole
           <div className="max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
             {activeData.groups.map((group, groupIdx) => (
               <div key={group.title} className={groupIdx > 0 ? "mt-10" : ""}>
-                <h3 className="mb-6 font-display text-lg font-bold text-[#0B57D0] border-b border-blue-200/50 pb-2">
+                <h3 className="mb-6 font-display text-lg font-bold text-[#006CB5] border-b border-blue-200/50 pb-2">
                   {group.title}
                 </h3>
                 <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-                  {group.vehicles.map((vehicle, idx) => (
-                    <a
-                      key={idx}
-                      href={vehicle.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex flex-col items-center rounded-xl bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-900/5 border border-slate-100 hover:border-blue-200"
-                    >
-                      <div className="relative mb-4 flex h-24 w-full items-center justify-center overflow-hidden">
-                        <img
-                          src={vehicle.image}
-                          alt={vehicle.name}
-                          className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110"
-                        />
-                      </div>
-                      <h4 className="text-center text-xs font-bold text-slate-800 transition-colors group-hover:text-[#0B57D0]">
-                        {vehicle.name}
-                      </h4>
-                      {vehicle.badge && (
-                        <span className="mt-2 rounded bg-emerald-100 px-2 py-0.5 text-[9px] font-bold tracking-wider text-emerald-700">
-                          {vehicle.badge}
-                        </span>
-                      )}
-                    </a>
-                  ))}
+                  {group.vehicles.map((vehicle, idx) => {
+                    const getVehicleRouteId = (url: string) => {
+                      if (url.includes("urbania")) return "urbania";
+                      if (url.includes("monobus")) return "monobus";
+                      if (url.includes("trax")) return "trax";
+                      if (url.includes("gurkha")) return "gurkha";
+                      if (url.includes("special")) return "special";
+                      if (url.includes("e-traveller")) return "ev";
+                      return "traveller";
+                    };
+                    
+                    return (
+                      <Link
+                        key={idx}
+                        to="/vehicle/$id"
+                        params={{ id: getVehicleRouteId(vehicle.url) }}
+                        className="group flex flex-col items-center rounded-xl bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-900/5 border border-slate-100 hover:border-blue-200"
+                      >
+                        <div className="relative mb-4 flex h-24 w-full items-center justify-center overflow-hidden">
+                          <img
+                            src={vehicle.image}
+                            alt={vehicle.name}
+                            className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
+                        <h4 className="text-center text-xs font-bold text-slate-800 transition-colors group-hover:text-[#006CB5]">
+                          {vehicle.name}
+                        </h4>
+                        {vehicle.badge && (
+                          <span className="mt-2 rounded bg-emerald-100 px-2 py-0.5 text-[9px] font-bold tracking-wider text-emerald-700">
+                            {vehicle.badge}
+                          </span>
+                        )}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             ))}

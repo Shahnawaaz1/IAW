@@ -247,8 +247,8 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
-        <VehicleScroll />
         <VehicleRange />
+        <VehicleScroll />
         <TravellerCatalogue />
         <Solutions />
         <WhyIaw />

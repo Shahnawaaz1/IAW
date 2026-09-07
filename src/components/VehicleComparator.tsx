@@ -100,7 +100,7 @@ export function VehicleComparator() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         {/* Section Title */}
         <div className="text-center max-w-2xl mx-auto">
-          <span className="text-xs font-bold tracking-[0.25em] text-[#0B57D0] uppercase">
+          <span className="text-xs font-bold tracking-[0.25em] text-[#006CB5] uppercase">
             FLEET DECISION MATRIX
           </span>
           <h2 className="mt-2 font-display text-3xl font-black sm:text-5xl text-[#0F172A]">
@@ -116,7 +116,7 @@ export function VehicleComparator() {
           {/* Left Vehicle Card */}
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#0B57D0] uppercase tracking-wider">
+              <span className="text-xs font-bold text-[#006CB5] uppercase tracking-wider">
                 VEHICLE 1
               </span>
               <select
@@ -142,7 +142,7 @@ export function VehicleComparator() {
                 {v1.name}
               </h3>
               <span className="text-xs font-bold text-slate-500">{v1.category}</span>
-              <span className="mt-1 font-display text-xl font-black text-[#0B57D0]">
+              <span className="mt-1 font-display text-xl font-black text-[#006CB5]">
                 {v1.price}
               </span>
             </div>
@@ -156,7 +156,7 @@ export function VehicleComparator() {
                 </div>
                 <div className="mt-1 h-2 w-full rounded-full bg-slate-100 overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-[#0B57D0] transition-all duration-500"
+                    className="h-full rounded-full bg-[#006CB5] transition-all duration-500"
                     style={{ width: `${(v1.torque / 350) * 100}%` }}
                   />
                 </div>
@@ -206,7 +206,7 @@ export function VehicleComparator() {
           {/* Right Vehicle Card */}
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#0B57D0] uppercase tracking-wider">
+              <span className="text-xs font-bold text-[#006CB5] uppercase tracking-wider">
                 VEHICLE 2
               </span>
               <select
@@ -232,7 +232,7 @@ export function VehicleComparator() {
                 {v2.name}
               </h3>
               <span className="text-xs font-bold text-slate-500">{v2.category}</span>
-              <span className="mt-1 font-display text-xl font-black text-[#0B57D0]">
+              <span className="mt-1 font-display text-xl font-black text-[#006CB5]">
                 {v2.price}
               </span>
             </div>
@@ -246,7 +246,7 @@ export function VehicleComparator() {
                 </div>
                 <div className="mt-1 h-2 w-full rounded-full bg-slate-100 overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-[#0B57D0] transition-all duration-500"
+                    className="h-full rounded-full bg-[#006CB5] transition-all duration-500"
                     style={{ width: `${(v2.torque / 350) * 100}%` }}
                   />
                 </div>

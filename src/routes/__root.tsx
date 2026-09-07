@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:site_name", content: "IAW FORCE" },
       { property: "og:type", content: "website" },
-      { name: "theme-color", content: "#0B57D0" },
+      { name: "theme-color", content: "#006CB5" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

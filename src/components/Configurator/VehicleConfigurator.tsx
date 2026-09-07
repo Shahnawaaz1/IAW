@@ -17,8 +17,8 @@ const colors: ConfigColor[] = [
   {
     id: "red",
     name: "Force Crimson Red",
-    hex: "#0B57D0",
-    glow: "rgba(11, 87, 208,0.3)",
+    hex: "#006CB5",
+    glow: "rgba(0, 108, 181,0.3)",
     filter: "hue-rotate(0deg) saturate(1.1)",
   },
   {
@@ -107,7 +107,7 @@ const configuratorModels = [
 
 export function VehicleConfigurator() {
   const [selectedModelIdx, setSelectedModelIdx] = useState(0);
-  const [selectedColor, setSelectedColor] = useState(colors[0] || { id: "red", name: "Force Crimson Red", hex: "#0B57D0", glow: "rgba(11, 87, 208,0.3)", filter: "hue-rotate(0deg)" });
+  const [selectedColor, setSelectedColor] = useState(colors[0] || { id: "red", name: "Force Crimson Red", hex: "#006CB5", glow: "rgba(0, 108, 181,0.3)", filter: "hue-rotate(0deg)" });
   const [selectedSeatIdx, setSelectedSeatIdx] = useState(0);
   const [downPaymentPercent, setDownPaymentPercent] = useState(20);
   const [loanTenureYears, setLoanTenureYears] = useState(5);
@@ -185,7 +185,7 @@ export function VehicleConfigurator() {
               }}
               className={`rounded-full px-5 py-2.5 text-xs font-bold transition-all duration-300 ${
                 selectedModelIdx === idx
-                  ? "bg-[#0B57D0] text-white shadow-lg shadow-blue-600/40 scale-105"
+                  ? "bg-[#006CB5] text-white shadow-lg shadow-blue-600/40 scale-105"
                   : "border border-slate-800 bg-slate-900/80 text-slate-300 hover:border-slate-700 hover:bg-slate-800"
               }`}
             >
@@ -325,7 +325,7 @@ export function VehicleConfigurator() {
                       onClick={() => setLoanTenureYears(yr)}
                       className={`rounded px-2.5 py-1 text-[11px] font-bold transition-all ${
                         loanTenureYears === yr
-                          ? "bg-[#0B57D0] text-white"
+                          ? "bg-[#006CB5] text-white"
                           : "bg-slate-800 text-slate-400 hover:bg-slate-700"
                       }`}
                     >
@@ -340,7 +340,7 @@ export function VehicleConfigurator() {
                 <button
                   type="button"
                   onClick={handleSendCustomConfig}
-                  className="flex h-12 items-center justify-center gap-2 rounded-full bg-[#0B57D0] text-xs font-bold tracking-wider text-white shadow-lg shadow-blue-600/40 transition-all hover:bg-[#0B57D0] hover:shadow-blue-600/60 hover:-translate-y-0.5 cursor-pointer"
+                  className="flex h-12 items-center justify-center gap-2 rounded-full bg-[#006CB5] text-xs font-bold tracking-wider text-white shadow-lg shadow-blue-600/40 transition-all hover:bg-[#006CB5] hover:shadow-blue-600/60 hover:-translate-y-0.5 cursor-pointer"
                 >
                   <span>💬 SEND CUSTOM CONFIG ON WHATSAPP</span>
                 </button>

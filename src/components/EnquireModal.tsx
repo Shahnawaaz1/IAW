@@ -99,7 +99,7 @@ export function EnquireModal({
                 setSubmitted(false);
                 onClose();
               }}
-              className="mt-6 rounded-full bg-[#0B57D0] px-8 py-3 text-xs font-bold tracking-wider text-white hover:bg-[#0B57D0] shadow-lg shadow-blue-600/30"
+              className="mt-6 rounded-full bg-[#006CB5] px-8 py-3 text-xs font-bold tracking-wider text-white hover:bg-[#006CB5] shadow-lg shadow-blue-600/30"
             >
               CLOSE
             </button>
@@ -180,7 +180,7 @@ export function EnquireModal({
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#0B57D0] text-xs font-bold tracking-wider text-white shadow-lg shadow-blue-600/40 hover:bg-[#0B57D0] transition-all duration-300 disabled:opacity-50"
+              className="mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#006CB5] text-xs font-bold tracking-wider text-white shadow-lg shadow-blue-600/40 hover:bg-[#006CB5] transition-all duration-300 disabled:opacity-50"
             >
               {loading ? (
                 <span>SAVING TO GOOGLE SHEET...</span>

@@ -39,6 +39,19 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  /* Force Motors Blue Override */
+  --color-blue-50: #f0f7fb;
+  --color-blue-100: #dceef7;
+  --color-blue-200: #bbdeec;
+  --color-blue-300: #8ec3df;
+  --color-blue-400: #5ba1d0;
+  --color-blue-500: #3884bd;
+  --color-blue-600: #26689d;
+  --color-blue-700: #006cb5;
+  --color-blue-800: #1b4970;
+  --color-blue-900: #1a3f5f;
+  --color-blue-950: #122941;
 }
 
 :root {
@@ -51,7 +64,7 @@
   --popover: #FFFFFF;
   --popover-foreground: #0F172A;
   /* Signature Force Brand Red */
-  --primary: #DC2626;
+  --primary: #006CB5;
   --primary-foreground: #FFFFFF;
   --secondary: #F1F5F9;
   --secondary-foreground: #0F172A;
@@ -74,7 +87,7 @@
   --card-foreground: #0F172A;
   --popover: #FFFFFF;
   --popover-foreground: #0F172A;
-  --primary: #DC2626;
+  --primary: #006CB5;
   --primary-foreground: #FFFFFF;
   --secondary: #F1F5F9;
   --secondary-foreground: #0F172A;

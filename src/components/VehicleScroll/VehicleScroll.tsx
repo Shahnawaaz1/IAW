@@ -244,7 +244,7 @@ export function VehicleScroll() {
       {isMobile ? (
         <div className="py-16 px-4 space-y-12">
           <div className="text-center">
-            <span className="text-xs font-bold tracking-[0.25em] text-[#0B57D0] uppercase">
+            <span className="text-xs font-bold tracking-[0.25em] text-[#006CB5] uppercase">
               FEATURED VEHICLE SHOWCASE
             </span>
             <h2 className="mt-2 font-display text-3xl font-black text-[#0F172A]">
@@ -290,8 +290,8 @@ export function VehicleScroll() {
             style={{
               background:
                 focusedIndex !== null
-                  ? "radial-gradient(75% 65% at 50% 50%, rgba(11, 87, 208, 0.15), transparent 75%)"
-                  : "radial-gradient(75% 65% at 50% 50%, rgba(11, 87, 208, 0.08), transparent 75%)",
+                  ? "radial-gradient(75% 65% at 50% 50%, rgba(0, 108, 181, 0.15), transparent 75%)"
+                  : "radial-gradient(75% 65% at 50% 50%, rgba(0, 108, 181, 0.08), transparent 75%)",
             }}
             aria-hidden="true"
           />

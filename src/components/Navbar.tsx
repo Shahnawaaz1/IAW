@@ -20,20 +20,20 @@ export function Navbar() {
       <div
         className={`mx-auto transition-all duration-400 ${
           scrolled
-            ? "border-b border-slate-200/80 bg-white/95 shadow-lg shadow-slate-900/5 backdrop-blur-2xl py-3.5"
-            : "border-b border-slate-200/50 bg-white/80 shadow-md backdrop-blur-xl py-4 sm:py-5"
+            ? "border-b border-slate-200/80 bg-white/95 shadow-lg shadow-slate-900/5 backdrop-blur-2xl py-2"
+            : "border-b border-slate-200/50 bg-white/80 shadow-md backdrop-blur-xl py-2 sm:py-3"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
           {/* Brand Logo: Premium White & Blue Logo */}
           <a href="#top" className="group flex items-center gap-3.5">
-            <div className="relative flex h-10 w-11 items-center justify-center bg-[#0033A0] rounded-sm shadow-md shadow-blue-900/20 transition-transform duration-300 group-hover:scale-105">
+            <div className="relative flex h-10 w-11 items-center justify-center bg-[#006CB5] rounded-sm shadow-md shadow-blue-900/20 transition-transform duration-300 group-hover:scale-105">
               <span className="font-display text-base font-black tracking-tighter text-white">
                 IAW
               </span>
             </div>
             <div className="flex flex-col">
-              <span className="font-display text-xl font-black tracking-tight text-[#0F172A] transition-colors group-hover:text-[#0033A0]">
+              <span className="font-display text-xl font-black tracking-tight text-[#0F172A] transition-colors group-hover:text-[#006CB5]">
                 IAW FORCE
               </span>
               <span className="text-[9px] font-bold tracking-[0.24em] uppercase text-slate-500 transition-colors">
@@ -43,25 +43,25 @@ export function Navbar() {
           </a>
 
           {/* Minimalist Centered Navigation Links */}
-          <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex h-full">
+          <nav aria-label="Primary" className="hidden items-center gap-10 lg:flex h-full">
             {navLinks.map((l) => {
               const isVehicles = l.label === "Vehicles";
               return (
                 <div
                   key={l.label}
-                  className="flex h-full items-center py-5 sm:py-6"
+                  className="flex h-full items-center py-2 sm:py-3"
                   onMouseEnter={() => isVehicles && setIsMegaMenuOpen(true)}
                 >
                   <a
                     href={l.href}
-                    className={`group relative py-1 text-xs font-bold tracking-[0.14em] transition-colors ${
+                    className={`group relative py-1 text-[17px] font-semibold tracking-wide transition-colors ${
                       scrolled
-                        ? "text-slate-700 hover:text-[#0B57D0]"
-                        : "text-slate-800 hover:text-[#0B57D0]"
+                        ? "text-slate-700 hover:text-[#006CB5]"
+                        : "text-slate-800 hover:text-[#006CB5]"
                     }`}
                   >
                     <span>{l.label}</span>
-                    <span className="absolute inset-x-0 -bottom-1 h-0.5 scale-x-0 bg-[#0B57D0] transition-transform duration-300 group-hover:scale-x-100" />
+                    <span className="absolute inset-x-0 -bottom-1 h-0.5 scale-x-0 bg-[#006CB5] transition-transform duration-300 group-hover:scale-x-100" />
                   </a>
                 </div>
               );
@@ -77,8 +77,8 @@ export function Navbar() {
               aria-label={open ? "Close menu" : "Open menu"}
               className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors lg:hidden ${
                 scrolled
-                  ? "border-slate-200 bg-white text-slate-800 hover:border-[#0033A0]"
-                  : "border-slate-200 bg-white/80 text-slate-800 hover:border-[#0033A0]"
+                  ? "border-slate-200 bg-white text-slate-800 hover:border-[#006CB5]"
+                  : "border-slate-200 bg-white/80 text-slate-800 hover:border-[#006CB5]"
               }`}
             >
               <span className="sr-only">Menu</span>
@@ -110,7 +110,7 @@ export function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
-                className="flex h-11 items-center justify-center rounded-full bg-[#0B57D0] text-xs font-bold tracking-wider text-white shadow-lg shadow-blue-600/30"
+                className="flex h-11 items-center justify-center rounded-full bg-[#006CB5] text-xs font-bold tracking-wider text-white shadow-lg shadow-blue-600/30"
               >
                 ENQUIRE NOW
               </a>

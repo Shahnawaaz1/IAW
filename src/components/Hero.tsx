@@ -118,15 +118,15 @@ export function Hero() {
           {/* Cinematic Automotive Glass Gradient Overlays */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-50/95 via-slate-50/80 to-transparent sm:via-slate-50/60 sm:w-4/5" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50/40" />
-          <div className="absolute top-1/4 left-10 h-72 w-72 rounded-full bg-[#0B57D0]/5 blur-3xl pointer-events-none" />
+          <div className="absolute top-1/4 left-10 h-72 w-72 rounded-full bg-[#006CB5]/5 blur-3xl pointer-events-none" />
         </div>
 
         {/* Hero Content with High-End Automotive Showroom Typography */}
         <div ref={heroContentRef} className="relative mx-auto w-full max-w-7xl px-5 py-12 md:px-8 md:py-16 will-change-transform">
           <div className="max-w-3xl">
             {/* Kicker badge */}
-            <div data-hero-fade className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-50/80 backdrop-blur-xl px-4 py-1.5 text-xs font-bold tracking-[0.25em] text-[#0033A0] shadow-md shadow-blue-900/10">
-              <span className="h-2 w-2 rounded-full bg-[#0033A0] animate-ping" />
+            <div data-hero-fade className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-50/80 backdrop-blur-xl px-4 py-1.5 text-xs font-bold tracking-[0.25em] text-[#006CB5] shadow-md shadow-blue-900/10">
+              <span className="h-2 w-2 rounded-full bg-[#006CB5] animate-ping" />
               IAW FORCE · GORAKHPUR SHOWROOM
             </div>
 
@@ -137,7 +137,7 @@ export function Hero() {
             >
               MOVE PEOPLE.
               <br />
-              <span className="text-[#0033A0] drop-shadow-[0_0_35px_rgba(0,51,160,0.3)]">
+              <span className="text-[#006CB5] drop-shadow-[0_0_35px_rgba(0,108,181,0.3)]">
                 MOVE BUSINESS.
               </span>
             </h1>
@@ -154,7 +154,7 @@ export function Hero() {
             <div data-hero-fade className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#vehicles"
-                className="group flex items-center gap-3 rounded-full bg-[#0033A0] px-8 py-4 text-xs font-bold tracking-[0.16em] text-white shadow-[0_0_25px_rgba(0,51,160,0.4)] transition-all duration-300 hover:bg-blue-800 hover:shadow-[0_0_35px_rgba(0,51,160,0.6)] hover:-translate-y-0.5"
+                className="group flex items-center gap-3 rounded-full bg-[#006CB5] px-8 py-4 text-xs font-bold tracking-[0.16em] text-white shadow-[0_0_25px_rgba(0,108,181,0.4)] transition-all duration-300 hover:bg-blue-800 hover:shadow-[0_0_35px_rgba(0,108,181,0.6)] hover:-translate-y-0.5"
               >
                 <span>EXPLORE VEHICLES</span>
                 <svg
@@ -171,7 +171,7 @@ export function Hero() {
                 href="https://wa.me/918429540902?text=Hi%20IAW%20Force%2C%20I%20would%20like%20to%20request%20the%20on-road%20price%20list%20for%20Force%20vehicles."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-full border-2 border-[#0033A0] bg-transparent backdrop-blur-xl px-8 py-[14px] text-xs font-bold tracking-[0.16em] text-[#0033A0] shadow-md transition-all duration-300 hover:bg-[#0033A0] hover:text-white hover:-translate-y-0.5"
+                className="flex items-center gap-2 rounded-full border-2 border-[#006CB5] bg-transparent backdrop-blur-xl px-8 py-[14px] text-xs font-bold tracking-[0.16em] text-[#006CB5] shadow-md transition-all duration-300 hover:bg-[#006CB5] hover:text-white hover:-translate-y-0.5"
               >
                 <span>GET ON-ROAD PRICE</span>
               </a>
@@ -181,7 +181,7 @@ export function Hero() {
             <div className="mt-14 grid grid-cols-3 gap-6 border-t border-slate-200 pt-8 sm:max-w-xl">
               {heroStats.map((st) => (
                 <div key={st.label} data-hero-stat className="flex flex-col">
-                  <span className="font-display text-3xl font-black tracking-tight text-[#0033A0] sm:text-4xl drop-shadow-[0_0_20px_rgba(0,51,160,0.15)]">
+                  <span className="font-display text-3xl font-black tracking-tight text-[#006CB5] sm:text-4xl drop-shadow-[0_0_20px_rgba(0,108,181,0.15)]">
                     {st.value}
                   </span>
                   <span className="mt-0.5 text-xs font-bold tracking-wider text-black">
@@ -215,7 +215,7 @@ export function Hero() {
                     {qa.num}
                   </span>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 transition-colors group-hover:text-[#0B57D0]">
+                    <h3 className="text-sm font-bold text-slate-900 transition-colors group-hover:text-[#006CB5]">
                       {qa.title}
                     </h3>
                     <p className="text-xs text-slate-600">
