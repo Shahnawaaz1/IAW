@@ -94,17 +94,42 @@ export function Navbar() {
       {open && (
         <div className="border-b border-slate-800 bg-[#0B1120]/98 px-6 py-6 shadow-2xl backdrop-blur-2xl lg:hidden text-white">
           <nav aria-label="Mobile" className="flex flex-col space-y-1">
-            {navLinks.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="flex items-center justify-between border-b border-slate-800/80 py-3 text-sm font-bold text-slate-200 transition-colors hover:text-[#3B82F6]"
-              >
-                <span>{l.label}</span>
-                <span className="text-xs text-[#3B82F6]">→</span>
-              </a>
-            ))}
+            {navLinks.map((l) => {
+              const isVehicles = l.label === "Vehicles";
+              
+              if (isVehicles) {
+                return (
+                  <button
+                    key={l.label}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMegaMenuOpen(!isMegaMenuOpen);
+                    }}
+                    className="flex w-full items-center justify-between border-b border-slate-800/80 py-3 text-sm font-bold text-slate-200 transition-colors hover:text-[#3B82F6]"
+                  >
+                    <span>{l.label}</span>
+                    <span className="text-xs text-[#3B82F6]">
+                      {isMegaMenuOpen ? "↓" : "→"}
+                    </span>
+                  </button>
+                );
+              }
+
+              return (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  onClick={() => {
+                    setOpen(false);
+                    setIsMegaMenuOpen(false);
+                  }}
+                  className="flex items-center justify-between border-b border-slate-800/80 py-3 text-sm font-bold text-slate-200 transition-colors hover:text-[#3B82F6]"
+                >
+                  <span>{l.label}</span>
+                  <span className="text-xs text-[#3B82F6]">→</span>
+                </a>
+              );
+            })}
 
             <div className="mt-6 flex flex-col gap-3 pt-2">
               <a

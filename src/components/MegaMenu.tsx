@@ -292,9 +292,9 @@ export function MegaMenu({
         isOpen ? "opacity-100 scale-y-100 visible" : "opacity-0 scale-y-95 invisible pointer-events-none"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl">
+      <div className="mx-auto flex flex-col lg:flex-row max-w-7xl max-h-[85vh] overflow-y-auto lg:overflow-visible">
         {/* Left Sidebar */}
-        <div className="w-72 shrink-0 border-r border-slate-200 bg-white py-6">
+        <div className="w-full lg:w-72 shrink-0 border-b lg:border-b-0 lg:border-r border-slate-200 bg-white py-4 lg:py-6">
           {Object.entries(megaMenuData).map(([sectionTitle, categories]) => (
             <div key={sectionTitle} className="mb-6 last:mb-0 px-6">
               <h4 className="mb-3 text-xs font-black tracking-wider uppercase text-slate-400">
@@ -336,8 +336,8 @@ export function MegaMenu({
         </div>
 
         {/* Right Main Content */}
-        <div className="flex-1 bg-slate-50/60 p-8">
-          <div className="max-h-[65vh] overflow-y-auto pr-4 custom-scrollbar">
+        <div className="flex-1 bg-slate-50/60 p-4 lg:p-8">
+          <div className="max-h-none lg:max-h-[65vh] overflow-y-visible lg:overflow-y-auto pr-0 lg:pr-4 custom-scrollbar">
             {activeData.groups.map((group, groupIdx) => (
               <div key={group.title} className={groupIdx > 0 ? "mt-10" : ""}>
                 <h3 className="mb-6 font-display text-lg font-bold text-[#006CB5] border-b border-blue-200/60 pb-2">
