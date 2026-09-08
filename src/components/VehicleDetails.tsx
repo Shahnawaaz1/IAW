@@ -327,151 +327,72 @@ export function SalientFeaturesSection({ vehicle }: { vehicle: VehicleData }) {
           </h3>
         </div>
 
-        {/* Interactive Feature Graphic with Curved Blue Callout Arrows */}
-        <div className="relative min-h-[460px] sm:min-h-[540px] flex items-center justify-center">
-          {/* Ground Soft Contact Shadow */}
-          <div className="pointer-events-none absolute bottom-8 sm:bottom-12 w-4/5 max-w-[620px] h-8 rounded-full bg-black/60 blur-xl" />
+        {/* Interactive Feature Graphic with Curved Blue Callout Arrows (Matching User Image) */}
+        <div className="relative h-[340px] sm:h-[450px] md:h-[500px] lg:h-[600px] w-full flex items-center justify-center overflow-hidden">
+          {/* Fixed Canvas that scales down for smaller screens */}
+          <div className="absolute top-1/2 left-1/2 w-[800px] h-[600px] -mt-[300px] -ml-[400px] z-20 transform scale-[0.45] sm:scale-[0.65] md:scale-80 lg:scale-100 origin-center">
+            
+            {/* Ground Soft Contact Shadow */}
+            <div className="absolute bottom-[10px] left-1/2 -ml-[250px] w-[500px] h-8 rounded-full bg-black/60 blur-xl z-0" />
 
-          {/* Centered Vehicle Image */}
-          <div className="relative z-10 w-full max-w-[720px] flex items-center justify-center px-4">
-            <img
-              src={calloutImg}
-              alt={vehicle.name}
-              className="w-full h-auto max-h-[380px] sm:max-h-[440px] object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)] select-none"
-            />
-          </div>
-
-          {/* Desktop/Tablet Callouts with Curved Blue Arrows (Matching Image 3) */}
-          <div className="hidden lg:block absolute inset-0 pointer-events-none z-20">
-            {/* 1. Engine Parameters (Top-Left pointing to engine hood) */}
-            <div className="absolute top-10 left-6 xl:left-14 flex flex-col items-start">
-              <span className="text-xs font-bold text-[#00A3E0] tracking-wider uppercase">
-                Engine Parameters
-              </span>
-              <span className="font-display text-sm font-extrabold text-white mt-0.5 max-w-[220px]">
-                {engineParam}
-              </span>
-              {/* Curved SVG Arrow pointing to engine */}
-              <svg
-                width="220"
-                height="120"
-                viewBox="0 0 220 120"
-                fill="none"
-                className="mt-1"
-              >
-                <path
-                  d="M10,10 C80,10 130,50 190,100"
-                  stroke="#00A3E0"
-                  strokeWidth="2"
-                  strokeDasharray="4 3"
-                />
-                <circle cx="190" cy="100" r="4" fill="#00A3E0" />
-              </svg>
+            {/* Background Car Image */}
+            <div className="absolute bottom-[20px] left-1/2 -ml-[250px] w-[500px] flex justify-center items-end z-10">
+              <img
+                src={calloutImg}
+                alt={vehicle.name}
+                className="max-w-full max-h-[300px] object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)] select-none"
+              />
             </div>
 
-            {/* 2. Seating / Body Architecture (Top-Right pointing to cabin) */}
-            <div className="absolute top-10 right-6 xl:right-14 flex flex-col items-end text-right">
-              <span className="text-xs font-bold text-[#00A3E0] tracking-wider uppercase">
-                Cabin Configuration
-              </span>
-              <span className="font-display text-sm font-extrabold text-white mt-0.5 max-w-[220px]">
-                {seatingParam}
-              </span>
-              {/* Curved SVG Arrow pointing to cabin */}
-              <svg
-                width="220"
-                height="120"
-                viewBox="0 0 220 120"
-                fill="none"
-                className="mt-1"
-              >
-                <path
-                  d="M210,10 C140,10 90,50 30,100"
-                  stroke="#00A3E0"
-                  strokeWidth="2"
-                  strokeDasharray="4 3"
-                />
-                <circle cx="30" cy="100" r="4" fill="#00A3E0" />
-              </svg>
+            {/* SVG Arrows Overlay */}
+            <svg width="800" height="600" viewBox="0 0 800 600" className="absolute inset-0 pointer-events-none z-20">
+              <defs>
+                <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6" fill="#00A3E0" />
+                </marker>
+              </defs>
+
+              {/* Engine */}
+              <path d="M 280,320 Q 200,360 190,440" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              {/* Seating */}
+              <path d="M 320,270 Q 240,200 180,260" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              {/* Comfort */}
+              <path d="M 400,260 Q 400,200 400,160" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              {/* Convenience */}
+              <path d="M 480,270 Q 560,200 620,260" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              {/* Safety */}
+              <path d="M 520,320 Q 600,360 610,440" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead)" />
+            </svg>
+
+            {/* 1. Engine Parameters */}
+            <div className="absolute top-[420px] left-0 w-[180px] text-left z-30">
+              <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Engine Parameters</span>
+              <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">{engineParam}</p>
             </div>
 
-            {/* 3. Suspension & Chassis (Bottom-Left pointing to chassis/wheels) */}
-            <div className="absolute bottom-12 left-6 xl:left-14 flex flex-col items-start">
-              <svg
-                width="220"
-                height="90"
-                viewBox="0 0 220 90"
-                fill="none"
-                className="mb-1"
-              >
-                <path
-                  d="M10,80 C70,80 120,45 180,10"
-                  stroke="#00A3E0"
-                  strokeWidth="2"
-                  strokeDasharray="4 3"
-                />
-                <circle cx="180" cy="10" r="4" fill="#00A3E0" />
-              </svg>
-              <span className="text-xs font-bold text-[#00A3E0] tracking-wider uppercase">
-                Suspension & Chassis
-              </span>
-              <span className="font-display text-sm font-extrabold text-white mt-0.5 max-w-[220px]">
-                {suspensionParam}
-              </span>
+            {/* 2. Seating Capacity */}
+            <div className="absolute top-[240px] left-0 w-[170px] text-left z-30">
+              <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Seating Capacity</span>
+              <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">{seatingParam}</p>
             </div>
 
-            {/* 4. Safety & Braking System (Bottom-Right pointing to brakes/axle) */}
-            <div className="absolute bottom-12 right-6 xl:right-14 flex flex-col items-end text-right">
-              <svg
-                width="220"
-                height="90"
-                viewBox="0 0 220 90"
-                fill="none"
-                className="mb-1"
-              >
-                <path
-                  d="M210,80 C150,80 100,45 40,10"
-                  stroke="#00A3E0"
-                  strokeWidth="2"
-                  strokeDasharray="4 3"
-                />
-                <circle cx="40" cy="10" r="4" fill="#00A3E0" />
-              </svg>
-              <span className="text-xs font-bold text-[#00A3E0] tracking-wider uppercase">
-                Brakes & Safety
-              </span>
-              <span className="font-display text-sm font-extrabold text-white mt-0.5 max-w-[220px]">
-                {brakesParam}
-              </span>
+            {/* 3. Comfort */}
+            <div className="absolute top-[90px] left-[300px] w-[200px] text-center z-30">
+              <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Comfort</span>
+              <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">Monocoque body, low NVH</p>
             </div>
-          </div>
-        </div>
 
-        {/* Mobile Callout Cards (Displayed under graphic on small screens) */}
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
-          <div className="bg-[#161D2B] border border-slate-700/80 rounded-xl p-4">
-            <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider">
-              Engine Parameters
-            </span>
-            <p className="text-sm font-bold text-white mt-1">{engineParam}</p>
-          </div>
-          <div className="bg-[#161D2B] border border-slate-700/80 rounded-xl p-4">
-            <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider">
-              Cabin Configuration
-            </span>
-            <p className="text-sm font-bold text-white mt-1">{seatingParam}</p>
-          </div>
-          <div className="bg-[#161D2B] border border-slate-700/80 rounded-xl p-4">
-            <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider">
-              Suspension & Chassis
-            </span>
-            <p className="text-sm font-bold text-white mt-1">{suspensionParam}</p>
-          </div>
-          <div className="bg-[#161D2B] border border-slate-700/80 rounded-xl p-4">
-            <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider">
-              Brakes & Safety
-            </span>
-            <p className="text-sm font-bold text-white mt-1">{brakesParam}</p>
+            {/* 4. Convenience */}
+            <div className="absolute top-[240px] right-0 w-[170px] text-left z-30">
+              <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Convenience</span>
+              <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">Easy entry-exit, CE coated body</p>
+            </div>
+
+            {/* 5. Safety */}
+            <div className="absolute top-[420px] right-0 w-[180px] text-left z-30">
+              <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Safety</span>
+              <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">{brakesParam}</p>
+            </div>
           </div>
         </div>
       </div>
