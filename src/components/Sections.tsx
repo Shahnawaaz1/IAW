@@ -1,11 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import travellerImg from "@/assets/traveller.png";
-import urbaniaImg from "@/assets/urbania.png";
-import traxImg from "@/assets/trax.png";
-import monobusImg from "@/assets/monobus.png";
+import travellerImg from "@/assets/showcase/traveller-hero.png";
+import urbaniaImg from "@/assets/showcase/urbania-hero.png";
+import traxImg from "@/assets/showcase/trax-hero.png";
+import monobusImg from "@/assets/showcase/monobus-hero.png";
+import gurkhaImg from "@/assets/showcase/gurkha-hero.png";
+import specialImg from "@/assets/showcase/special-hero.png";
+import evImg from "@/assets/showcase/ev-hero.png";
 import { useGsap, prefersReducedMotion } from "@/animations/scrollAnimations";
 import { Card3D } from "@/components/ui/Card3D";
+import { VehicleShowcaseBanner } from "./VehicleShowcaseBanner";
 import {
   usageOptions,
   capacityOptions,
@@ -123,7 +127,7 @@ export const allCatalogVehicles: VehicleCatalogItem[] = [
     seating: "Type B, C & D (ICU / ALS / BLS)",
     engine: "FM 2.6 CR ED Diesel",
     application: "Hospitals, State Health Services, Clinics",
-    image: travellerImg,
+    image: specialImg,
     features: [
       "Equipped with oxygen delivery system and stretcher base",
       "Pre-wired for defibrillator, ventilator, and vital monitors",
@@ -143,7 +147,7 @@ export const allCatalogVehicles: VehicleCatalogItem[] = [
     seating: "3-Door & 5-Door Configurations",
     engine: "Mercedes-Derived 2.6L Turbo Diesel",
     application: "Off-Road, Defense, Exploration, Institutional",
-    image: traxImg,
+    image: gurkhaImg,
     features: [
       "Front and rear mechanical differential locks",
       "700mm water wading capacity with factory snorkel",
@@ -163,7 +167,7 @@ export const allCatalogVehicles: VehicleCatalogItem[] = [
     seating: "Configurable Passenger & Cargo",
     engine: "High-Efficiency Permanent Magnet Motor",
     application: "City Shuttles, Green Logistics, Campus Transit",
-    image: urbaniaImg,
+    image: evImg,
     features: [
       "Fast charging capability for minimal downtime",
       "Ultra-low per-kilometer running costs",
@@ -186,7 +190,7 @@ const categoryFilters = [
 ] as const;
 
 export function VehicleRange() {
-  const [activeTab, setActiveTab] = useState<string>("all");
+  const [activeTab, setActiveTab] = useState<string>("traveller");
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -329,22 +333,44 @@ export function VehicleRange() {
           </div>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div data-range-tabs className="mt-10 flex flex-wrap gap-2 border-b border-slate-200 pb-4 will-change-transform opacity-100">
-          {categoryFilters.map((tab) => (
+        {/* Interactive "Find your Force" Showcase Banner & Navigation Bar */}
+        <div data-range-tabs className="mt-10 will-change-transform opacity-100">
+          <VehicleShowcaseBanner
+            activeId={activeTab === "all" ? "traveller" : activeTab}
+            onSelectVehicle={(id) => setActiveTab(id)}
+          />
+        </div>
+
+        {/* Section divider and models summary */}
+        <div className="mt-14 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-4">
+          <div className="flex items-center gap-3">
+            <h3 className="font-display text-lg sm:text-xl font-bold text-slate-900">
+              {activeTab === "all"
+                ? "All Force Vehicle Range"
+                : `${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Range & Variants`}
+            </h3>
+            <span className="rounded-full bg-blue-50 border border-blue-200 px-3 py-0.5 text-xs font-bold text-[#006CB5]">
+              {filteredVehicles.length} {filteredVehicles.length === 1 ? "Model" : "Models"}
+            </span>
+          </div>
+
+          {activeTab !== "all" ? (
             <button
-              key={tab.id}
               type="button"
-              onClick={() => setActiveTab(tab.id)}
-              className={`rounded-full px-4 py-2.5 text-xs font-bold tracking-[0.14em] transition-all duration-300 ${
-                activeTab === tab.id
-                  ? "bg-[#006CB5] text-white shadow-md shadow-blue-500/25 scale-105"
-                  : "border border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white"
-              }`}
+              onClick={() => setActiveTab("all")}
+              className="text-xs font-bold tracking-wider text-[#006CB5] hover:text-blue-800 transition-colors cursor-pointer self-start sm:self-auto"
             >
-              {tab.label}
+              VIEW ALL {allCatalogVehicles.length} MODELS →
             </button>
-          ))}
+          ) : (
+            <button
+              type="button"
+              onClick={() => setActiveTab("traveller")}
+              className="text-xs font-bold tracking-wider text-[#006CB5] hover:text-blue-800 transition-colors cursor-pointer self-start sm:self-auto"
+            >
+              ← FOCUS BY CATEGORY
+            </button>
+          )}
         </div>
 
         {/* 3D Interactive Vehicle Cards Grid: Touched Card Sharp + Neighbors Blur */}
@@ -373,10 +399,6 @@ export function VehicleRange() {
                       <span className="rounded-full bg-blue-50 border border-blue-200/60 px-3 py-1 text-[10px] font-bold tracking-wider text-[#006CB5] uppercase shadow-sm">
                         {v.categoryBadge}
                       </span>
-                      <span className="flex items-center gap-1 text-[10px] font-bold text-[#006CB5] tracking-wider">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#006CB5] animate-ping" />
-                        3D TOUCH
-                      </span>
                     </div>
                     <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-[#0F172A] transition-colors group-hover:text-[#006CB5]">
                       {v.title}
@@ -386,7 +408,7 @@ export function VehicleRange() {
                     </p>
                   </div>
 
-                  {/* 3D Popping Vehicle Graphic */}
+                  {/* Vehicle Graphic */}
                   <div className="relative my-6 flex min-h-[200px] items-center justify-center overflow-visible px-4 [transform-style:preserve-3d]">
                     <div className="pointer-events-none absolute bottom-0 h-8 w-4/5 rounded-full bg-slate-900/15 blur-md" />
                     <img

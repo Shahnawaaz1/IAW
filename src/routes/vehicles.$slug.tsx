@@ -3,7 +3,14 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer, FloatingWhatsApp } from "@/components/Sections2";
 import { allVehicles } from "@/data/vehicles";
-import { HeroSection, SpecificationsSection, FeaturesSection, SimilarVehiclesSection } from "@/components/VehicleDetails";
+import {
+  HeroSection,
+  SalientFeaturesSection,
+  SpecificationsSection,
+  FeaturesSection,
+  DealershipSection,
+  SimilarVehiclesSection,
+} from "@/components/VehicleDetails";
 import { EnquireModal, TestDriveModal } from "@/components/EnquiryForms";
 
 export const Route = createFileRoute("/vehicles/$slug")({
@@ -34,42 +41,55 @@ function VehiclePage() {
   }, [vehicle.slug]);
 
   // Find similar vehicles data
-  const similarVehiclesData = allVehicles.filter(v => vehicle.similarVehicles.includes(v.slug));
+  const similarVehiclesData = allVehicles.filter((v) =>
+    vehicle.similarVehicles.includes(v.slug)
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 overflow-x-hidden">
       <Navbar />
-      
-      <main className="flex-grow flex flex-col pt-24">
-        {/* Breadcrumbs */}
-        <div className="bg-white border-b border-slate-200 py-3">
-          <div className="max-w-7xl mx-auto px-5 md:px-8">
-            <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
-              <a href="/" className="hover:text-[#006CB5] transition-colors">Home</a>
-              <span>/</span>
-              <span className="text-slate-400">Vehicles</span>
-              <span>/</span>
-              <span className="text-slate-400 capitalize">{vehicle.category.replace('-', ' ')}</span>
-              <span>/</span>
-              <span className="text-[#006CB5] font-bold">{vehicle.name}</span>
-            </div>
-          </div>
-        </div>
 
-        <HeroSection 
-          vehicle={vehicle} 
-          onEnquire={() => setIsEnquireOpen(true)} 
-          onTestDrive={() => setIsTestDriveOpen(true)} 
+      <main className="flex-grow flex flex-col pt-16 md:pt-20">
+        <HeroSection
+          vehicle={vehicle}
+          onEnquire={() => setIsEnquireOpen(true)}
+          onTestDrive={() => setIsTestDriveOpen(true)}
         />
-        
+
+        <SalientFeaturesSection vehicle={vehicle} />
+
         <SpecificationsSection specs={vehicle.specifications} />
-        
+
         <FeaturesSection features={vehicle.features} />
-        
+
+        <DealershipSection
+          vehicle={vehicle}
+          onEnquire={() => setIsEnquireOpen(true)}
+          onTestDrive={() => setIsTestDriveOpen(true)}
+        />
+
         {similarVehiclesData.length > 0 && (
           <SimilarVehiclesSection vehicles={similarVehiclesData} />
         )}
       </main>
+
+      {/* Sticky Mobile CTA Bar for quick enquiry and test drive */}
+      <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 sm:hidden flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => setIsEnquireOpen(true)}
+          className="flex-1 bg-[#006CB5] text-white py-3 rounded-full text-xs font-bold tracking-wider text-center shadow-md"
+        >
+          ENQUIRE NOW
+        </button>
+        <button
+          type="button"
+          onClick={() => setIsTestDriveOpen(true)}
+          className="flex-1 border-2 border-[#006CB5] text-[#006CB5] py-3 rounded-full text-xs font-bold tracking-wider text-center"
+        >
+          BOOK TEST DRIVE
+        </button>
+      </div>
       
       <Footer />
       <FloatingWhatsApp />

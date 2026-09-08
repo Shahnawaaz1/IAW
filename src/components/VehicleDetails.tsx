@@ -1,89 +1,294 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { VehicleData } from "@/data/vehicles";
-import { Card3D } from "@/components/ui/Card3D";
-import { useGsap, prefersReducedMotion } from "@/animations/scrollAnimations";
+import { site } from "@/config/site";
 
-// --- HERO SECTION ---
-export function HeroSection({ vehicle, onEnquire, onTestDrive }: { vehicle: VehicleData, onEnquire: () => void, onTestDrive: () => void }) {
-  const sectionRef = useRef<HTMLElement>(null);
+// Official Force Motors vehicle details assets
+import travellerBanner from "@/assets/vehicle-details/traveller-banner.webp";
+import travellerLogo from "@/assets/vehicle-details/traveller-logo.png";
+import travellerCallout from "@/assets/vehicle-details/traveller-callout.webp";
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el || prefersReducedMotion()) return;
-    try {
-      const { gsap } = useGsap();
-      const ctx = gsap.context(() => {
-        gsap.fromTo("[data-hero-header]", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" });
-        gsap.fromTo("[data-hero-image]", { scale: 0.9, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 1, delay: 0.2, ease: "power3.out" });
-      }, el);
-      return () => ctx.revert();
-    } catch (e) {}
-  }, []);
+// Showcase fallback backgrounds & heroes
+import urbaniaBg from "@/assets/showcase/urbania-bg.jpg";
+import gurkhaBg from "@/assets/showcase/gurkha-bg.jpg";
+import traxBg from "@/assets/showcase/trax-bg.jpg";
+import monobusBg from "@/assets/showcase/monobus-bg.jpg";
+import specialBg from "@/assets/showcase/special-bg.jpg";
+import evBg from "@/assets/showcase/ev-bg.jpg";
+
+import urbaniaHero from "@/assets/showcase/urbania-hero.png";
+import gurkhaHero from "@/assets/showcase/gurkha-hero.png";
+import traxHero from "@/assets/showcase/trax-hero.png";
+import monobusHero from "@/assets/showcase/monobus-hero.png";
+import specialHero from "@/assets/showcase/special-hero.png";
+import evHero from "@/assets/showcase/ev-hero.png";
+
+function getVehicleBanner(category: string): string {
+  switch (category) {
+    case "traveller":
+      return travellerBanner;
+    case "urbania":
+      return urbaniaBg;
+    case "gurkha":
+      return gurkhaBg;
+    case "trax":
+      return traxBg;
+    case "monobus":
+      return monobusBg;
+    case "special":
+      return specialBg;
+    case "ev":
+      return evBg;
+    default:
+      return travellerBanner;
+  }
+}
+
+function getVehicleCalloutImage(vehicle: VehicleData): string {
+  if (vehicle.calloutImage) return vehicle.calloutImage;
+  if (vehicle.category === "traveller") {
+    return travellerCallout;
+  }
+  switch (vehicle.category) {
+    case "urbania":
+      return urbaniaHero;
+    case "gurkha":
+      return gurkhaHero;
+    case "trax":
+      return traxHero;
+    case "monobus":
+      return monobusHero;
+    case "special":
+      return vehicle.image || specialHero;
+    case "ev":
+      return evHero;
+    default:
+      return vehicle.image;
+  }
+}
+
+function getCategoryName(category: string): string {
+  switch (category) {
+    case "special":
+      return "Special Applications";
+    case "traveller":
+      return "Traveller N";
+    case "urbania":
+      return "Urbania";
+    case "monobus":
+      return "Monobus";
+    case "trax":
+      return "Trax";
+    case "gurkha":
+      return "Gurkha";
+    case "ev":
+      return "Electric Vehicles";
+    default:
+      return "Vehicles";
+  }
+}
+
+// =========================================================================
+// 1. HERO SECTION (Matching User Image 2 & Force Motors design)
+// =========================================================================
+export function HeroSection({
+  vehicle,
+  onEnquire,
+  onTestDrive,
+}: {
+  vehicle: VehicleData;
+  onEnquire: () => void;
+  onTestDrive: () => void;
+}) {
+  const bannerImg = vehicle.bannerImage || getVehicleBanner(vehicle.category);
+  const displayPrice = vehicle.price || "₹ 15.21 Lakh*";
+  const seating = vehicle.specifications?.seatingCapacity || "";
+  const categoryLabel = getCategoryName(vehicle.category);
 
   return (
-    <div ref={sectionRef as any} className="relative w-full bg-white overflow-hidden pb-16 pt-8 md:pt-16 border-b border-slate-200">
-      <div className="absolute top-0 right-0 -mr-40 -mt-40 w-96 h-96 rounded-full bg-blue-100/50 blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 rounded-full bg-slate-100 blur-3xl pointer-events-none"></div>
-      
-      <div className="max-w-7xl mx-auto px-5 md:px-8 relative z-10">
-        <Link to="/" className="inline-flex items-center gap-2 text-xs font-bold tracking-wider text-slate-500 hover:text-[#006CB5] transition-colors mb-8">
-          <span>←</span> BACK TO ALL VEHICLES
-        </Link>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div data-hero-header className="will-change-transform opacity-100">
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold tracking-[0.2em] text-[#006CB5] uppercase">
-              {vehicle.categoryBadge}
-            </div>
-            <h1 className="mt-6 font-display text-4xl md:text-6xl font-black tracking-tight text-[#0F172A] leading-tight">
+    <div className="relative w-full bg-[#0A0E17] text-white">
+      {/* Top Full-Width Hero Banner */}
+      <div className="relative w-full h-[320px] sm:h-[420px] md:h-[490px] lg:h-[540px] overflow-hidden">
+        <img
+          src={bannerImg}
+          alt={`${vehicle.name} Banner`}
+          className="h-full w-full object-cover object-center"
+        />
+
+        {/* Soft vignette overlay for readable typography while preserving vehicle visibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E17] via-transparent to-black/30" />
+
+        {/* Overlaid Title & Enquire Now Button on Banner */}
+        <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-24">
+          <div className="max-w-xl">
+            {/* Model Name */}
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight drop-shadow-md">
               {vehicle.name}
             </h1>
-            <h2 className="mt-4 text-xl md:text-2xl font-bold text-slate-700">
-              {vehicle.tagline}
-            </h2>
-            <p className="mt-6 text-base md:text-lg text-slate-600 leading-relaxed max-w-lg">
-              {vehicle.description}
-            </p>
-            
-            <div className="mt-10 flex flex-wrap gap-4">
+
+            {/* Price Badge on Banner */}
+            {vehicle.price && (
+              <div className="mt-4 sm:mt-5 inline-block bg-black/80 backdrop-blur-md px-4 py-2 text-sm sm:text-base md:text-lg font-bold text-white border-l-4 border-[#006CB5] shadow-lg">
+                Price Starts at {displayPrice}
+              </div>
+            )}
+
+            {/* Enquire Now Angled Button on Banner */}
+            <div className="mt-6 sm:mt-8">
               <button
+                type="button"
                 onClick={onEnquire}
-                className="rounded-full bg-[#006CB5] px-8 py-4 text-sm font-bold tracking-[0.15em] text-white shadow-lg shadow-blue-500/30 transition-all hover:bg-blue-700 hover:shadow-blue-500/50 hover:-translate-y-0.5"
+                className="group relative inline-flex items-center justify-center bg-white hover:bg-[#006CB5] transition-all duration-300 shadow-xl px-8 py-3 cursor-pointer"
+                style={{
+                  clipPath:
+                    "polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%)",
+                }}
               >
-                ENQUIRE NOW
+                <span className="font-display text-xs sm:text-sm font-black tracking-wider text-slate-950 group-hover:text-white transition-colors duration-200 uppercase">
+                  Enquire Now
+                </span>
               </button>
-              <button
-                onClick={onTestDrive}
-                className="rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-sm font-bold tracking-[0.15em] text-slate-800 transition-all hover:border-[#006CB5] hover:text-[#006CB5]"
-              >
-                BOOK TEST DRIVE
-              </button>
-              {vehicle.officialUrl && (
-                <a
-                  href={vehicle.officialUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border-2 border-[#006CB5] bg-blue-50 px-8 py-4 text-sm font-bold tracking-[0.15em] text-[#006CB5] transition-all hover:bg-[#006CB5] hover:text-white inline-flex items-center gap-2"
-                >
-                  VIEW OFFICIAL PAGE
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Model Overview & Price Action Bar matching Image 2 */}
+      <div className="bg-[#0B1120] border-b border-slate-800/80 px-6 sm:px-12 md:px-16 lg:px-24 py-6 md:py-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Breadcrumbs + Brand Logo Row */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800/60 text-xs text-slate-400">
+            <div className="flex items-center gap-2 flex-wrap">
+              <Link to="/" className="hover:text-white transition-colors">
+                Home
+              </Link>
+              <span>+</span>
+              <a href="/#range" className="hover:text-white transition-colors">
+                Vehicles
+              </a>
+              <span>+</span>
+              <span className="text-slate-300 font-medium">{categoryLabel}</span>
+              <span>+</span>
+              <span className="text-[#00A3E0] font-bold">{vehicle.name}</span>
+            </div>
+
+            {/* Vehicle Model Emblem */}
+            <div className="flex items-center">
+              {vehicle.category === "traveller" ? (
+                <img
+                  src={travellerLogo}
+                  alt="Traveller Logo"
+                  className="h-7 sm:h-9 object-contain brightness-0 invert opacity-90"
+                />
+              ) : (
+                <span className="font-display text-sm font-black tracking-[0.2em] text-slate-300 uppercase">
+                  {vehicle.name}
+                </span>
               )}
             </div>
           </div>
-          
-          <div data-hero-image className="relative flex justify-center items-center will-change-transform opacity-100">
-            <Card3D intensity={15} className="w-full max-w-xl">
-              <div className="relative w-full aspect-[4/3] flex items-center justify-center">
-                <div className="absolute bottom-10 w-3/4 h-8 bg-slate-900/20 blur-xl rounded-[100%] [transform:translateZ(10px)] pointer-events-none"></div>
-                <img 
-                  src={vehicle.image} 
-                  alt={vehicle.name} 
-                  className="w-full h-auto object-contain drop-shadow-2xl [transform:translateZ(40px)] hover:scale-105 transition-transform duration-500"
-                />
+
+          {/* Model Sub-title, Description & Dealership Action Bar */}
+          <div className="mt-5 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div className="max-w-2xl">
+              <h2 className="font-display text-2xl sm:text-4xl font-black text-white tracking-tight">
+                {vehicle.name}
+              </h2>
+              {vehicle.description && (
+                <p className="mt-2.5 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                  {vehicle.description}
+                </p>
+              )}
+              <div className="mt-4 flex flex-wrap items-center gap-6">
+                <div>
+                  <span className="block text-xs uppercase tracking-wider text-slate-400 font-semibold">
+                    Starting from
+                  </span>
+                  <span className="font-display text-2xl sm:text-3xl font-black text-[#00A3E0] tracking-tight">
+                    {displayPrice}
+                  </span>
+                </div>
+                {seating && (
+                  <div className="border-l border-slate-700 pl-4">
+                    <span className="block text-xs uppercase tracking-wider text-slate-400 font-semibold">
+                      Seating Capacity
+                    </span>
+                    <span className="text-sm sm:text-base font-bold text-slate-200">
+                      {seating}
+                    </span>
+                  </div>
+                )}
+                <div className="border-l border-slate-700 pl-4 hidden sm:block">
+                  <span className="block text-[11px] uppercase tracking-wider text-emerald-400 font-bold">
+                    Official Dealership
+                  </span>
+                  <span className="text-xs text-slate-300 font-medium">
+                    {site.name} • Gorakhpur, UP
+                  </span>
+                </div>
               </div>
-            </Card3D>
+            </div>
+
+            {/* Dealership Action Buttons (Enquire Now, Book Test Drive, Download Brochure) */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+              {/* Enquire Now -> Dealership Enquiry Modal */}
+              <button
+                type="button"
+                onClick={onEnquire}
+                className="group relative inline-flex items-center justify-center bg-white hover:bg-[#006CB5] transition-all duration-300 shadow-lg px-7 py-3 cursor-pointer"
+                style={{
+                  clipPath:
+                    "polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)",
+                }}
+              >
+                <span className="font-display text-xs sm:text-sm font-black tracking-wider text-slate-900 group-hover:text-white transition-colors duration-200 uppercase">
+                  Enquire Now
+                </span>
+              </button>
+
+              {/* Book Test Drive -> Dealership Test Drive Modal */}
+              <button
+                type="button"
+                onClick={onTestDrive}
+                className="group relative inline-flex items-center justify-center bg-[#006CB5] hover:bg-blue-700 transition-all duration-300 shadow-lg px-7 py-3 cursor-pointer text-white"
+                style={{
+                  clipPath:
+                    "polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)",
+                }}
+              >
+                <span className="font-display text-xs sm:text-sm font-black tracking-wider transition-colors duration-200 uppercase">
+                  Book Test Drive
+                </span>
+              </button>
+
+              {/* Download Brochure via WhatsApp */}
+              <a
+                href={`https://wa.me/918429540902?text=${encodeURIComponent(
+                  `*BROCHURE REQUEST - IAW FORCE*\n\nPlease share official brochure and on-road price breakdown for *${vehicle.name}*.`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-center gap-2 bg-[#0074C3] hover:bg-[#006CB5] transition-all duration-300 shadow-lg px-6 py-3 cursor-pointer text-white"
+                style={{
+                  clipPath:
+                    "polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)",
+                }}
+              >
+                <svg
+                  className="w-4 h-4 transform group-hover:translate-y-0.5 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+                <span className="font-display text-xs sm:text-sm font-extrabold tracking-wider uppercase">
+                  Download Brochure
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -91,81 +296,423 @@ export function HeroSection({ vehicle, onEnquire, onTestDrive }: { vehicle: Vehi
   );
 }
 
-// --- SPECIFICATIONS SECTION ---
-export function SpecificationsSection({ specs }: { specs: VehicleData["specifications"] }) {
-  const sectionRef = useRef<HTMLDivElement>(null);
+// =========================================================================
+// 2. SALIENT FEATURES / CALLOUT ARROWS SECTION (Matching Image 3)
+// =========================================================================
+export function SalientFeaturesSection({ vehicle }: { vehicle: VehicleData }) {
+  const calloutImg = vehicle.calloutImage || getVehicleCalloutImage(vehicle);
+  const specs = vehicle.specifications;
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el || prefersReducedMotion()) return;
-    try {
-      const { gsap } = useGsap();
-      const ctx = gsap.context(() => {
-        gsap.fromTo("[data-spec-card]", 
-          { y: 30, opacity: 0 }, 
-          { y: 0, opacity: 1, stagger: 0.1, duration: 0.6, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 80%" } }
-        );
-      }, el);
-      return () => ctx.revert();
-    } catch (e) {}
-  }, []);
+  // Adaptive highlights based on vehicle data
+  const engineParam = specs.engine
+    ? `${specs.engine}, ${specs.power || "90 hp"}`
+    : "Mercedes-Derived FM 2.6CR, Common Rail";
 
-  const specList = [
-    { label: "Engine", value: specs.engine, icon: "M13 10V3L4 14h7v7l9-11h-7z" },
-    { label: "Power", value: specs.power, icon: "M13 10V3L4 14h7v7l9-11h-7z" },
-    { label: "Torque", value: specs.torque, icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
-    { label: "Seating", value: specs.seatingCapacity, icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" },
-    { label: "Dimensions", value: specs.dimensions, icon: "M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" },
-    { label: "Wheelbase", value: specs.wheelbase, icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" },
-    { label: "Transmission", value: specs.transmission, icon: "M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" },
-    { label: "Fuel Type", value: specs.fuelType, icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" }
-  ].filter(s => s.value);
+  const seatingParam = specs.seatingCapacity || "Spacious Layout";
+  const suspensionParam = specs.suspension
+    ? specs.suspension.split(";")[0]
+    : "Independent Front Suspension";
+  const brakesParam = specs.brakes || "Dual Circuit with ABS & EBD";
 
   return (
-    <div ref={sectionRef} className="py-20 border-b border-slate-200 bg-[#F8FAFC]">
+    <div className="relative w-full bg-gradient-to-b from-[#0F141E] via-[#0F141E] to-[#F1F5F9] py-16 sm:py-24 overflow-hidden border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <h3 className="font-display text-2xl md:text-3xl font-black text-slate-900 mb-10 text-center uppercase tracking-tight">Technical Specifications</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {specList.map((stat, i) => (
-            <div key={i} data-spec-card className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow will-change-transform opacity-100 flex flex-col items-center text-center">
-              <div className="h-10 w-10 rounded-full bg-blue-50 text-[#006CB5] flex items-center justify-center mb-4">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={stat.icon} />
-                </svg>
-              </div>
-              <h4 className="text-[10px] font-bold tracking-[0.15em] text-slate-500 uppercase mb-1">{stat.label}</h4>
-              <p className="text-sm md:text-base font-bold text-slate-900">{stat.value}</p>
+        {/* Section Heading */}
+        <div className="text-center mb-10 md:mb-16">
+          <span className="inline-block text-xs font-extrabold tracking-[0.25em] text-[#00A3E0] uppercase">
+            ENGINEERING HIGHLIGHTS
+          </span>
+          <h3 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+            Key Architecture & Features
+          </h3>
+        </div>
+
+        {/* Interactive Feature Graphic with Curved Blue Callout Arrows */}
+        <div className="relative min-h-[460px] sm:min-h-[540px] flex items-center justify-center">
+          {/* Ground Soft Contact Shadow */}
+          <div className="pointer-events-none absolute bottom-8 sm:bottom-12 w-4/5 max-w-[620px] h-8 rounded-full bg-black/60 blur-xl" />
+
+          {/* Centered Vehicle Image */}
+          <div className="relative z-10 w-full max-w-[720px] flex items-center justify-center px-4">
+            <img
+              src={calloutImg}
+              alt={vehicle.name}
+              className="w-full h-auto max-h-[380px] sm:max-h-[440px] object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)] select-none"
+            />
+          </div>
+
+          {/* Desktop/Tablet Callouts with Curved Blue Arrows (Matching Image 3) */}
+          <div className="hidden lg:block absolute inset-0 pointer-events-none z-20">
+            {/* 1. Engine Parameters (Top-Left pointing to engine hood) */}
+            <div className="absolute top-10 left-6 xl:left-14 flex flex-col items-start">
+              <span className="text-xs font-bold text-[#00A3E0] tracking-wider uppercase">
+                Engine Parameters
+              </span>
+              <span className="font-display text-sm font-extrabold text-white mt-0.5 max-w-[220px]">
+                {engineParam}
+              </span>
+              {/* Curved SVG Arrow pointing to engine */}
+              <svg
+                width="220"
+                height="120"
+                viewBox="0 0 220 120"
+                fill="none"
+                className="mt-1"
+              >
+                <path
+                  d="M10,10 C80,10 130,50 190,100"
+                  stroke="#00A3E0"
+                  strokeWidth="2"
+                  strokeDasharray="4 3"
+                />
+                <circle cx="190" cy="100" r="4" fill="#00A3E0" />
+              </svg>
             </div>
-          ))}
+
+            {/* 2. Seating / Body Architecture (Top-Right pointing to cabin) */}
+            <div className="absolute top-10 right-6 xl:right-14 flex flex-col items-end text-right">
+              <span className="text-xs font-bold text-[#00A3E0] tracking-wider uppercase">
+                Cabin Configuration
+              </span>
+              <span className="font-display text-sm font-extrabold text-white mt-0.5 max-w-[220px]">
+                {seatingParam}
+              </span>
+              {/* Curved SVG Arrow pointing to cabin */}
+              <svg
+                width="220"
+                height="120"
+                viewBox="0 0 220 120"
+                fill="none"
+                className="mt-1"
+              >
+                <path
+                  d="M210,10 C140,10 90,50 30,100"
+                  stroke="#00A3E0"
+                  strokeWidth="2"
+                  strokeDasharray="4 3"
+                />
+                <circle cx="30" cy="100" r="4" fill="#00A3E0" />
+              </svg>
+            </div>
+
+            {/* 3. Suspension & Chassis (Bottom-Left pointing to chassis/wheels) */}
+            <div className="absolute bottom-12 left-6 xl:left-14 flex flex-col items-start">
+              <svg
+                width="220"
+                height="90"
+                viewBox="0 0 220 90"
+                fill="none"
+                className="mb-1"
+              >
+                <path
+                  d="M10,80 C70,80 120,45 180,10"
+                  stroke="#00A3E0"
+                  strokeWidth="2"
+                  strokeDasharray="4 3"
+                />
+                <circle cx="180" cy="10" r="4" fill="#00A3E0" />
+              </svg>
+              <span className="text-xs font-bold text-[#00A3E0] tracking-wider uppercase">
+                Suspension & Chassis
+              </span>
+              <span className="font-display text-sm font-extrabold text-white mt-0.5 max-w-[220px]">
+                {suspensionParam}
+              </span>
+            </div>
+
+            {/* 4. Safety & Braking System (Bottom-Right pointing to brakes/axle) */}
+            <div className="absolute bottom-12 right-6 xl:right-14 flex flex-col items-end text-right">
+              <svg
+                width="220"
+                height="90"
+                viewBox="0 0 220 90"
+                fill="none"
+                className="mb-1"
+              >
+                <path
+                  d="M210,80 C150,80 100,45 40,10"
+                  stroke="#00A3E0"
+                  strokeWidth="2"
+                  strokeDasharray="4 3"
+                />
+                <circle cx="40" cy="10" r="4" fill="#00A3E0" />
+              </svg>
+              <span className="text-xs font-bold text-[#00A3E0] tracking-wider uppercase">
+                Brakes & Safety
+              </span>
+              <span className="font-display text-sm font-extrabold text-white mt-0.5 max-w-[220px]">
+                {brakesParam}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Callout Cards (Displayed under graphic on small screens) */}
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
+          <div className="bg-[#161D2B] border border-slate-700/80 rounded-xl p-4">
+            <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider">
+              Engine Parameters
+            </span>
+            <p className="text-sm font-bold text-white mt-1">{engineParam}</p>
+          </div>
+          <div className="bg-[#161D2B] border border-slate-700/80 rounded-xl p-4">
+            <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider">
+              Cabin Configuration
+            </span>
+            <p className="text-sm font-bold text-white mt-1">{seatingParam}</p>
+          </div>
+          <div className="bg-[#161D2B] border border-slate-700/80 rounded-xl p-4">
+            <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider">
+              Suspension & Chassis
+            </span>
+            <p className="text-sm font-bold text-white mt-1">{suspensionParam}</p>
+          </div>
+          <div className="bg-[#161D2B] border border-slate-700/80 rounded-xl p-4">
+            <span className="text-[11px] font-bold text-[#00A3E0] uppercase tracking-wider">
+              Brakes & Safety
+            </span>
+            <p className="text-sm font-bold text-white mt-1">{brakesParam}</p>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-// --- FEATURES SECTION ---
-export function FeaturesSection({ features }: { features: VehicleData["features"] }) {
+// =========================================================================
+// 3. SPECIFICATIONS ACCORDION (Matching Image 4 from Force Motors)
+// =========================================================================
+export function SpecificationsSection({
+  specs,
+}: {
+  specs: VehicleData["specifications"];
+}) {
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+    seating: true,
+    engine: true,
+    dimensions: false,
+    suspension: false,
+    brakes: false,
+  });
+
+  const toggle = (id: string) => {
+    setOpenSections((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const sections = [
+    {
+      id: "seating",
+      title: "Seating Capacity",
+      items: [
+        {
+          label: "Seating Layout",
+          value: specs.seatingCapacity || "Configurable per requirement",
+        },
+      ],
+    },
+    {
+      id: "engine",
+      title: "Engine & Transmission",
+      items: [
+        {
+          label: "Engine Model",
+          value: specs.engine || "Mercedes-Derived FM 2.6 CR ED",
+        },
+        {
+          label: "Displacement",
+          value: specs.engineCapacity || "2596 cc",
+        },
+        {
+          label: "Max Output",
+          value: specs.power || "115 hp @ 2800 rpm",
+        },
+        {
+          label: "Max Torque",
+          value: specs.torque || "350 Nm @ 1400 - 2400 rpm",
+        },
+        {
+          label: "Transmission",
+          value: specs.transmission || "5-Speed Synchromesh Manual",
+        },
+        {
+          label: "Fuel Type / Emission",
+          value: `${specs.fuelType || "Diesel"} / BS-VI Stage 2`,
+        },
+      ],
+    },
+    {
+      id: "dimensions",
+      title: "Dimensions & Capacity",
+      items: [
+        {
+          label: "Wheelbase",
+          value: specs.wheelbase || "3350 mm",
+        },
+        {
+          label: "Dimensions (L x W x H)",
+          value: specs.dimensions || "5120 x 1818 x 2027 mm",
+        },
+        {
+          label: "Ground Clearance",
+          value: specs.groundClearance || "191 mm - 210 mm",
+        },
+        {
+          label: "Maximum GVW",
+          value: specs.gvw || "3675 kg - 4475 kg",
+        },
+      ],
+    },
+    {
+      id: "suspension",
+      title: "Suspension & Steering",
+      items: [
+        {
+          label: "Front Suspension",
+          value: specs.suspension
+            ? specs.suspension.split(";")[0]
+            : "Semi-Elliptical Leaf Springs / Independent Torsion Bar",
+        },
+        {
+          label: "Rear Suspension",
+          value: specs.suspension && specs.suspension.includes("Rear:")
+            ? specs.suspension.split("Rear:")[1]
+            : "Parabolic Leaf Springs with Hydraulic Shock Absorbers",
+        },
+        {
+          label: "Steering",
+          value: "Power Steering with Tilt & Telescopic Adjustment",
+        },
+      ],
+    },
+    {
+      id: "brakes",
+      title: "Brakes & Tyres",
+      items: [
+        {
+          label: "Brake System",
+          value: specs.brakes || "Dual Circuit Hydraulic with Vacuum Assist",
+        },
+        {
+          label: "ABS & EBD",
+          value: "Standard 4-Wheel Anti-lock Braking with EBD",
+        },
+        {
+          label: "Tyre Size",
+          value: specs.tyres || "215/75 R15 LT Radial Tubeless",
+        },
+      ],
+    },
+  ];
+
+  return (
+    <div className="py-20 bg-[#0B0F19] text-white">
+      <div className="max-w-4xl mx-auto px-5 md:px-8">
+        {/* Section Heading */}
+        <div className="text-center mb-12">
+          <span className="text-xs font-bold tracking-[0.25em] text-[#00A3E0] uppercase">
+            TECHNICAL SPECIFICATIONS
+          </span>
+          <h3 className="mt-2 font-display text-3xl sm:text-4xl font-black text-white tracking-tight">
+            Detailed Technical Specifications
+          </h3>
+        </div>
+
+        {/* Expandable Accordion List (Matching Image 4) */}
+        <div className="space-y-4">
+          {sections.map((sec) => {
+            const isOpen = !!openSections[sec.id];
+            return (
+              <div
+                key={sec.id}
+                className="overflow-hidden rounded-lg border border-slate-800 shadow-md"
+              >
+                {/* Accordion Tab Header with Blue Left Accent and +/- Sign */}
+                <button
+                  type="button"
+                  onClick={() => toggle(sec.id)}
+                  className="w-full flex items-center justify-between bg-[#151C2C] hover:bg-[#1A2336] transition-colors py-4 px-6 text-left font-display text-base sm:text-lg font-bold text-white border-l-4 border-[#006CB5]"
+                >
+                  <span>{sec.title}</span>
+                  <span className="text-xl sm:text-2xl font-normal leading-none pr-2">
+                    {isOpen ? "−" : "+"}
+                  </span>
+                </button>
+
+                {/* Expanded Content Panel */}
+                {isOpen && (
+                  <div className="bg-[#0E1320] text-slate-200 px-6 py-6 border-t border-slate-800 animate-in fade-in duration-200">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+                      {sec.items.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center justify-between border-b border-slate-800/80 pb-2 text-xs sm:text-sm"
+                        >
+                          <span className="text-slate-400 font-medium">
+                            {item.label}
+                          </span>
+                          <span className="text-white font-bold text-right ml-4">
+                            {item.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// =========================================================================
+// 4. KEY FEATURES SECTION
+// =========================================================================
+export function FeaturesSection({
+  features,
+}: {
+  features: VehicleData["features"];
+}) {
   if (!features || features.length === 0) return null;
   return (
-    <div className="py-20 bg-white border-b border-slate-200">
+    <div className="py-20 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <h3 className="font-display text-2xl md:text-3xl font-black text-slate-900 mb-10 text-center uppercase tracking-tight">Key Features</h3>
+        <h3 className="font-display text-2xl sm:text-4xl font-black text-slate-950 mb-10 text-center tracking-tight">
+          Comprehensive Feature Matrix
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((featureGroup, i) => (
-            <div key={i} className="bg-slate-50 p-8 rounded-3xl border border-slate-200">
+            <div
+              key={i}
+              className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm"
+            >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-8 w-8 rounded-full bg-[#006CB5] text-white flex items-center justify-center">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M5 13l4 4L19 7"
+                    />
                   </svg>
                 </div>
-                <h4 className="font-display text-xl font-bold text-slate-900">{featureGroup.category}</h4>
+                <h4 className="font-display text-lg font-bold text-slate-900">
+                  {featureGroup.category}
+                </h4>
               </div>
-              <ul className="space-y-4">
+              <ul className="space-y-3">
                 {featureGroup.items.map((item, j) => (
-                  <li key={j} className="flex items-start gap-3">
-                    <span className="text-[#006CB5] mt-1 text-lg leading-none">•</span>
-                    <span className="text-slate-700 font-medium">{item}</span>
+                  <li key={j} className="flex items-start gap-3 text-sm">
+                    <span className="text-[#006CB5] mt-0.5 font-bold">•</span>
+                    <span className="text-slate-700">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -177,24 +724,245 @@ export function FeaturesSection({ features }: { features: VehicleData["features"
   );
 }
 
-// --- SIMILAR VEHICLES SECTION ---
-export function SimilarVehiclesSection({ vehicles }: { vehicles: VehicleData[] }) {
+// =========================================================================
+// 5. AUTHORIZED DEALERSHIP SECTION (Dealer Details & Direct Enquiry)
+// =========================================================================
+export function DealershipSection({
+  vehicle,
+  onEnquire,
+  onTestDrive,
+}: {
+  vehicle: VehicleData;
+  onEnquire: () => void;
+  onTestDrive: () => void;
+}) {
+  return (
+    <section className="py-20 bg-gradient-to-b from-slate-900 via-[#0C1220] to-[#0A0E17] text-white relative overflow-hidden border-t border-slate-800">
+      {/* Decorative ambient glows */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#006CB5]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-5 md:px-8 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 rounded-full bg-blue-900/40 border border-blue-500/30 px-4 py-1.5 text-xs font-bold text-[#00A3E0] uppercase tracking-wider mb-4">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            Authorized Force Motors Dealership
+          </div>
+          <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+            Book {vehicle.name} with {site.legalName}
+          </h3>
+          <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+            Your authorized destination for Force Motors vehicle sales, genuine OEM parts, expert maintenance, and fleet financing across {site.city} and {site.region}.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          {/* Card 1: Showroom & Facility Details */}
+          <div className="bg-slate-800/60 backdrop-blur border border-slate-700/70 rounded-2xl p-7 flex flex-col justify-between hover:border-[#006CB5] transition-colors">
+            <div>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="h-10 w-10 rounded-xl bg-[#006CB5]/20 text-[#00A3E0] flex items-center justify-center font-black">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-display text-lg font-bold text-white">Gorakhpur Facility</h4>
+                  <span className="text-xs text-slate-400">Authorized Sales & Service Station</span>
+                </div>
+              </div>
+
+              <div className="space-y-4 text-sm text-slate-300">
+                <div>
+                  <span className="text-xs text-[#00A3E0] font-bold uppercase tracking-wider block">Address</span>
+                  <p className="mt-1 font-medium text-white">{site.addressLine}, {site.locality}</p>
+                </div>
+
+                <div>
+                  <span className="text-xs text-[#00A3E0] font-bold uppercase tracking-wider block">Showroom Timings</span>
+                  <p className="mt-1 font-medium text-white">
+                    {site.hours[0].days}: {site.hours[0].time}
+                  </p>
+                  <p className="font-medium text-slate-300">
+                    {site.hours[1].days}: {site.hours[1].time}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-5 border-t border-slate-700/60">
+              <a
+                href={site.directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-bold text-[#00A3E0] hover:text-white transition-colors"
+              >
+                <span>Open in Google Maps</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Card 2: Instant Help & Sales Desk */}
+          <div className="bg-slate-800/60 backdrop-blur border border-slate-700/70 rounded-2xl p-7 flex flex-col justify-between hover:border-[#006CB5] transition-colors">
+            <div>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="h-10 w-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-black">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-display text-lg font-bold text-white">Dealership Desk</h4>
+                  <span className="text-xs text-slate-400">Direct Sales & Booking Support</span>
+                </div>
+              </div>
+
+              <div className="space-y-4 text-sm text-slate-300">
+                <div>
+                  <span className="text-xs text-[#00A3E0] font-bold uppercase tracking-wider block">Toll-Free Hotline</span>
+                  <a
+                    href={site.phoneHref}
+                    className="mt-1 text-lg font-black text-white hover:text-[#00A3E0] transition-colors block"
+                  >
+                    {site.phone}
+                  </a>
+                </div>
+
+                <div>
+                  <span className="text-xs text-[#00A3E0] font-bold uppercase tracking-wider block">WhatsApp Sales Desk</span>
+                  <a
+                    href={`https://wa.me/918429540902?text=${encodeURIComponent(
+                      `*VEHICLE ENQUIRY - IAW FORCE*\n\nHello, I am enquiring about the *${vehicle.name}*. Please share on-road price breakdown in Gorakhpur and current stock availability.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5"
+                  >
+                    <span>{site.whatsapp}</span>
+                    <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold">Online</span>
+                  </a>
+                </div>
+
+                <div>
+                  <span className="text-xs text-[#00A3E0] font-bold uppercase tracking-wider block">Official Email</span>
+                  <a href={site.emailHref} className="mt-1 text-white hover:text-[#00A3E0] transition-colors block">
+                    {site.email}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-5 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+              <span>GST & RTO Certified</span>
+              <span>Fast Commercial Approvals</span>
+            </div>
+          </div>
+
+          {/* Card 3: Dealership Assurances & Quick Action CTAs */}
+          <div className="bg-gradient-to-br from-[#006CB5]/30 to-[#0A0E17] border border-[#006CB5]/60 rounded-2xl p-7 flex flex-col justify-between shadow-2xl">
+            <div>
+              <span className="text-xs font-extrabold uppercase tracking-widest text-[#00A3E0] block mb-2">
+                EXCLUSIVE DEALERSHIP BENEFITS
+              </span>
+              <h4 className="font-display text-xl font-black text-white mb-4">
+                Assured Ownership with IAW Force
+              </h4>
+
+              <ul className="space-y-2.5 text-xs sm:text-sm text-slate-200">
+                <li className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#00A3E0] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>100% Factory Authorized Warranty</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#00A3E0] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Lowest Interest Fleet Finance Partnerships</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#00A3E0] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Certified Technicians & Genuine Spare Parts</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#00A3E0] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Doorstep Test Drive across Gorakhpur</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <button
+                type="button"
+                onClick={onEnquire}
+                className="flex-1 bg-white hover:bg-slate-100 text-slate-950 font-display font-black text-xs py-3.5 px-4 rounded-xl text-center shadow-lg transition-all"
+              >
+                ENQUIRE NOW
+              </button>
+              <button
+                type="button"
+                onClick={onTestDrive}
+                className="flex-1 bg-[#006CB5] hover:bg-blue-600 text-white font-display font-black text-xs py-3.5 px-4 rounded-xl text-center shadow-lg transition-all border border-blue-400/40"
+              >
+                BOOK TEST DRIVE
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// =========================================================================
+// 6. SIMILAR VEHICLES SECTION
+// =========================================================================
+export function SimilarVehiclesSection({
+  vehicles,
+}: {
+  vehicles: VehicleData[];
+}) {
   if (!vehicles || vehicles.length === 0) return null;
   return (
-    <div className="py-20 bg-[#F8FAFC]">
+    <div className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <h3 className="font-display text-2xl md:text-3xl font-black text-slate-900 mb-10 text-center uppercase tracking-tight">Explore Similar Vehicles</h3>
+        <h3 className="font-display text-2xl sm:text-4xl font-black text-slate-950 mb-10 text-center tracking-tight">
+          Explore Related Models
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {vehicles.map((v) => (
-            <Link key={v.id} to={`/vehicles/${v.slug}`} className="block group">
-              <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#006CB5]">
-                <div className="h-48 bg-slate-50 p-6 flex items-center justify-center border-b border-slate-100">
-                  <img src={v.image} alt={v.name} className="h-full object-contain group-hover:scale-110 transition-transform duration-500" />
+            <Link
+              key={v.id + v.slug}
+              to="/vehicles/$slug"
+              params={{ slug: v.slug }}
+              className="block group"
+            >
+              <div className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#006CB5]">
+                <div className="h-52 bg-white p-6 flex items-center justify-center border-b border-slate-100">
+                  <img
+                    src={v.image}
+                    alt={v.name}
+                    className="h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="p-6">
-                  <div className="text-[10px] font-bold tracking-wider text-[#006CB5] uppercase mb-2">{v.categoryBadge}</div>
-                  <h4 className="font-display text-xl font-bold text-slate-900 group-hover:text-[#006CB5] transition-colors">{v.name}</h4>
-                  <p className="text-sm text-slate-500 mt-1 line-clamp-2">{v.description}</p>
+                  <div className="text-[10px] font-bold tracking-wider text-[#006CB5] uppercase mb-1">
+                    {v.categoryBadge}
+                  </div>
+                  <h4 className="font-display text-xl font-bold text-slate-900 group-hover:text-[#006CB5] transition-colors">
+                    {v.name}
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                    {v.description}
+                  </p>
                 </div>
               </div>
             </Link>
