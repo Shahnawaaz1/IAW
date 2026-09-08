@@ -288,7 +288,7 @@ export function MegaMenu({
     <div
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={`absolute left-0 right-0 top-full bg-slate-50 border-t border-slate-200 shadow-2xl transition-all duration-300 origin-top ${
+      className={`absolute left-0 right-0 top-full bg-slate-50 border-t border-slate-200 shadow-2xl transition-all duration-300 origin-top hidden lg:block ${
         isOpen ? "opacity-100 scale-y-100 visible" : "opacity-0 scale-y-95 invisible pointer-events-none"
       }`}
     >

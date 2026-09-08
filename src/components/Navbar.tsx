@@ -99,19 +99,46 @@ export function Navbar() {
               
               if (isVehicles) {
                 return (
-                  <button
-                    key={l.label}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsMegaMenuOpen(!isMegaMenuOpen);
-                    }}
-                    className="flex w-full items-center justify-between border-b border-slate-800/80 py-3 text-sm font-bold text-slate-200 transition-colors hover:text-[#3B82F6]"
-                  >
-                    <span>{l.label}</span>
-                    <span className="text-xs text-[#3B82F6]">
-                      {isMegaMenuOpen ? "↓" : "→"}
-                    </span>
-                  </button>
+                  <div key={l.label}>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsMegaMenuOpen(!isMegaMenuOpen);
+                      }}
+                      className="flex w-full items-center justify-between border-b border-slate-800/80 py-3 text-sm font-bold text-slate-200 transition-colors hover:text-[#3B82F6]"
+                    >
+                      <span>{l.label}</span>
+                      <span className="text-xl font-normal text-slate-400">
+                        {isMegaMenuOpen ? "-" : "+"}
+                      </span>
+                    </button>
+                    {isMegaMenuOpen && (
+                      <div className="flex flex-col border-b border-slate-800/80 py-2 pl-4">
+                        {[
+                          { name: "Traveller N", slug: "traveller-n-3050wb" },
+                          { name: "Urbania DX", slug: "urbania-dx-3350wb" },
+                          { name: "Monobus", slug: "monobus-lx-4020wb" },
+                          { name: "Trax", slug: "trax-cruiser" },
+                          { name: "Special Applications", slug: "traveller-prison-van" },
+                          { name: "Gurkha", slug: "gurkha-3-door" },
+                          { name: "EV", slug: "e-traveller-smart-citibus-ev" }
+                        ].map((cat) => (
+                          <a
+                            key={cat.name}
+                            href={`/vehicles/${cat.slug}`}
+                            onClick={() => {
+                              setOpen(false);
+                              setIsMegaMenuOpen(false);
+                            }}
+                            className="flex items-center justify-between py-2.5 text-sm font-medium text-slate-300 transition-colors hover:text-[#3B82F6]"
+                          >
+                            <span>{cat.name}</span>
+                            <span className="text-slate-500">›</span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 );
               }
 

@@ -19,7 +19,6 @@ import {
   Footer,
   FloatingWhatsApp,
 } from "@/components/Sections2";
-import { Preloader } from "@/components/Preloader";
 import { site } from "@/config/site";
 
 const title = "IAW Force | Authorized Force Motors Dealership in Gorakhpur & Eastern UP";
@@ -243,7 +242,6 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-accent selection:text-accent-foreground">
-      <Preloader />
       <Navbar />
       <main>
         <Hero />
