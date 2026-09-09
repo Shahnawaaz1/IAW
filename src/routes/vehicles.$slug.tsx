@@ -56,7 +56,7 @@ function VehiclePage() {
           onTestDrive={() => setIsTestDriveOpen(true)}
         />
 
-        <SalientFeaturesSection vehicle={vehicle} />
+        <SalientFeaturesSection key={`features-${vehicle.slug}`} vehicle={vehicle} />
 
         <SpecificationsSection specs={vehicle.specifications} />
 

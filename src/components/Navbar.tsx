@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { navLinks, site } from "@/config/site";
 import { MegaMenu } from "./MegaMenu";
 
@@ -26,7 +27,7 @@ export function Navbar() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
           {/* Brand Logo: Premium White & Blue Logo */}
-          <a href="#top" className="group flex items-center gap-3.5">
+          <Link to="/" className="group flex items-center gap-3.5">
             <div className="relative flex h-10 w-11 items-center justify-center bg-[#006CB5] rounded-sm shadow-md shadow-blue-900/20 transition-transform duration-300 group-hover:scale-105">
               <span className="font-display text-base font-black tracking-tighter text-white">
                 IAW
@@ -40,7 +41,7 @@ export function Navbar() {
                 FORCE MOTORS VEHICLES
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Minimalist Centered Navigation Links */}
           <nav aria-label="Primary" className="hidden items-center gap-10 lg:flex h-full">
@@ -52,8 +53,9 @@ export function Navbar() {
                   className="flex h-full items-center py-2 sm:py-3"
                   onMouseEnter={() => isVehicles && setIsMegaMenuOpen(true)}
                 >
-                  <a
-                    href={l.href}
+                  <Link
+                    to={l.href}
+                    onClick={() => setIsMegaMenuOpen(false)}
                     className={`group relative py-1 text-[17px] font-semibold tracking-wide transition-colors ${
                       scrolled
                         ? "text-slate-700 hover:text-[#006CB5]"
@@ -62,7 +64,7 @@ export function Navbar() {
                   >
                     <span>{l.label}</span>
                     <span className="absolute inset-x-0 -bottom-1 h-0.5 scale-x-0 bg-[#006CB5] transition-transform duration-300 group-hover:scale-x-100" />
-                  </a>
+                  </Link>
                 </div>
               );
             })}
@@ -123,9 +125,9 @@ export function Navbar() {
                           { name: "Gurkha", slug: "gurkha-3-door" },
                           { name: "EV", slug: "e-traveller-smart-citibus-ev" }
                         ].map((cat) => (
-                          <a
+                          <Link
                             key={cat.name}
-                            href={`/vehicles/${cat.slug}`}
+                            to={`/vehicles/${cat.slug}`}
                             onClick={() => {
                               setOpen(false);
                               setIsMegaMenuOpen(false);
@@ -134,7 +136,7 @@ export function Navbar() {
                           >
                             <span>{cat.name}</span>
                             <span className="text-slate-500">›</span>
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     )}
@@ -143,9 +145,9 @@ export function Navbar() {
               }
 
               return (
-                <a
+                <Link
                   key={l.label}
-                  href={l.href}
+                  to={l.href}
                   onClick={() => {
                     setOpen(false);
                     setIsMegaMenuOpen(false);
@@ -154,18 +156,18 @@ export function Navbar() {
                 >
                   <span>{l.label}</span>
                   <span className="text-xs text-[#3B82F6]">→</span>
-                </a>
+                </Link>
               );
             })}
 
             <div className="mt-6 flex flex-col gap-3 pt-2">
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 onClick={() => setOpen(false)}
                 className="flex h-11 items-center justify-center rounded-full bg-[#006CB5] text-xs font-bold tracking-wider text-white shadow-lg shadow-blue-600/30"
               >
                 ENQUIRE NOW
-              </a>
+              </Link>
               <a
                 href={site.phoneHref}
                 className="flex h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/10 text-xs font-bold text-white"

@@ -35,11 +35,11 @@ export const site = {
 } as const;
 
 export const navLinks = [
-  { label: "Home", href: "#top" },
-  { label: "About", href: "#about" },
-  { label: "Vehicles", href: "#vehicles" },
-  { label: "Applications", href: "#applications" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Vehicles", href: "/vehicles" },
+  { label: "Applications", href: "/applications" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const heroStats = [

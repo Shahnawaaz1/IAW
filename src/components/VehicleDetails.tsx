@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { VehicleData } from "@/data/vehicles";
 import { site } from "@/config/site";
@@ -302,6 +302,25 @@ export function HeroSection({
 export function SalientFeaturesSection({ vehicle }: { vehicle: VehicleData }) {
   const calloutImg = vehicle.calloutImage || getVehicleCalloutImage(vehicle);
   const specs = vehicle.specifications;
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          // Optional: observer.disconnect() if we only want it to animate once
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   // Adaptive highlights based on vehicle data
   const engineParam = specs.engine
@@ -315,7 +334,58 @@ export function SalientFeaturesSection({ vehicle }: { vehicle: VehicleData }) {
   const brakesParam = specs.brakes || "Dual Circuit with ABS & EBD";
 
   return (
-    <div className="relative w-full bg-gradient-to-b from-[#0F141E] via-[#0F141E] to-[#F1F5F9] py-16 sm:py-24 overflow-hidden border-b border-slate-200">
+    <div ref={sectionRef} className="relative w-full bg-gradient-to-b from-[#0F141E] via-[#0F141E] to-[#F1F5F9] py-16 sm:py-24 overflow-hidden border-b border-slate-200">
+      <style>
+        {`
+          @keyframes drawPath {
+            to { stroke-dashoffset: 0; }
+          }
+          @keyframes fadeText {
+            to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes fadeInArrowHead {
+            to { opacity: 1; }
+          }
+          
+          .path-line {
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+          }
+          
+          .is-visible .path-line {
+            animation: drawPath 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          }
+          
+          .arrow-head {
+            opacity: 0;
+          }
+          
+          .is-visible .arrow-head {
+            animation: fadeInArrowHead 0.1s linear forwards;
+          }
+          
+          .feature-text {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          
+          .is-visible .feature-text {
+            animation: fadeText 0.6s ease-out forwards;
+          }
+          
+          .delay-1 { animation-delay: 0.2s; }
+          .delay-2 { animation-delay: 0.4s; }
+          .delay-3 { animation-delay: 0.6s; }
+          .delay-4 { animation-delay: 0.8s; }
+          .delay-5 { animation-delay: 1.0s; }
+          
+          .is-visible .arrow-head.delay-1 { animation-delay: 1.0s; }
+          .is-visible .arrow-head.delay-2 { animation-delay: 1.2s; }
+          .is-visible .arrow-head.delay-3 { animation-delay: 1.4s; }
+          .is-visible .arrow-head.delay-4 { animation-delay: 1.6s; }
+          .is-visible .arrow-head.delay-5 { animation-delay: 1.8s; }
+        `}
+      </style>
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         {/* Section Heading */}
         <div className="text-center mb-10 md:mb-16">
@@ -345,53 +415,69 @@ export function SalientFeaturesSection({ vehicle }: { vehicle: VehicleData }) {
             </div>
 
             {/* SVG Arrows Overlay */}
-            <svg width="800" height="600" viewBox="0 0 800 600" className="absolute inset-0 pointer-events-none z-20">
+            <svg width="800" height="600" viewBox="0 0 800 600" className={`absolute inset-0 pointer-events-none z-20 ${isVisible ? 'is-visible' : ''}`}>
               <defs>
-                <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                {/* Create separate markers with delays to only show when path reaches them */}
+                <marker id="arrowhead-1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" className="arrow-head delay-1">
+                  <path d="M0,0 L6,3 L0,6" fill="#00A3E0" />
+                </marker>
+                <marker id="arrowhead-2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" className="arrow-head delay-2">
+                  <path d="M0,0 L6,3 L0,6" fill="#00A3E0" />
+                </marker>
+                <marker id="arrowhead-3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" className="arrow-head delay-3">
+                  <path d="M0,0 L6,3 L0,6" fill="#00A3E0" />
+                </marker>
+                <marker id="arrowhead-4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" className="arrow-head delay-4">
+                  <path d="M0,0 L6,3 L0,6" fill="#00A3E0" />
+                </marker>
+                <marker id="arrowhead-5" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" className="arrow-head delay-5">
                   <path d="M0,0 L6,3 L0,6" fill="#00A3E0" />
                 </marker>
               </defs>
 
               {/* Engine */}
-              <path d="M 280,320 Q 200,360 190,440" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              <path d="M 280,320 Q 200,360 190,440" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead-1)" className="path-line delay-1" />
               {/* Seating */}
-              <path d="M 320,270 Q 240,200 180,260" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              <path d="M 320,270 Q 240,200 180,260" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead-2)" className="path-line delay-2" />
               {/* Comfort */}
-              <path d="M 400,260 Q 400,200 400,160" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              <path d="M 400,260 Q 400,200 400,160" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead-3)" className="path-line delay-3" />
               {/* Convenience */}
-              <path d="M 480,270 Q 560,200 620,260" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              <path d="M 480,270 Q 560,200 620,260" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead-4)" className="path-line delay-4" />
               {/* Safety */}
-              <path d="M 520,320 Q 600,360 610,440" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              <path d="M 520,320 Q 600,360 610,440" fill="none" stroke="#00A3E0" strokeWidth="2" markerEnd="url(#arrowhead-5)" className="path-line delay-5" />
             </svg>
 
-            {/* 1. Engine Parameters */}
-            <div className="absolute top-[420px] left-0 w-[180px] text-left z-30">
-              <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Engine Parameters</span>
-              <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">{engineParam}</p>
-            </div>
+            {/* Feature Texts */}
+            <div className={isVisible ? 'is-visible' : ''}>
+              {/* 1. Engine Parameters */}
+              <div className="absolute top-[420px] left-0 w-[180px] text-left z-30 feature-text delay-1" style={{ animationDelay: '1.2s' }}>
+                <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Engine Parameters</span>
+                <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">{engineParam}</p>
+              </div>
 
-            {/* 2. Seating Capacity */}
-            <div className="absolute top-[240px] left-0 w-[170px] text-left z-30">
-              <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Seating Capacity</span>
-              <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">{seatingParam}</p>
-            </div>
+              {/* 2. Seating Capacity */}
+              <div className="absolute top-[240px] left-0 w-[170px] text-left z-30 feature-text delay-2" style={{ animationDelay: '1.4s' }}>
+                <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Seating Capacity</span>
+                <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">{seatingParam}</p>
+              </div>
 
-            {/* 3. Comfort */}
-            <div className="absolute top-[90px] left-[300px] w-[200px] text-center z-30">
-              <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Comfort</span>
-              <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">Monocoque body, low NVH</p>
-            </div>
+              {/* 3. Comfort */}
+              <div className="absolute top-[90px] left-[300px] w-[200px] text-center z-30 feature-text delay-3" style={{ animationDelay: '1.6s' }}>
+                <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Comfort</span>
+                <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">Monocoque body, low NVH</p>
+              </div>
 
-            {/* 4. Convenience */}
-            <div className="absolute top-[240px] right-0 w-[170px] text-left z-30">
-              <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Convenience</span>
-              <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">Easy entry-exit, CE coated body</p>
-            </div>
+              {/* 4. Convenience */}
+              <div className="absolute top-[240px] right-0 w-[170px] text-left z-30 feature-text delay-4" style={{ animationDelay: '1.8s' }}>
+                <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Convenience</span>
+                <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">Easy entry-exit, CE coated body</p>
+              </div>
 
-            {/* 5. Safety */}
-            <div className="absolute top-[420px] right-0 w-[180px] text-left z-30">
-              <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Safety</span>
-              <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">{brakesParam}</p>
+              {/* 5. Safety */}
+              <div className="absolute top-[420px] right-0 w-[180px] text-left z-30 feature-text delay-5" style={{ animationDelay: '2.0s' }}>
+                <span className="text-[14px] font-bold text-[#00A3E0] tracking-wider uppercase">Safety</span>
+                <p className="font-display text-[16px] font-extrabold text-white mt-1 leading-snug">{brakesParam}</p>
+              </div>
             </div>
           </div>
         </div>

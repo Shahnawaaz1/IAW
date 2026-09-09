@@ -1010,46 +1010,46 @@ export function VehicleFinder() {
           {/* Left Selection Column */}
           <div data-finder-left className="space-y-8 will-change-transform opacity-100">
             {/* Step 1: Use Case */}
-            <fieldset className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-              <legend className="px-2 text-xs font-black text-[#0F172A] uppercase tracking-wider">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+              <h3 className="text-xs font-black text-[#0F172A] uppercase tracking-wider">
                 1. What is your primary use case?
-              </legend>
-              <div className="mt-3 flex flex-wrap gap-2.5">
+              </h3>
+              <div className="mt-4 flex flex-wrap gap-2.5">
                 {usageOptions.map((o) => (
                   <button key={o} type="button" onClick={() => setUsage(o)} className={chip(usage === o)}>
                     {o}
                   </button>
                 ))}
               </div>
-            </fieldset>
+            </div>
 
             {/* Step 2: Capacity */}
-            <fieldset className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-              <legend className="px-2 text-xs font-black text-[#0F172A] uppercase tracking-wider">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+              <h3 className="text-xs font-black text-[#0F172A] uppercase tracking-wider">
                 2. Required Passenger / Seating Capacity?
-              </legend>
-              <div className="mt-3 flex flex-wrap gap-2.5">
+              </h3>
+              <div className="mt-4 flex flex-wrap gap-2.5">
                 {capacityOptions.map((o) => (
                   <button key={o} type="button" onClick={() => setCapacity(o)} className={chip(capacity === o)}>
                     {o}
                   </button>
                 ))}
               </div>
-            </fieldset>
+            </div>
 
             {/* Step 3: Terrain / Route Type */}
-            <fieldset className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-              <legend className="px-2 text-xs font-black text-[#0F172A] uppercase tracking-wider">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+              <h3 className="text-xs font-black text-[#0F172A] uppercase tracking-wider">
                 3. Operating Terrain & Route Type?
-              </legend>
-              <div className="mt-3 flex flex-wrap gap-2.5">
+              </h3>
+              <div className="mt-4 flex flex-wrap gap-2.5">
                 {terrainOptions.map((o) => (
                   <button key={o} type="button" onClick={() => setTerrain(o)} className={chip(terrain === o)}>
                     {o}
                   </button>
                 ))}
               </div>
-            </fieldset>
+            </div>
           </div>
 
           {/* Right Recommendation Card with 3D Elevation */}
