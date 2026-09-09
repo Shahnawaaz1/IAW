@@ -192,13 +192,6 @@ const categoryFilters = [
 export function VehicleRange() {
   const [activeTab, setActiveTab] = useState<string>("traveller");
   const sectionRef = useRef<HTMLElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
-
-  const filteredVehicles =
-    activeTab === "all"
-      ? allCatalogVehicles
-      : allCatalogVehicles.filter((v) => v.category === activeTab);
 
   // GSAP Stable Section-Bound Scroll Trigger Animation: Stays 100% visible while inside section
   useEffect(() => {
@@ -210,7 +203,10 @@ export function VehicleRange() {
     const ctx = gsap.context(() => {
       const header = el.querySelector("[data-range-header]");
       const tabs = el.querySelector("[data-range-tabs]");
-      const cards = el.querySelectorAll("[data-range-card]");
+      
+      const fleetHeader = el.querySelectorAll("[data-fleet-header]");
+      const vehicles = el.querySelectorAll("[data-fleet-vehicle]");
+      const statsElements = el.querySelectorAll("[data-fleet-stat]");
 
       // Smooth storytelling header entrance
       if (header) {
@@ -253,61 +249,68 @@ export function VehicleRange() {
         );
       }
 
-      // Row-by-Row 3 cards per row: Entrance triggers with smooth stagger & scale
-      const cardList = Array.from(cards);
-      if (cardList.length > 0) {
-        const rows: Element[][] = [];
-        for (let i = 0; i < cardList.length; i += 3) {
-          rows.push(cardList.slice(i, i + 3));
-        }
-
-        rows.forEach((rowCards) => {
-          gsap.fromTo(
-            rowCards,
-            {
-              y: 50,
-              scale: 0.94,
-              opacity: 0,
-            },
-            {
-              y: 0,
-              scale: 1,
-              opacity: 1,
-              stagger: 0.12,
-              duration: 0.75,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: rowCards[0],
-                start: "top 90%",
-                toggleActions: "play reverse play reverse",
-              end: "bottom 12%",
-              },
+      // Fleet Showcase Animations
+      if (fleetHeader.length > 0) {
+        gsap.fromTo(
+          fleetHeader,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.15,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: fleetHeader[0],
+              start: "top 85%",
             }
-          );
-        });
+          }
+        );
+      }
+
+      if (vehicles.length > 0) {
+        gsap.fromTo(
+          vehicles,
+          { y: 80, opacity: 0, scale: 0.85 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            stagger: { amount: 0.6, from: "center" },
+            duration: 1.2,
+            ease: "back.out(1.2)",
+            scrollTrigger: {
+              trigger: vehicles[0],
+              start: "top 80%",
+            }
+          }
+        );
+      }
+      
+      if (statsElements.length > 0) {
+        gsap.fromTo(
+          statsElements,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.15,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: statsElements[0],
+              start: "top 75%",
+            }
+          }
+        );
       }
     }, el);
 
     return () => ctx.revert();
   }, [activeTab]);
 
-  // Tab switch smooth reveal
-  useEffect(() => {
-    const grid = gridRef.current;
-    if (!grid || prefersReducedMotion()) return;
-    const { gsap } = useGsap();
-    const cards = grid.querySelectorAll("[data-range-card]");
-    if (cards.length > 0) {
-      gsap.fromTo(
-        cards,
-        { scale: 0.95, opacity: 0, y: 20 },
-        { scale: 1, opacity: 1, y: 0, stagger: 0.05, duration: 0.35, ease: "power2.out" }
-      );
-    }
-  }, [activeTab]);
-
   return (
-    <section id="range" ref={sectionRef} className="relative border-t border-slate-200 bg-white py-24 md:py-32">
+    <section id="range" ref={sectionRef} className="relative border-t border-slate-200 bg-gradient-to-b from-white to-slate-50 py-24 md:py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         {/* Story Section Header */}
         <div data-range-header className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 will-change-transform opacity-100">
@@ -340,132 +343,103 @@ export function VehicleRange() {
             onSelectVehicle={(id) => setActiveTab(id)}
           />
         </div>
+      </div>
 
-        {/* Section divider and models summary */}
-        <div className="mt-14 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-4">
-          <div className="flex items-center gap-3">
-            <h3 className="font-display text-lg sm:text-xl font-bold text-slate-900">
-              {activeTab === "all"
-                ? "All Force Vehicle Range"
-                : `${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Range & Variants`}
-            </h3>
-            <span className="rounded-full bg-blue-50 border border-blue-200 px-3 py-0.5 text-xs font-bold text-[#006CB5]">
-              {filteredVehicles.length} {filteredVehicles.length === 1 ? "Model" : "Models"}
-            </span>
+      {/* Force Motors Replica Fleet Showcase */}
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 mt-24 md:mt-32 relative">
+        {/* Force Motors Replica Header Section */}
+        <div className="mb-12 md:mb-16 will-change-transform opacity-100 px-4">
+           <div data-fleet-header>
+             <h2 className="text-center font-display text-4xl sm:text-5xl lg:text-[56px] font-black tracking-tight text-black mb-4">
+               IAW FORCE
+             </h2>
+             <h3 className="text-center font-display text-xl sm:text-2xl lg:text-3xl font-bold text-[#006CB5] mb-8 leading-tight">
+               FORCE MOTORS VEHICLES<br/>
+               Authorized Dealership
+             </h3>
+           </div>
+           
+           <div data-fleet-header className="max-w-4xl mx-auto text-center space-y-5 text-sm sm:text-base font-semibold text-slate-800">
+             <p>
+               Established with a commitment to excellence, IAW Force is your premier destination for the complete range of Force Motors commercial and passenger vehicles.<br/>
+               Today, we stand as a fully integrated dealership specializing in the sales, service, and support of vehicles, catering to the diverse needs of customers in Gorakhpur and beyond.
+             </p>
+             <p>
+               Driven by a passion for customer satisfaction, IAW Force endeavours to provide the best-in-class shared mobility and cargo solutions that keep pace with the growing demands of modern India.
+             </p>
+           </div>
+           
+           <div data-fleet-header className="text-center mt-10 mb-8">
+             <a href="#vehicles" className="inline-flex items-center justify-center bg-black text-white px-10 py-3.5 text-sm font-bold tracking-wider hover:bg-[#006CB5] transition-colors cursor-pointer skew-x-[-12deg]">
+               <span className="block skew-x-[12deg]">Read More</span>
+             </a>
+           </div>
+        </div>
+
+        {/* 3D Floor Grid Effect */}
+        <div className="absolute left-1/2 bottom-[15%] w-[120vw] -translate-x-1/2 h-[30vh] md:h-[45vh] bg-[radial-gradient(ellipse_at_center,rgba(0,108,181,0.08)_0%,transparent_70%)] [transform:rotateX(65deg)_translateZ(-50px)] pointer-events-none" />
+        <div className="absolute left-1/2 bottom-[10%] w-[120vw] -translate-x-1/2 h-[30vh] md:h-[45vh] [background-image:linear-gradient(rgba(0,108,181,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,108,181,0.05)_1px,transparent_1px)] [background-size:40px_40px] [transform:rotateX(75deg)_translateZ(-80px)] pointer-events-none opacity-60" />
+
+        <div className="relative mt-8 md:mt-24 w-full pt-10">
+           {/* Vehicle Cluster - absolute precision positioning to match the crowded V-formation */}
+           <div className="relative z-10 flex w-full items-end justify-center px-4">
+             {/* 1. Gurkha (Far Left) */}
+             <div data-fleet-vehicle className="w-[15%] min-w-[120px] max-w-[220px] -mr-[6%] relative z-[1]">
+                <img src={gurkhaImg} alt="Force Gurkha" className="w-full h-auto object-contain drop-shadow-2xl brightness-90 hover:brightness-100 transition-all duration-300" />
+             </div>
+             
+             {/* 2. Trax Cruiser (Inner Left) */}
+             <div data-fleet-vehicle className="w-[18%] min-w-[140px] max-w-[260px] -mr-[8%] relative z-[2]">
+                <img src={traxImg} alt="Force Trax Cruiser" className="w-full h-auto object-contain drop-shadow-2xl brightness-95 hover:brightness-100 transition-all duration-300" />
+             </div>
+             
+             {/* 3. Traveller (Left Center) */}
+             <div data-fleet-vehicle className="w-[20%] min-w-[160px] max-w-[300px] -mr-[7%] relative z-[3] pb-2">
+                <img src={travellerImg} alt="Force Traveller" className="w-full h-auto object-contain drop-shadow-2xl transition-all duration-300" />
+             </div>
+             
+             {/* 4. Urbania DX (Center Leader) */}
+             <div data-fleet-vehicle className="w-[25%] min-w-[200px] max-w-[400px] relative z-[5] pb-6 drop-shadow-[0_30px_35px_rgba(0,0,0,0.4)]">
+                <img src={urbaniaImg} alt="Force Urbania DX" className="w-full h-auto object-contain transition-transform duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer" />
+             </div>
+             
+             {/* 5. Monobus (Right Center) */}
+             <div data-fleet-vehicle className="w-[22%] min-w-[180px] max-w-[320px] -ml-[7%] relative z-[3] pb-1">
+                <img src={monobusImg} alt="Force Monobus" className="w-full h-auto object-contain drop-shadow-2xl transition-all duration-300" />
+             </div>
+             
+             {/* 6. Special/Ambulance (Inner Right) */}
+             <div data-fleet-vehicle className="w-[18%] min-w-[140px] max-w-[260px] -ml-[8%] relative z-[2] pb-1">
+                <img src={specialImg} alt="Force Ambulance" className="w-full h-auto object-contain drop-shadow-2xl brightness-95 hover:brightness-100 transition-all duration-300" />
+             </div>
+             
+             {/* 7. EV Range (Far Right) */}
+             <div data-fleet-vehicle className="w-[15%] min-w-[120px] max-w-[220px] -ml-[6%] relative z-[1]">
+                <img src={evImg} alt="Force EV" className="w-full h-auto object-contain drop-shadow-2xl brightness-90 hover:brightness-100 transition-all duration-300" />
+             </div>
+           </div>
+        </div>
+
+        {/* Bottom Statistics Row */}
+        <div className="relative z-20 mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 text-center pb-8">
+          <div data-fleet-stat>
+             <h4 className="font-display text-4xl sm:text-5xl lg:text-[64px] font-black text-[#006CB5] mb-2 drop-shadow-sm">5</h4>
+             <p className="text-sm font-bold text-slate-800">Manufacturing Facilities</p>
           </div>
-
-          {activeTab !== "all" ? (
-            <button
-              type="button"
-              onClick={() => setActiveTab("all")}
-              className="text-xs font-bold tracking-wider text-[#006CB5] hover:text-blue-800 transition-colors cursor-pointer self-start sm:self-auto"
-            >
-              VIEW ALL {allCatalogVehicles.length} MODELS →
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setActiveTab("traveller")}
-              className="text-xs font-bold tracking-wider text-[#006CB5] hover:text-blue-800 transition-colors cursor-pointer self-start sm:self-auto"
-            >
-              ← FOCUS BY CATEGORY
-            </button>
-          )}
+          <div data-fleet-stat>
+             <h4 className="font-display text-4xl sm:text-5xl lg:text-[64px] font-black text-[#006CB5] mb-2 drop-shadow-sm">25+</h4>
+             <p className="text-sm font-bold text-slate-800">Countries Served</p>
+          </div>
+          <div data-fleet-stat>
+             <h4 className="font-display text-4xl sm:text-5xl lg:text-[64px] font-black text-[#006CB5] mb-2 drop-shadow-sm">300+</h4>
+             <p className="text-sm font-bold text-slate-800">Sales & Service Touchpoints</p>
+          </div>
+          <div data-fleet-stat>
+             <h4 className="font-display text-4xl sm:text-5xl lg:text-[64px] font-black text-[#006CB5] mb-2 drop-shadow-sm">10000+</h4>
+             <p className="text-sm font-bold text-slate-800">Workforce</p>
+          </div>
         </div>
-
-        {/* 3D Interactive Vehicle Cards Grid: Touched Card Sharp + Neighbors Blur */}
-        <div ref={gridRef} className="group/grid mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredVehicles.map((v) => (
-            <div
-              key={v.id}
-              data-range-card
-              onClick={() => {
-                let slug = v.id;
-                if (v.id === "traveller-n") slug = "traveller-n-3050wb";
-                if (v.id === "urbania-dx") slug = "urbania";
-                if (v.id === "monobus-33") slug = "monobus";
-                if (v.id === "traveller-ambulance") slug = "special-applications";
-                if (v.id === "force-gurkha") slug = "gurkha";
-                if (v.id === "force-ev") slug = "e-traveller-smart-citibus-ev";
-                navigate({ to: "/vehicles/$slug", params: { slug } });
-              }}
-              className="h-full will-change-transform opacity-100 transition-all duration-400 hover:scale-[1.05] hover:z-30 hover:shadow-2xl cursor-pointer"
-            >
-              <Card3D intensity={12} className="h-full">
-                <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg shadow-slate-200/50 transition-all duration-300 hover:border-[#006CB5] hover:shadow-2xl">
-                  {/* Top info badge */}
-                  <div className="p-6 pb-0 [transform:translateZ(25px)]">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="rounded-full bg-blue-50 border border-blue-200/60 px-3 py-1 text-[10px] font-bold tracking-wider text-[#006CB5] uppercase shadow-sm">
-                        {v.categoryBadge}
-                      </span>
-                    </div>
-                    <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-[#0F172A] transition-colors group-hover:text-[#006CB5]">
-                      {v.title}
-                    </h3>
-                    <p className="mt-1 text-xs text-slate-500">
-                      {v.subtitle}
-                    </p>
-                  </div>
-
-                  {/* Vehicle Graphic */}
-                  <div className="relative my-6 flex min-h-[200px] items-center justify-center overflow-visible px-4 [transform-style:preserve-3d]">
-                    <div className="pointer-events-none absolute bottom-0 h-8 w-4/5 rounded-full bg-slate-900/15 blur-md" />
-                    <img
-                      src={v.image}
-                      alt={`Force ${v.title} at IAW Force Gorakhpur`}
-                      loading="lazy"
-                      decoding="async"
-                      width={900}
-                      height={560}
-                      className="relative z-20 h-auto max-h-[195px] w-full select-none object-contain drop-shadow-[0_15px_25px_rgba(15,23,42,0.18)] transition-all duration-500 [transform:translateZ(40px)] group-hover:scale-110 group-hover:-translate-y-2"
-                    />
-                  </div>
-
-                  {/* Specs & Features details */}
-                  <div className="border-t border-slate-100 bg-slate-50/60 p-6 [transform:translateZ(20px)]">
-                    <p className="text-xs leading-relaxed text-slate-600">
-                      {v.description}
-                    </p>
-
-                    <div className="mt-4 grid grid-cols-2 gap-2.5 rounded-lg bg-white p-3 border border-slate-200/80 text-[11px]">
-                      <div>
-                        <span className="text-[10px] font-semibold text-slate-500 uppercase">Seating</span>
-                        <p className="font-bold text-slate-900 mt-0.5">{v.seating}</p>
-                      </div>
-                      <div>
-                        <span className="text-[10px] font-semibold text-slate-500 uppercase">Engine</span>
-                        <p className="font-bold text-slate-900 mt-0.5">{v.engine}</p>
-                      </div>
-                    </div>
-
-                    <div className="mt-5 flex items-center justify-between pt-2">
-                      <a
-                        href={`https://wa.me/918429540902?text=${encodeURIComponent(`*VEHICLE ENQUIRY - IAW FORCE*\n\nI would like to enquire about *Force ${v.title}* (${v.seating}). Please share on-road price in Gorakhpur and brochure.`)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-xs font-bold tracking-[0.16em] text-[#006CB5] transition-colors hover:text-blue-700"
-                      >
-                        <span>ENQUIRE NOW</span>
-                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-none stroke-current" strokeWidth="2.5">
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </a>
-                      <a
-                        href={`https://wa.me/918429540902?text=${encodeURIComponent(`*REQUEST QUOTE - IAW FORCE*\n\nPlease share quotation and finance options for *Force ${v.title}*.`)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-full border border-slate-300 bg-white px-3.5 py-1.5 text-[11px] font-bold text-slate-700 shadow-sm transition-all hover:border-[#006CB5] hover:bg-blue-50 hover:text-[#006CB5]"
-                      >
-                        Get Quote
-                      </a>
-                    </div>
-                  </div>
-                </article>
-              </Card3D>
-            </div>
-          ))}
-        </div>
+        
       </div>
     </section>
   );
@@ -704,7 +678,7 @@ export function Solutions() {
                 trigger: rowCards[0],
                 start: "top 88%",
                 toggleActions: "play reverse play reverse",
-              end: "bottom 12%",
+                end: "bottom 12%",
               },
             }
           );
@@ -985,10 +959,9 @@ export function VehicleFinder() {
   }, []);
 
   const chip = (active: boolean) =>
-    `rounded-lg border px-4 py-3 text-xs font-bold tracking-wider transition-all duration-300 ${
-      active
-        ? "border-[#006CB5] bg-[#006CB5] text-white shadow-md shadow-blue-500/25 scale-[1.02]"
-        : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
+    `rounded-lg border px-4 py-3 text-xs font-bold tracking-wider transition-all duration-300 ${active
+      ? "border-[#006CB5] bg-[#006CB5] text-white shadow-md shadow-blue-500/25 scale-[1.02]"
+      : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
     }`;
 
   return (
