@@ -43,10 +43,15 @@ export function VehicleScroll() {
         const enterXVisual = isEven ? -50 : 50;
         const enterXCard = isEven ? 50 : -50;
 
-        // All vehicles (including Vehicle 0) start in prepared entrance position
+        // Vehicle 0 is fully visible from the start. Others are prepared offscreen.
         gsap.set(layer, { autoAlpha: i === 0 ? 1 : 0, zIndex: i === 0 ? 10 : 5 });
-        gsap.set(visual, { xPercent: enterXVisual, scale: 0.9, autoAlpha: 0 });
-        gsap.set(card, { xPercent: enterXCard, scale: 0.94, autoAlpha: 0 });
+        if (i === 0) {
+          gsap.set(visual, { xPercent: 0, scale: 1, autoAlpha: 1 });
+          gsap.set(card, { xPercent: 0, scale: 1, autoAlpha: 1 });
+        } else {
+          gsap.set(visual, { xPercent: enterXVisual, scale: 0.9, autoAlpha: 0 });
+          gsap.set(card, { xPercent: enterXCard, scale: 0.94, autoAlpha: 0 });
+        }
       });
 
       // Master GSAP scrubbed timeline with smooth spring damping
@@ -54,7 +59,7 @@ export function VehicleScroll() {
         scrollTrigger: {
           trigger: container,
           start: "top top",
-          end: `+=${numVehicles * 130}%`,
+          end: `+=${numVehicles * 100}%`,
           scrub: 1,
           pin: true,
           anticipatePin: 1,
@@ -63,25 +68,6 @@ export function VehicleScroll() {
           },
         },
       });
-
-      // PHASE 0: VEHICLE 0 ENTRANCE ANIMATION (From Hero into Showcase)
-      const v0Visual = visualRefs.current[0];
-      const v0Card = cardRefs.current[0];
-      if (v0Visual && v0Card) {
-        masterTl
-          .fromTo(
-            v0Visual,
-            { xPercent: -50, scale: 0.9, autoAlpha: 0 },
-            { xPercent: 0, scale: 1, autoAlpha: 1, duration: 0.28, ease: "power2.out" },
-            0,
-          )
-          .fromTo(
-            v0Card,
-            { xPercent: 50, scale: 0.94, autoAlpha: 0 },
-            { xPercent: 0, scale: 1, autoAlpha: 1, duration: 0.28, ease: "power2.out" },
-            0,
-          );
-      }
 
       // SEQUENTIAL CROSS-TRANSITIONS (v0 -> v1 -> v2 -> v3)
       for (let i = 0; i < numVehicles - 1; i++) {
@@ -104,8 +90,9 @@ export function VehicleScroll() {
         const enterXVisual = isNextEven ? -50 : 50;
         const enterXCard = isNextEven ? 50 : -50;
 
-        const tStart = 0.35 + i * 1.0;
-        const tDuration = 0.35;
+        // Start each transition at integer marks, with a pause in between
+        const tStart = i * 1.0 + 0.3; 
+        const tDuration = 0.5;
 
         // Current vehicle exits
         masterTl
@@ -128,35 +115,8 @@ export function VehicleScroll() {
           .fromTo(nextCard, { xPercent: enterXCard, autoAlpha: 0, scale: 0.94 }, { xPercent: 0, autoAlpha: 1, scale: 1, duration: tDuration, ease: "power2.out" }, tStart);
       }
 
-      // PHASE FINAL: LAST VEHICLE (V3) CINEMATIC EXIT HANDOFF INTO NEXT SECTION
-      const lastIdx = numVehicles - 1;
-      const lastVisual = visualRefs.current[lastIdx];
-      const lastCard = cardRefs.current[lastIdx];
-      const lastLayer = layerRefs.current[lastIdx];
-      const tExitStart = 0.35 + (numVehicles - 1) * 1.0 + 0.6;
-      const tExitDuration = 0.45;
-
-      if (lastVisual && lastCard && lastLayer) {
-        masterTl
-          .to(
-            lastVisual,
-            { y: -60, scale: 0.9, autoAlpha: 0, duration: tExitDuration, ease: "power2.inOut" },
-            tExitStart,
-          )
-          .to(
-            lastCard,
-            { y: -50, scale: 0.92, autoAlpha: 0, duration: tExitDuration, ease: "power2.inOut" },
-            tExitStart,
-          )
-          .to(
-            lastLayer,
-            { autoAlpha: 0, duration: tExitDuration, ease: "power2.inOut" },
-            tExitStart,
-          );
-      }
-
-      // Final smooth buffer
-      masterTl.to({}, { duration: 0.3 });
+      // Final smooth buffer so the last vehicle stays on screen for a while before unpinning
+      masterTl.to({}, { duration: 0.5 });
     }, container);
 
     return () => {
@@ -283,7 +243,7 @@ export function VehicleScroll() {
         </div>
       ) : (
         /* DESKTOP & TABLET VIEW (>= 768px): Pinned Interactive Storytelling Timeline */
-        <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden pt-28 pb-12 md:pt-32 md:pb-16">
+        <div className="flex h-screen w-full items-center justify-center overflow-hidden pt-28 pb-12 md:pt-32 md:pb-16">
           {/* Dynamic ambient radial floor glow */}
           <div
             className="pointer-events-none absolute inset-0 opacity-40 transition-all duration-500"

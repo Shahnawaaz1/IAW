@@ -51,7 +51,7 @@ export function Navbar() {
                 <div
                   key={l.label}
                   className="flex h-full items-center py-2 sm:py-3"
-                  onMouseEnter={() => isVehicles && setIsMegaMenuOpen(true)}
+                  onMouseEnter={() => setIsMegaMenuOpen(isVehicles)}
                 >
                   <Link
                     to={l.href}
